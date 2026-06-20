@@ -115,6 +115,7 @@
   ol.instr li p{font-size:14.5px;line-height:1.5}
   ol.instr strong{font-weight:600}
   ol.instr .tag{font-family:"IBM Plex Mono";font-size:12px;background:var(--panel-2);border:1px solid var(--line);padding:1px 6px;border-radius:5px;white-space:nowrap}
+  ol.instr .cmd{display:block;font-family:"IBM Plex Mono";font-size:12px;line-height:1.5;background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:9px 11px;margin-top:7px;white-space:pre-wrap;word-break:break-word;color:var(--ink)}
 
   .note{display:flex;gap:12px;padding:13px 15px;border-radius:11px;font-size:13.7px;line-height:1.5}
   .note .ic{flex:none;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;font-weight:700;font-size:13px;color:#fff;font-family:"Space Grotesk"}
@@ -752,7 +753,76 @@ const STEPS = [
     {name:"Failsafe RTL configuré", ref:"perte signal RC"},
     {name:"Hélices montées (dernier geste)", ref:""}
   ],
-  tip:["Bon vol — et bonne construction ! Neutron IT."]
+  tip:["Châssis assemblé et vérifié. Place à la configuration logicielle avant le premier vol."]
+},
+/* ---------------------------- CONFIGURATION & VOL ---------------------------- */
+{
+  phase:"Configuration", title:"Préparer la carte SD (Raspberry Pi Imager)",
+  lede:"On pré-configure l’OS de la Pi avant d’insérer la carte, avec Raspberry Pi Imager sur le PC.",
+  parts:[
+    {qty:"x1", name:"Raspberry Pi Imager", ref:"sur le PC"},
+    {qty:"x1", name:"Carte micro-SD", ref:"64 Go"}
+  ],
+  instr:[
+    "OS : <strong>Raspberry Pi OS Lite (64-bit)</strong>, puis ouvrez les réglages (OS Customization).",
+    "Général : hostname <span class='tag'>neutronit-drone</span>. Utilisateur : <span class='tag'>neutronit</span> + mot de passe.",
+    "Wi-Fi : SSID et mot de passe du <strong>partage de connexion de votre téléphone</strong>.",
+    "Services : activez <strong>SSH</strong> (par mot de passe). Écrivez la carte, puis insérez-la dans la Pi."
+  ],
+  warn:["Respectez le hostname et l’utilisateur exacts (<span class='tag'>neutronit-drone</span> / <span class='tag'>neutronit</span>) : toute la procédure réseau en dépend."]
+},
+{
+  phase:"Configuration", title:"Réseau : trouver les adresses IP",
+  lede:"PC sol et Raspberry Pi doivent partager le même sous-réseau (les 3 premiers blocs d’IP identiques). Ne devinez jamais une IP sur le terrain : relevez-la.",
+  instr:[
+    "Famille d’IP selon le téléphone : <strong>iPhone</strong> ≈ <span class='tag'>172.20.10.x</span> · <strong>Android</strong> souvent <span class='tag'>192.168.x.x</span>.",
+    "IP du PC sol : Windows → <span class='tag'>ipconfig</span> (ligne IPv4 Wi-Fi) · Mac/Linux → <span class='tag'>ip a</span>.",
+    "IP de la Pi : depuis le PC, <span class='tag'>ssh neutronit@neutronit-drone.local</span> puis <span class='tag'>hostname -I</span>."
+  ],
+  tip:["Sinon : appli Fing sur le téléphone, ou Paramètres Android → Point d’accès → Appareils connectés."]
+},
+{
+  phase:"Configuration", title:"Installer le logiciel sur la Pi",
+  lede:"En SSH sur la Pi : on libère le port série, puis on installe l’écosystème de vol.",
+  instr:[
+    "Connexion : <span class='tag'>ssh neutronit@neutronit-drone.local</span>.",
+    "Port série : <span class='tag'>sudo raspi-config</span> → Interface Options → Serial Port → shell <strong>Non</strong>, port matériel <strong>Oui</strong>, puis <span class='tag'>sudo reboot</span>.",
+    "Mises à jour et dépendances :<code class='cmd'>sudo apt update && sudo apt upgrade -y\nsudo apt install python3-pip python3-opencv gstreamer1.0-tools gstreamer1.0-plugins-good gstreamer1.0-plugins-bad -y</code>",
+    "Bibliothèques de vol :<code class='cmd'>pip3 install pymavlink MAVProxy --break-system-packages</code>"
+  ],
+  tip:["VS Code + extension Remote-SSH permet d’éditer les scripts directement sur la Pi (dossier /home/neutronit/)."]
+},
+{
+  phase:"Configuration", title:"Paramètres QGroundControl",
+  lede:"Reliez le Pixhawk en USB et réglez ces paramètres avant le vol.",
+  instr:[
+    "<span class='tag'>MAV_1_CONFIG</span> = TELEM2 · <span class='tag'>SER_TEL2_BAUD</span> = 57600 · <span class='tag'>MAV_1_MODE</span> = Normal.",
+    "<span class='tag'>MPC_THR_HOVER</span> ≈ 0.40 (à ajuster selon le poids réel, ~1,6 kg) · <span class='tag'>MPC_USE_HTE</span> = 1.",
+    "Vérifiez les calibrations <strong>IMU, boussole et ESC</strong>."
+  ],
+  tip:["MPC_USE_HTE = 1 active l’estimateur automatique de poussée stationnaire (ajuste le hover tout seul)."]
+},
+{
+  phase:"Configuration", title:"Flux télémétrie et vidéo",
+  lede:"Sur la Pi, on route la télémétrie MAVLink et la vidéo vers l’IP réelle du PC sol (relevée à l’étape réseau).",
+  instr:[
+    "Terminal 1 — télémétrie (QGC doit se synchroniser) :<code class='cmd'>mavproxy.py --master=/dev/ttyAMA0 --baudrate 57600 --out udp:&lt;IP_PC&gt;:14550 --out udp:127.0.0.1:14551</code>",
+    "Terminal 2 — vidéo H.264 vers le port 5600 :<code class='cmd'>rpicam-vid -t 0 --codec libav --libav-format h264 --width 640 --height 480 --framerate 30 -o - | gst-launch-1.0 fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 ! udpsink host=&lt;IP_PC&gt; port=5600</code>"
+  ],
+  tip:["Remplacez <span class='tag'>&lt;IP_PC&gt;</span> par l’IP réelle du PC (ex. iPhone : 172.20.10.3)."]
+},
+{
+  phase:"Premier vol", title:"Décollage : Position → Offboard",
+  lede:"Procédure terrain complète, du partage de connexion au passage en vol autonome.",
+  instr:[
+    "Partage de connexion <strong>ON</strong>. PC sol connecté : relevez son IP réelle, lancez QGroundControl.",
+    "Drone <strong>ON</strong>, attendez le <strong>GPS 3D Lock</strong> (LED verte Pixhawk fixe). Ouvrez le SSH vers la Pi.",
+    "Lancez la télémétrie (terminal 1), puis la vidéo (terminal 2), avec l’IP du PC.",
+    "Lancez le script de vol :<code class='cmd'>python3 neutronit_vol_imple.py</code>",
+    "Décollez en <span class='tag'>Position Mode</span> à 1,5 m, stabilisez, puis basculez <span class='tag'>Offboard</span> : l’algorithme prend le relais (rotation de sécurité + atterrissage autonome)."
+  ],
+  warn:["Premier vol en zone dégagée, failsafe Return-to-Launch configuré. Gardez la main sur l’interrupteur de reprise."],
+  tip:["Bonne construction et bon vol — Guillaume GUGUEN / Neutron IT."]
 }
 ];
 
