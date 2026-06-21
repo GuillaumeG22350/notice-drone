@@ -9,41 +9,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#E9EBEE; --panel:#FFFFFF; --panel-2:#F4F5F7;
-    --ink:#15181D; --ink-soft:#5B6470; --ink-faint:#8B929C;
-    --line:#D7DBE0; --line-strong:#C2C8D0;
-    --accent:#FF5A1F; --accent-soft:#FFE9DF;
-    --warn:#C92A1C; --warn-soft:#FCE9E7;
-    --tip:#1F6BB8; --tip-soft:#E6F0FA;
-    --ok:#2E7D46;
-    --shadow:0 1px 2px rgba(20,24,29,.06),0 8px 24px rgba(20,24,29,.06);
-    --radius:14px;
+    --bg:#E9EBEE;--panel:#FFFFFF;--panel-2:#F4F5F7;
+    --ink:#15181D;--ink-soft:#5B6470;--ink-faint:#8B929C;
+    --line:#D7DBE0;--line-strong:#C2C8D0;
+    --accent:#FF5A1F;--accent-soft:#FFE9DF;
+    --warn:#C92A1C;--warn-soft:#FCE9E7;--tip:#1F6BB8;--tip-soft:#E6F0FA;
+    --shadow:0 1px 2px rgba(20,24,29,.06),0 8px 24px rgba(20,24,29,.06);--radius:14px;
   }
   html[data-theme="dark"]{
-    --bg:#0E1115; --panel:#161A20; --panel-2:#1C212899;
-    --ink:#E9ECF0; --ink-soft:#9AA3AE; --ink-faint:#6B7480;
-    --line:#262C34; --line-strong:#323A44;
-    --accent:#FF6A33; --accent-soft:#3a1d10;
-    --warn:#F2685A; --warn-soft:#2a1614;
-    --tip:#6BB0F0; --tip-soft:#11202e;
-    --ok:#5FD083;
+    --bg:#0E1115;--panel:#161A20;--panel-2:#1C2128;
+    --ink:#E9ECF0;--ink-soft:#9AA3AE;--ink-faint:#6B7480;
+    --line:#262C34;--line-strong:#323A44;
+    --accent:#FF6A33;--accent-soft:#3a1d10;
+    --warn:#F2685A;--warn-soft:#2a1614;--tip:#6BB0F0;--tip-soft:#11202e;
     --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.35);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
-  body{
-    font-family:"Inter",system-ui,sans-serif;
-    background:var(--bg);color:var(--ink);
-    -webkit-font-smoothing:antialiased;
-    display:flex;flex-direction:column;min-height:100dvh;
-    background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
-    background-size:46px 46px;background-position:center;
-  }
+  body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100dvh;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:46px 46px;background-position:center}
   html[data-theme="dark"] body{background-image:linear-gradient(#1a1f26 1px,transparent 1px),linear-gradient(90deg,#1a1f26 1px,transparent 1px)}
-  .mono{font-family:"IBM Plex Mono",monospace}
-
   header{position:sticky;top:0;z-index:30;background:var(--panel);border-bottom:1px solid var(--line-strong)}
-  .bar{max-width:1180px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:16px}
+  .bar{max-width:1180px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:12px}
   .brand{display:flex;align-items:center;gap:11px;min-width:0}
   .logo{width:30px;height:30px;flex:none;border-radius:7px;background:var(--accent);position:relative;box-shadow:0 0 0 4px var(--accent-soft)}
   .logo::before,.logo::after{content:"";position:absolute;background:#fff}
@@ -53,33 +40,31 @@
   .brand span{display:block;font-size:11px;color:var(--ink-soft);letter-spacing:.14em;text-transform:uppercase}
   .counter{margin-left:auto;display:flex;align-items:baseline;gap:6px;font-family:"IBM Plex Mono";color:var(--ink-soft);font-size:13px}
   .counter b{color:var(--ink);font-size:18px;font-weight:600}
-  .iconbtn{flex:none;width:36px;height:36px;border-radius:9px;border:1px solid var(--line-strong);background:var(--panel);color:var(--ink);cursor:pointer;font-size:15px;display:grid;place-items:center;transition:.15s}
+  .iconbtn{flex:none;height:36px;min-width:36px;padding:0 10px;border-radius:9px;border:1px solid var(--line-strong);background:var(--panel);color:var(--ink);cursor:pointer;font-size:13px;font-weight:600;font-family:"IBM Plex Mono";display:grid;place-items:center;transition:.15s}
   .iconbtn:hover{border-color:var(--accent);color:var(--accent)}
   .progress{height:3px;background:var(--line);width:100%}
   .progress i{display:block;height:100%;background:var(--accent);width:0;transition:width .35s cubic-bezier(.4,0,.2,1)}
-
   main{flex:1;width:100%;max-width:1180px;margin:0 auto;padding:26px 20px 120px}
   .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:"IBM Plex Mono";font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
   .eyebrow::before{content:"";width:22px;height:1.5px;background:var(--accent)}
-  h1{font-family:"Space Grotesk";font-weight:600;font-size:clamp(24px,4.2vw,34px);line-height:1.1;letter-spacing:-.01em;margin-bottom:6px}
+  h1{font-family:"Space Grotesk";font-weight:600;font-size:clamp(23px,4vw,33px);line-height:1.1;letter-spacing:-.01em;margin-bottom:6px}
   .lede{color:var(--ink-soft);font-size:15.5px;max-width:62ch;margin-bottom:24px}
-
   .grid{display:grid;grid-template-columns:300px 1fr;gap:22px;align-items:start}
   @media(max-width:820px){.grid{grid-template-columns:1fr}}
-
+  .rail{display:flex;flex-direction:column;gap:14px}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
   .card-h{display:flex;align-items:center;gap:8px;padding:13px 16px;border-bottom:1px solid var(--line);font-family:"Space Grotesk";font-weight:600;font-size:13px;letter-spacing:.02em}
   .card-h .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
-
   .manifest{padding:6px}
   .part{display:flex;align-items:center;gap:12px;padding:9px 10px;border-radius:9px}
-  .part+.part{margin-top:1px}
-  .part:hover{background:var(--panel-2)}
-  .qty{flex:none;min-width:42px;height:30px;padding:0 8px;border-radius:7px;background:var(--ink);color:var(--bg);font-family:"IBM Plex Mono";font-weight:600;font-size:13px;display:grid;place-items:center}
+  .part+.part{margin-top:1px}.part:hover{background:var(--panel-2)}
+  .qty{flex:none;min-width:44px;height:30px;padding:0 8px;border-radius:7px;background:var(--ink);color:var(--bg);font-family:"IBM Plex Mono";font-weight:600;font-size:12.5px;display:grid;place-items:center}
   html[data-theme="dark"] .qty{background:var(--accent);color:#101317}
   .part .pn{font-size:13.5px;line-height:1.25}
   .part .pref{font-family:"IBM Plex Mono";font-size:11px;color:var(--ink-faint);margin-top:1px}
-
+  .fastbody{padding:11px 12px;display:flex;flex-wrap:wrap;gap:8px}
+  .fitem{display:flex;align-items:center;gap:7px;font-family:"IBM Plex Mono";font-size:11.5px;background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+  .fitem svg{width:17px;height:17px;color:var(--accent);flex:none}
   .check{display:flex;gap:11px;padding:9px 12px;cursor:pointer;border-radius:9px;align-items:flex-start}
   .check:hover{background:var(--panel-2)}
   .check input{appearance:none;flex:none;width:19px;height:19px;margin-top:1px;border:1.6px solid var(--line-strong);border-radius:5px;cursor:pointer;position:relative;transition:.15s}
@@ -90,22 +75,18 @@
   .ctext small{display:block;font-family:"IBM Plex Mono";font-size:11px;color:var(--ink-faint);text-decoration:none}
   .checkfoot{padding:11px 16px;border-top:1px solid var(--line);font-family:"IBM Plex Mono";font-size:12px;color:var(--ink-soft);display:flex;justify-content:space-between;align-items:center}
   .checkfoot b{color:var(--accent)}
-
   .viewport{display:flex;flex-direction:column;gap:18px}
   .figure{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
-  .frame{position:relative;background:repeating-conic-gradient(var(--panel-2) 0% 25%,var(--panel) 0% 50%) 50%/22px 22px;min-height:240px;display:grid;place-items:center}
-  .frame img{display:block;width:100%;height:auto;max-height:62vh;object-fit:contain}
-  .ph{padding:42px 24px;text-align:center;color:var(--ink-faint);width:100%}
-  .ph svg{width:40px;height:40px;opacity:.5;margin-bottom:12px}
+  .frame{position:relative;background:repeating-conic-gradient(var(--panel-2) 0% 25%,var(--panel) 0% 50%) 50%/22px 22px;min-height:230px;display:grid;place-items:center}
+  .frame img{display:block;width:100%;height:auto;max-height:60vh;object-fit:contain}
+  .ph{padding:40px 24px;text-align:center;color:var(--ink-faint);width:100%}
+  .ph svg{width:38px;height:38px;opacity:.5;margin-bottom:12px}
   .ph code{display:inline-block;margin-top:10px;font-family:"IBM Plex Mono";font-size:12.5px;background:var(--panel-2);border:1px dashed var(--line-strong);padding:5px 10px;border-radius:7px;color:var(--ink-soft)}
   .frame .tick{position:absolute;width:13px;height:13px;border:1.5px solid var(--accent);opacity:.7}
-  .frame .tick.tl{top:9px;left:9px;border-right:0;border-bottom:0}
-  .frame .tick.tr{top:9px;right:9px;border-left:0;border-bottom:0}
-  .frame .tick.bl{bottom:9px;left:9px;border-right:0;border-top:0}
-  .frame .tick.br{bottom:9px;right:9px;border-left:0;border-top:0}
+  .frame .tick.tl{top:9px;left:9px;border-right:0;border-bottom:0}.frame .tick.tr{top:9px;right:9px;border-left:0;border-bottom:0}
+  .frame .tick.bl{bottom:9px;left:9px;border-right:0;border-top:0}.frame .tick.br{bottom:9px;right:9px;border-left:0;border-top:0}
   .cap{padding:10px 15px;font-size:12.5px;color:var(--ink-soft);border-top:1px solid var(--line);display:flex;gap:8px;align-items:baseline}
   .cap b{font-family:"IBM Plex Mono";color:var(--accent);font-size:11px;letter-spacing:.05em}
-
   .steps-h{font-family:"Space Grotesk";font-weight:600;font-size:14px;letter-spacing:.02em;margin:2px 0 4px;display:flex;align-items:center;gap:9px}
   .steps-h .ln{flex:1;height:1px;background:var(--line)}
   ol.instr{list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:2px}
@@ -115,810 +96,718 @@
   ol.instr li p{font-size:14.5px;line-height:1.5}
   ol.instr strong{font-weight:600}
   ol.instr .tag{font-family:"IBM Plex Mono";font-size:12px;background:var(--panel-2);border:1px solid var(--line);padding:1px 6px;border-radius:5px;white-space:nowrap}
-  ol.instr .cmd{display:block;font-family:"IBM Plex Mono";font-size:12px;line-height:1.5;background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:9px 11px;margin-top:7px;white-space:pre-wrap;word-break:break-word;color:var(--ink)}
-
+  ol.instr .cmd{display:block;font-family:"IBM Plex Mono";font-size:12px;line-height:1.55;background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:9px 11px;margin-top:7px;white-space:pre-wrap;word-break:break-word;color:var(--ink)}
+  table.map{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px}
+  table.map th,table.map td{border:1px solid var(--line);padding:6px 8px;text-align:left}
+  table.map th{background:var(--panel-2);font-family:"Space Grotesk";font-weight:600;font-size:12px}
+  table.map td{font-family:"IBM Plex Mono";font-size:12px}
   .note{display:flex;gap:12px;padding:13px 15px;border-radius:11px;font-size:13.7px;line-height:1.5}
   .note .ic{flex:none;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;font-weight:700;font-size:13px;color:#fff;font-family:"Space Grotesk"}
   .note.warn{background:var(--warn-soft);border:1px solid color-mix(in srgb,var(--warn) 35%,transparent)}
-  .note.warn .ic{background:var(--warn)}
-  .note.warn b{color:var(--warn)}
+  .note.warn .ic{background:var(--warn)}.note.warn b{color:var(--warn)}
   .note.tip{background:var(--tip-soft);border:1px solid color-mix(in srgb,var(--tip) 30%,transparent)}
-  .note.tip .ic{background:var(--tip)}
-  .note.tip b{color:var(--tip)}
+  .note.tip .ic{background:var(--tip)}.note.tip b{color:var(--tip)}
   .notes-wrap{display:flex;flex-direction:column;gap:9px;margin-top:6px}
-
+  .outro{text-align:center;padding:46px 20px;max-width:640px;margin:6px auto}
+  .outro .big{width:86px;height:86px;border-radius:50%;background:var(--accent);display:grid;place-items:center;margin:0 auto 24px;box-shadow:0 0 0 10px var(--accent-soft)}
+  .outro .big svg{width:44px;height:44px;color:#fff}
+  .outro h1{font-size:clamp(28px,6vw,44px)}
+  .outro p{color:var(--ink-soft);font-size:16px;margin-top:12px}
+  .outro .sig{margin-top:28px;font-family:"IBM Plex Mono";font-size:13px;color:var(--accent);letter-spacing:.05em}
   .nav{position:fixed;bottom:0;left:0;right:0;z-index:30;background:color-mix(in srgb,var(--panel) 90%,transparent);backdrop-filter:blur(12px);border-top:1px solid var(--line-strong)}
   .navin{max-width:1180px;margin:0 auto;padding:11px 20px;display:flex;align-items:center;gap:14px}
   .nbtn{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 18px;border-radius:10px;font-family:"Space Grotesk";font-weight:600;font-size:14px;cursor:pointer;border:1px solid var(--line-strong);background:var(--panel);color:var(--ink);transition:.15s}
   .nbtn:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
-  .nbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-  .nbtn.primary:hover{filter:brightness(1.06);color:#fff}
+  .nbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.nbtn.primary:hover{filter:brightness(1.06);color:#fff}
   .nbtn:disabled{opacity:.4;cursor:not-allowed}
-  .dots{flex:1;display:flex;justify-content:flex-start;align-items:center;gap:7px;overflow-x:auto;padding:6px 2px;scroll-padding:0 40px}
+  .dots{flex:1;display:flex;align-items:center;gap:7px;overflow-x:auto;padding:6px 2px;scroll-padding:0 40px;-ms-overflow-style:none;scrollbar-width:none}
   .dots::-webkit-scrollbar{display:none}
-  .dots{-ms-overflow-style:none;scrollbar-width:none}
   .dt{flex:none;width:9px;height:9px;border-radius:50%;background:var(--line-strong);border:0;cursor:pointer;transition:.2s;padding:0}
-  .dt:hover{transform:scale(1.3)}
-  .dt.on{width:26px;border-radius:5px;background:var(--accent)}
-  .dt.done{background:var(--ink-soft)}
+  .dt:hover{transform:scale(1.3)}.dt.on{width:26px;border-radius:5px;background:var(--accent)}.dt.done{background:var(--ink-soft)}
   .navlabel{display:none;font-family:"IBM Plex Mono";font-size:11px;color:var(--ink-faint);letter-spacing:.05em}
   @media(min-width:560px){.navlabel{display:block}}
-
   @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 <header>
   <div class="bar">
-    <div class="brand">
-      <div class="logo" aria-hidden="true"></div>
-      <div><b>NEUTRON&nbsp;IT</b><span>Notice de montage</span></div>
-    </div>
-    <div class="counter">Étape <b id="cNum">01</b>/<span id="cTot">00</span></div>
-    <button class="iconbtn" id="theme" title="Thème clair / sombre" aria-label="Changer le thème">◐</button>
+    <div class="brand"><div class="logo" aria-hidden="true"></div>
+      <div><b>NEUTRON&nbsp;IT</b><span id="subtitle">Notice de montage</span></div></div>
+    <div class="counter"><span id="cLbl">Étape</span> <b id="cNum">01</b>/<span id="cTot">00</span></div>
+    <button class="iconbtn" id="lang" title="Language">EN</button>
+    <button class="iconbtn" id="theme" title="Thème / Theme">◐</button>
   </div>
   <div class="progress"><i id="bar"></i></div>
 </header>
-
 <main id="stage" tabindex="-1"></main>
-
-<nav class="nav">
-  <div class="navin">
-    <button class="nbtn" id="prev">‹ <span class="navlabel">Précédent</span></button>
-    <div class="dots" id="dots"></div>
-    <button class="nbtn primary" id="next"><span class="navlabel">Suivant</span> ›</button>
-  </div>
-</nav>
+<nav class="nav"><div class="navin">
+  <button class="nbtn" id="prev">‹ <span class="navlabel" id="prevL">Précédent</span></button>
+  <div class="dots" id="dots"></div>
+  <button class="nbtn primary" id="next"><span class="navlabel" id="nextL">Suivant</span> ›</button>
+</div></nav>
 
 <script>
-/* =========================================================================
-   NOTICE DE MONTAGE — NEUTRON IT
-   Pour AJOUTER une étape : copiez un bloc {...} dans le tableau STEPS.
-   Champs : phase, title, lede, parts[{qty,name,ref}], checklist[{name,ref}],
-            images[{src,cap}], instr[], warn[], tip[].
-   HTML simple autorisé (<strong>, <span class="tag">) dans instr/warn/tip.
-   ========================================================================= */
-const STEPS = [
-/* ---------------------------- PRÉPARATION ---------------------------- */
-{
-  phase:"Préparation · 1/2", title:"Composants électroniques",
-  lede:"Rassemblez et cochez l’électronique avant de commencer. Un composant manquant en cours de montage coûte un temps fou.",
-  checklist:[
-    {name:"Moteurs SunnySky X2216 880KV", ref:"x4 · short shaft"},
-    {name:"ESC 4-en-1 SpeedyBee 60A", ref:"x1"},
-    {name:"FCU Pixhawk 6C Mini + PM02 V3", ref:"x1"},
-    {name:"Raspberry Pi 5 8 Go + Active Cooler", ref:"x1 · µSD 64 Go"},
-    {name:"GPS M10 Holybro", ref:"x1"},
-    {name:"Récepteur ELRS Nano 2,4 GHz", ref:"x1"},
-    {name:"Caméra RPi Module 3 Wide", ref:"x1 · nappe 300 mm"},
-    {name:"UBEC ZTW 10A (5V)", ref:"x1"},
-    {name:"Batterie LiPo 4S 6000 mAh", ref:"x1 · XT60"}
-  ]
-},
-{
-  phase:"Préparation · 2/2", title:"Structure, visserie & outillage",
-  lede:"Côté mécanique et atelier : sans tout cela, le montage s’arrête en cours de route.",
-  checklist:[
-    {name:"Connecteurs MR30 (paires)", ref:"x4 paires"},
-    {name:"Tubes carbone 16×14×500 mm", ref:"x4"},
-    {name:"Hélices Gemfan 9047 CW + CCW", ref:"2 sets"},
-    {name:"Inserts thermiques M3 (OD 4,2)", ref:"~30"},
-    {name:"Inserts thermiques M2", ref:"x4"},
-    {name:"Visserie M3 (12/18/25/30 mm)", ref:"assortiment"},
-    {name:"Vis M2×6 (Raspberry Pi)", ref:"x4"},
-    {name:"Loctite 243 + Smoke Stopper", ref:"x1"},
-    {name:"Fer à souder, étain, flux, clés Allen, brucelles", ref:"set"},
-    {name:"Masque FFP2 + lunettes (découpe carbone)", ref:"set"}
-  ],
-  warn:["Ne lancez pas le montage tant que chaque ligne des deux pages n’est pas cochée."]
-},
-/* ---------------------------- IMPRESSION 3D ---------------------------- */
-{
-  phase:"Impression 3D", title:"Imprimer les pièces en PETG",
-  lede:"Toutes les pièces structurelles sont en PETG noir. Lancez en priorité la plaque et les mâchoires.",
-  parts:[
-    {qty:"x1", name:"Plaque centrale", ref:"plaque_etage1.STL"},
-    {qty:"x4", name:"Mâchoires inf. + sup. de bras", ref:"x8 au total"},
-    {qty:"x4", name:"Mâchoires inf. + sup. moteur", ref:"x8 au total"},
-    {qty:"x2", name:"Train d’atterrissage", ref:""},
-    {qty:"x1", name:"Supports caméra / Pixhawk / coque", ref:""},
-    {qty:"1 kg", name:"Filament PETG noir — bien sec", ref:""}
-  ],
-  instr:[
-    "Réglages clés : buse <span class='tag'>240 °C</span>, plateau <span class='tag'>80 °C</span>, remplissage <strong>40 %</strong>, <strong>4 périmètres</strong>, couche 0,2 mm.",
-    "Orientez les <strong>mâchoires trous de vis verticaux</strong> pour la résistance."
-  ],
-  tip:["Priorité plaque + 8 mâchoires (≈ 16 h). Pendant l’impression, découpez les tubes et préparez le câblage."]
-},
-{
-  phase:"Impression 3D", title:"Contrôler chaque pièce",
-  lede:"La qualité du fil et l’absence de défaut sont déterminantes : ces pièces encaissent les efforts de vol.",
-  instr:[
-    "Retirez proprement les supports à la pince.",
-    "Vérifiez chaque trou : propre, rond, diamètre uniforme."
-  ],
-  warn:[
-    "<strong>Filament déterminant :</strong> un PETG humide donne du <em>stringing</em> et des couches mal soudées, donc des zones de vis fragiles. Utilisez un fil de qualité, bien sec.",
-    "Rebutez toute pièce avec <strong>délaminage</strong>, sous-extrusion ou trou ovalisé sur une zone de vis. Réimprimez plutôt que de monter un défaut."
-  ],
-  tip:["Trou légèrement ovalisé : repassez un foret Ø3 mm <strong>à la main</strong>, sans perceuse."]
-},
-/* ---------------------------- INSERTS ---------------------------- */
-{
-  phase:"Inserts thermiques", title:"Technique de pose des inserts",
-  lede:"Les inserts laiton créent un filetage métal dans le PETG, bien plus solide qu’un taraudage plastique. On les enfonce à chaud. Cette méthode s’applique à toutes les poses suivantes.",
-  parts:[
-    {qty:"~30", name:"Inserts thermiques M3 / M2", ref:"OD 4,2 mm (M3)"},
-    {qty:"x1", name:"Fer à souder réglé à 200 °C", ref:"panne fine"},
-    {qty:"x1", name:"Brucelles métal", ref:""}
-  ],
-  instr:[
-    "Réglez le fer à <span class='tag'>200 °C</span> exactement et attendez la montée en température.",
-    "Posez l’insert <strong>bien vertical</strong> sur le trou avec les brucelles : il doit tenir seul.",
-    "Appuyez la panne dessus, pression <strong>légère et constante</strong> : l’insert descend en 5–10 s.",
-    "Stoppez à l’<strong>affleurement</strong>, retirez le fer et ne bougez plus 30 s."
-  ],
-  warn:["Affleurant, jamais en saillie. S’il part de travers ou trop vite : température trop haute ou pression trop forte, recommencez."]
-},
-{
-  phase:"Inserts thermiques", title:"Inserts M3 — plaque centrale",
-  lede:"Premiers inserts : sur la plaque centrale, à chaque trou repéré en rouge.",
-  parts:[{qty:"1 / trou", name:"Insert thermique M3", ref:"OD 4,2 mm"}],
-  images:[{src:"images/plaque_inserts_M3.jpg", cap:"Plaque centrale — un insert M3 par trou repéré en rouge."}],
-  instr:["Posez un insert M3 dans <strong>chaque trou fléché</strong>, selon la technique de l’étape précédente."]
-},
-{
-  phase:"Inserts thermiques", title:"Inserts M2 — plaque centrale",
-  lede:"Ces 4 inserts plus petits recevront les vis M2 de la Raspberry Pi.",
-  parts:[{qty:"x4", name:"Insert thermique M2", ref:"1 par trou fléché"}],
-  images:[{src:"images/plaque_inserts_M2.jpg", cap:"Plaque centrale — les 4 trous M2 repérés en rouge (montage Raspberry Pi)."}],
-  instr:["Posez un insert M2 dans <strong>chacun des 4 trous fléchés</strong>."]
-},
-{
-  phase:"Inserts thermiques", title:"Inserts M3 — trains d’atterrissage",
-  lede:"Sur la platine de fixation de chaque pied d’atterrissage.",
-  parts:[{qty:"1 / trou", name:"Insert thermique M3", ref:"sur chaque train"}],
-  images:[{src:"images/train_insert_M3.jpg", cap:"Train d’atterrissage — insert M3 dans chaque trou repéré. À répéter sur les 2 trains."}],
-  instr:["Posez un insert dans chaque trou fléché, puis <strong>répétez sur le second train</strong>."]
-},
-{
-  phase:"Inserts thermiques", title:"Inserts M3 — mâchoires moteur",
-  lede:"Dernière série d’inserts : sur les mâchoires supérieures moteur.",
-  parts:[
-    {qty:"1 / trou", name:"Insert thermique M3", ref:"par trou fléché"},
-    {qty:"x4", name:"Mâchoires supérieures moteur", ref:""}
-  ],
-  images:[{src:"images/machoire_sup_moteur_inserts.jpg", cap:"Mâchoire sup. moteur (vue de dessus) — un insert par trou repéré. À répéter sur les 4 pièces."}],
-  instr:["Posez un insert M3 par trou fléché, puis <strong>répétez sur les 4 mâchoires</strong>."]
-},
-/* ---------------------------- BRAS — DÉCOUPE ---------------------------- */
-{
-  phase:"Bras · découpe", title:"Sécurité : poussière de carbone",
-  lede:"Avant de couper quoi que ce soit, on prépare le poste. La poussière de fibre de carbone n’est pas un détail.",
-  parts:[
-    {qty:"x1", name:"Masque FFP2 + lunettes", ref:"obligatoire"},
-    {qty:"x1", name:"Aspirateur à proximité", ref:""},
-    {qty:"x1", name:"Étau / serre-joint", ref:"maintien du tube"}
-  ],
-  instr:[
-    "Installez-vous en extérieur, ou avec un aspirateur juste à côté du poste.",
-    "Enfilez le masque FFP2 et les lunettes — ne les retirez qu’après nettoyage complet."
-  ],
-  warn:["<strong>Poussière de carbone cancérigène.</strong> Ne soufflez jamais sur les copeaux : aspirez-les immédiatement."]
-},
-{
-  phase:"Bras · découpe", title:"Couper les tubes à 180 mm",
-  lede:"Les 4 bras sont taillés dans les tubes carbone, à 180 mm chacun.",
-  parts:[
-    {qty:"x4", name:"Tubes carbone 16×14 mm", ref:"à couper"},
-    {qty:"x1", name:"Dremel + disque diamant Ø30", ref:"ou scie à onglets"},
-    {qty:"x1", name:"Papier de verre 400", ref:""}
-  ],
-  instr:[
-    "Marquez <span class='tag'>180 mm</span>, puis enroulez 2–3 tours de ruban de masquage sur le trait (guide + anti-effilochage).",
-    "Bloquez le tube dans l’étau, puis coupez doucement sans forcer (~30 s). Aspirez aussitôt.",
-    "Poncez les deux extrémités au papier 400 pour une coupe nette et perpendiculaire.",
-    "Contrôlez : <strong>180 mm ± 1 mm</strong>. Répétez pour les 4 tubes."
-  ]
-},
-/* ---------------------------- BRAS — ASSEMBLAGE ---------------------------- */
-{
-  phase:"Bras · assemblage", title:"Positionner les mâchoires de bras",
-  lede:"On forme la géométrie deadcat : chaque tube est pincé entre deux mâchoires sur une oreille de la plaque.",
-  parts:[
-    {qty:"x1", name:"Mâchoire inférieure de bras", ref:"avec insert M3"},
-    {qty:"x1", name:"Mâchoire supérieure de bras", ref:""}
-  ],
-  images:[{src:"images/bras_tube_plaque.png", cap:"Mâchoires placées de part et d’autre de l’oreille de la plaque centrale."}],
-  instr:[
-    "Placez la mâchoire <strong>inférieure sous</strong> l’oreille de la plaque.",
-    "Posez la mâchoire <strong>supérieure au-dessus</strong> : les deux canaux doivent être alignés et centrés sur l’oreille."
-  ]
-},
-{
-  phase:"Bras · assemblage", title:"Engager le tube et visser",
-  lede:"Le tube se glisse dans le canal des mâchoires, puis 4 vis verrouillent l’ensemble sur la plaque.",
-  parts:[
-    {qty:"x1", name:"Tube carbone 180 mm", ref:""},
-    {qty:"x4", name:"Vis M3", ref:"M3×25"},
-    {qty:"x1", name:"Loctite 243 + clé Allen 2,5", ref:""}
-  ],
-  images:[{src:"images/bras_tube_plaque.png", cap:"Tube engagé et fixé sur la plaque centrale."}],
-  instr:[
-    "Engagez le tube dans le canal, bien centré. Laissez dépasser l’extrémité côté moteur.",
-    "Insérez les <strong>4 vis M3×25</strong> par le dessus (mâchoire sup. → plaque → insert mâchoire inf.). Serrez d’abord à la main.",
-    "Contrôlez l’<strong>angle du bras</strong>, ajoutez le Loctite 243, puis serrez ferme en croix."
-  ],
-  warn:["Une fois serré, le tube ne doit présenter aucun jeu : tirez et tordez pour vérifier."],
-  tip:["Angles deadcat : bras avant ≈ 65°, bras arrière ≈ 55° (dégage le champ de la caméra)."]
-},
-{
-  phase:"Bras · assemblage", title:"Mâchoires moteur en bout de tube",
-  lede:"À l’autre extrémité, les mâchoires moteur serrent le tube. Le moteur viendra s’y fixer plus tard.",
-  parts:[
-    {qty:"x1", name:"Mâchoire inférieure moteur", ref:""},
-    {qty:"x1", name:"Mâchoire supérieure moteur", ref:"avec inserts"},
-    {qty:"x4", name:"Vis M3", ref:"M3×18"}
-  ],
-  images:[{src:"images/machoire_moteur_assemblage.jpg", cap:"Mâchoires moteur en bout de bras — 4 vis M3×18 dans les trous repérés."}],
-  instr:[
-    "Posez les deux mâchoires moteur sur l’extrémité libre du tube, canal aligné.",
-    "Engagez les <strong>4 vis M3×18</strong> dans les inserts + Loctite, serrage en croix.",
-    "Vérifiez que les mâchoires serrent fermement le tube."
-  ]
-},
-{
-  phase:"Bras · assemblage", title:"Répéter pour les 4 bras",
-  lede:"Vous avez un bras complet. Refaites les trois dernières étapes pour les 3 autres.",
-  images:[{src:"images/bras_complet.png", cap:"Résultat attendu — bras complet."}],
-  instr:["Reprenez « positionner → engager/visser → mâchoires moteur » pour chaque bras, en respectant les angles deadcat."],
-  warn:["L’hélice sur la photo n’est là que pour l’illustration : <strong>ne montez aucune hélice à ce stade</strong>."]
-},
-/* ---------------------------- MOTEURS ---------------------------- */
-{
-  phase:"Moteurs · câblage", title:"Préparer les rallonges",
-  lede:"Chaque bras est relié par un connecteur MR30. On commence par les fils de rallonge, avec un repère de phase commun aux 4 bras.",
-  parts:[
-    {qty:"4×3", name:"Fils silicone — 1 rouge, 2 noirs / jeu", ref:"~30 cm"},
-    {qty:"x1", name:"Scotch bleu (ou marqueur)", ref:"repère phase centrale"}
-  ],
-  instr:[
-    "Préparez <strong>4 jeux de 3 fils</strong> (~30 cm) : 1 rouge, 1 noir, 1 noir marqué d’un <strong>repère bleu</strong>.",
-    "Le repère bleu identifie la <strong>phase centrale</strong> — gardez le même ordre sur les 4 bras."
-  ]
-},
-{
-  phase:"Moteurs · câblage", title:"Préparer les fils du moteur",
-  lede:"On coupe les connecteurs d’origine et on étame les 3 phases du moteur.",
-  parts:[
-    {qty:"x1", name:"Moteur SunnySky X2216", ref:"par bras"},
-    {qty:"x1", name:"Fer 380 °C, étain, flux", ref:""},
-    {qty:"x3", name:"Gaine thermo Ø3 mm", ref:"par moteur"}
-  ],
-  instr:[
-    "Coupez les connecteurs d’origine du moteur. Dénudez 5 mm sur chaque phase.",
-    "Étamez chaque extrémité (flux + <span class='tag'>380 °C</span>) : soudure brillante et lisse."
-  ],
-  warn:["<strong>Enfilez la gaine thermo sur chaque fil AVANT de souder</strong> — impossible de la passer après."]
-},
-{
-  phase:"Moteurs · câblage", title:"Souder le MR30 mâle (moteur)",
-  lede:"Les 3 phases du moteur se soudent sur un MR30 mâle, dans un ordre fixe.",
-  parts:[{qty:"x1", name:"Connecteur MR30 mâle", ref:"côté moteur"}],
-  instr:[
-    "Étamez les 3 cavités du MR30 mâle.",
-    "Soudez les fils dans l’ordre : <strong>rouge à gauche, repère bleu au centre, noir à droite</strong>.",
-    "Rétractez les gaines, vérifiez l’absence de <strong>pont entre les 3 pôles</strong>."
-  ]
-},
-{
-  phase:"Moteurs · câblage", title:"Souder le MR30 femelle (rallonge)",
-  lede:"Le jeu de rallonge se soude sur un MR30 femelle, dans le même ordre de phase.",
-  parts:[{qty:"x1", name:"Connecteur MR30 femelle", ref:"côté rallonge"}],
-  instr:[
-    "Soudez les fils de rallonge sur le MR30 femelle, <strong>même ordre</strong> que le mâle.",
-    "Rétractez les gaines, vérifiez l’absence de pont.",
-    "Testez l’emboîtement mâle/femelle : clic franc, déconnexion ferme."
-  ]
-},
-{
-  phase:"Moteurs · montage", title:"Fixer le moteur sur la mâchoire",
-  lede:"Le moteur se visse sur la mâchoire supérieure moteur. Frein-filet obligatoire ici.",
-  parts:[
-    {qty:"x4", name:"Vis moteur fournies", ref:"M3×6 ou M3×8"},
-    {qty:"x1", name:"Loctite 243", ref:""}
-  ],
-  instr:[
-    "Fixez le moteur sur la mâchoire avec ses 4 vis, cloche vers le haut.",
-    "Mettez du <strong>Loctite 243 sur chaque vis</strong> : les vibrations les desserrent sans frein-filet."
-  ],
-  warn:["Vérifiez que le câble moteur ne passe pas sous la platine avant de serrer."]
-},
-{
-  phase:"Moteurs · montage", title:"Connecter et passer les fils dans le tube",
-  lede:"On emboîte le connecteur et on tire les fils à l’intérieur du tube jusqu’à la plaque.",
-  instr:[
-    "Emboîtez MR30 mâle + femelle (clic franc).",
-    "Passez les fils <strong>à l’intérieur du tube</strong> en respectant l’ordre des phases, jusqu’à les faire ressortir côté plaque centrale."
-  ],
-  tip:["Si ça accroche : passez d’abord un trombone déroulé dans le tube, scotchez les fils dessus, puis tirez."]
-},
-{
-  phase:"Moteurs · montage", title:"Répéter pour les 4 moteurs",
-  lede:"Un moteur câblé et monté. Refaites le câblage moteur pour les 3 autres bras.",
-  instr:["Reprenez « préparer fils → souder MR30 → fixer moteur → passer fils » pour chaque bras."],
-  warn:["Gardez le <strong>même ordre de phase</strong> sur les 4 bras. Un sens inversé se corrige en échangeant 2 des 3 phases (ou dans QGroundControl)."]
-},
-/* ---------------------------- ESC ---------------------------- */
-{
-  phase:"ESC", title:"Repérer les 4 trous centraux",
-  lede:"L’ESC se monte au centre de la plaque. Première chose : bien localiser les 4 trous concernés.",
-  images:[{src:"images/plaque_fixation_train.jpg", cap:"Plaque centrale — les 4 trous M3 centraux se trouvent entre les deux découpes rectangulaires."}],
-  instr:[
-    "Ce ne sont <strong>pas les gros trous</strong>, mais les <strong>4 petits trous</strong> qui les séparent.",
-    "Ils forment un carré au centre de la plaque, entraxe ≈ <span class='tag'>30,5 × 30,5 mm</span>, entre les deux découpes rectangulaires."
-  ],
-  tip:["Ces 4 trous ne sont pas fléchés sur la photo actuelle : une capture annotée rendrait l’étape plus claire."]
-},
-{
-  phase:"ESC", title:"Monter les vis, écrous et l’ESC",
-  lede:"Quatre vis par le dessous, surélevées par des écrous-entretoise, reçoivent l’ESC.",
-  parts:[
-    {qty:"x4", name:"Vis M3", ref:"longueur selon hauteur voulue"},
-    {qty:"x8", name:"Écrous M3", ref:"2 par vis = entretoise"},
-    {qty:"x1", name:"ESC SpeedyBee 60A", ref:"câblé"}
-  ],
-  instr:[
-    "Passez une vis M3 par le <strong>dessous</strong> de la plaque dans chacun des 4 trous centraux.",
-    "Vissez <strong>2 écrous par vis</strong> côté supérieur : ils règlent la hauteur de dégagement.",
-    "Posez l’ESC sur les 4 vis, <strong>face composants vers le bas</strong>, marquage <span class='tag'>FRONT</span> vers la caméra."
-  ]
-},
-/* ---------------------------- ALIMENTATION ---------------------------- */
-{
-  phase:"Alimentation", title:"Fixer l’UBEC et le module PM02",
-  lede:"Deux modules d’alimentation se collent à l’avant de l’ESC : le PM02 V3 (alimente le Pixhawk) et l’UBEC (alimente la Raspberry Pi en 5 V).",
-  parts:[
-    {qty:"x1", name:"Power Module PM02 V3", ref:"fourni avec le Pixhawk"},
-    {qty:"x1", name:"UBEC ZTW 10A", ref:"sortie 5 V"},
-    {qty:"2×", name:"Ruban mousse PE double face", ref:"10 × 25 mm"}
-  ],
-  instr:[
-    "Collez un morceau de mousse double face au dos de l’UBEC et du PM02.",
-    "Fixez les deux modules côte à côte à l’avant de l’ESC, en gardant le PM02 accessible pour brancher le XT60 de la batterie."
-  ]
-},
-{
-  phase:"Alimentation", title:"Câbler le module PM02",
-  lede:"Le PM02 s’intercale entre la batterie et l’ESC : il mesure le courant et alimente le Pixhawk.",
-  instr:[
-    "Branchez le <strong>XT60 IN</strong> du PM02 côté batterie.",
-    "Branchez le <strong>XT60 OUT</strong> du PM02 sur le câble XT60 de l’ESC.",
-    "Réservez le câble 6 broches du PM02 : il ira sur le port <span class='tag'>POWER1</span> du Pixhawk (étape FCU)."
-  ]
-},
-{
-  phase:"Alimentation", title:"Câbler l’UBEC (5 V Raspberry Pi)",
-  lede:"L’UBEC convertit le 14,8 V batterie en 5 V pour la Raspberry Pi. Il se branche en parallèle sur les pads de l’ESC.",
-  parts:[
-    {qty:"2×", name:"Fil silicone 20 AWG", ref:"rouge + noir"},
-    {qty:"x1", name:"Câble USB-C pigtail 5 V", ref:"vers la Pi"}
-  ],
-  instr:[
-    "Soudez un fil rouge (BATT+) et un fil noir (BATT−) des pads de l’ESC vers les entrées de l’UBEC.",
-    "Reliez la sortie 5 V de l’UBEC au câble USB-C pigtail (il alimentera la Pi)."
-  ],
-  warn:["L’UBEC est sous tension <strong>dès que la batterie est branchée</strong>. Vérifiez la polarité deux fois avant tout essai."]
-},
-/* ---------------------------- FCU · PIXHAWK ---------------------------- */
-{
-  phase:"FCU · Pixhawk", title:"Flasher le firmware PX4",
-  lede:"Avant tout câblage du Pixhawk, on installe le firmware. Sans cette étape, le drone ne volera pas correctement.",
-  instr:[
-    "Branchez le Pixhawk 6C Mini en USB à votre PC et ouvrez QGroundControl.",
-    "Allez dans <span class='tag'>Firmware</span> et installez <strong>PX4 Stable</strong> — surtout pas ArduPilot ni Betaflight.",
-    "Attendez la fin du flash et la réinitialisation de la carte."
-  ]
-},
-{
-  phase:"FCU · Pixhawk", title:"Amortir et orienter le Pixhawk",
-  lede:"L’IMU du Pixhawk est sensible aux vibrations moteur. On l’isole, puis on l’oriente.",
-  parts:[
-    {qty:"x4", name:"Plots silicone M3×4,5", ref:"ou mousse Scotch"},
-    {qty:"x1", name:"Support Pixhawk", ref:"avec inserts"}
-  ],
-  instr:[
-    "Vissez les 4 boules silicone dans le support (ou collez 4 carrés de mousse sous le Pixhawk).",
-    "Posez le Pixhawk sur le support : la flèche <span class='tag'>FORWARD</span> doit pointer vers l’avant du drone."
-  ]
-},
-{
-  phase:"FCU · Pixhawk", title:"Brancher l’alimentation et le GPS",
-  lede:"Deux connecteurs dédiés : l’alimentation depuis le PM02 et le module GPS.",
-  instr:[
-    "Branchez le câble 6 broches du PM02 sur le port <span class='tag'>POWER1</span>.",
-    "Branchez le GPS M10 sur le port <span class='tag'>GPS1</span> (connecteur 10 broches)."
-  ],
-  tip:["En cas de doute sur un port, vérifiez le pinout officiel Holybro Pixhawk 6C Mini."]
-},
-{
-  phase:"FCU · Pixhawk", title:"Brancher l’ESC (signaux moteurs)",
-  lede:"Le câble de signal 4 voies relie l’ESC aux sorties PWM du Pixhawk.",
-  instr:[
-    "Branchez le câble PWM de l’ESC sur le port <span class='tag'>FMU PWM OUT</span>.",
-    "Respectez l’ordre : <strong>M1 sur la broche 1, M2 sur 2, M3 sur 3, M4 sur 4</strong>. Le signal va côté FCU, la masse est commune."
-  ]
-},
-{
-  phase:"FCU · Pixhawk", title:"Monter et brancher le récepteur ELRS",
-  lede:"Le récepteur radio se colle à l’arrière, loin du GPS, antenne dégagée.",
-  parts:[
-    {qty:"x1", name:"Récepteur ELRS Nano", ref:""},
-    {qty:"x1", name:"Mousse anti-vibration", ref:"10 × 15 mm"}
-  ],
-  instr:[
-    "Collez le récepteur à l’arrière de la plaque, loin du câble GPS, antenne à 90° et ligne de vue dégagée (pas de métal devant).",
-    "Branchez le câble GH1.25 sur le port <span class='tag'>RC IN</span> du Pixhawk."
-  ],
-  tip:["Protocole <strong>CRSF</strong> à configurer dans QGC. Pensez au <em>bind</em> avec la radio avant le premier vol."]
-},
-/* ---------------------------- CALCULATEUR · RPi ---------------------------- */
-{
-  phase:"Calculateur · RPi", title:"Fixer la Raspberry Pi + Active Cooler",
-  lede:"La Pi se monte à l’arrière, au-dessus de l’ESC, surélevée par des plots.",
-  parts:[
-    {qty:"x1", name:"Raspberry Pi 5 + Active Cooler", ref:""},
-    {qty:"x4", name:"Vis M2×6", ref:""},
-    {qty:"x4", name:"Plots de surélévation", ref:"plot_ESC_PI"}
-  ],
-  instr:[
-    "Glissez les 4 plots sous la Pi, port USB-C accessible, puis vissez les 4 vis M2×6 à travers les plots dans la plaque.",
-    "Clipsez l’Active Cooler sur la puce et branchez son câble sur le connecteur <span class='tag'>FAN</span>."
-  ],
-  warn:["Serrage <strong>doux</strong> : le plastique de la Raspberry Pi est fragile."]
-},
-{
-  phase:"Calculateur · RPi", title:"Liaison UART Pi ↔ Pixhawk",
-  lede:"La télémétrie MAVLink passe par une liaison série croisée entre la Pi et le port TELEM2.",
-  parts:[{qty:"x3", name:"Fils 20 AWG (TX, RX, GND)", ref:"~150 mm"}],
-  instr:[
-    "Côté Pi : <strong>GPIO 14 (TX)</strong>, <strong>GPIO 15 (RX)</strong>, <strong>GND</strong> (broche 6).",
-    "Côté Pixhawk : port <span class='tag'>TELEM2</span>. C’est un câble <strong>croisé</strong> : TX Pi → RX FCU, RX Pi → TX FCU, GND commun."
-  ],
-  warn:["Ne reliez <strong>jamais</strong> la broche 5 V de TELEM2 : la Pi est déjà alimentée par l’UBEC. Uniquement TX, RX et GND."]
-},
-{
-  phase:"Calculateur · RPi", title:"Alimenter la Raspberry Pi",
-  lede:"Dernier branchement d’alimentation : le 5 V de l’UBEC vers la Pi.",
-  instr:[
-    "Vérifiez au voltmètre que l’UBEC sort bien <strong>5,0 V ± 0,1 V</strong>.",
-    "Connectez le câble USB-C pigtail (sortie UBEC) sur le port USB-C d’alimentation de la Pi."
-  ]
-},
-/* ---------------------------- GPS ---------------------------- */
-{
-  phase:"GPS", title:"Monter le GPS sur son mât",
-  lede:"Le magnétomètre du GPS est très sensible aux interférences : on le surélève, loin des câbles de puissance.",
-  parts:[
-    {qty:"x1", name:"Mât GPS imprimé", ref:"PETG"},
-    {qty:"x1", name:"Module GPS M10", ref:""},
-    {qty:"x2", name:"Vis M3×10 + Loctite", ref:""}
-  ],
-  instr:[
-    "Fixez le mât sur la plaque (2 vis M3×10 + Loctite), module au sommet, surélevé d’au moins 10 cm au-dessus des moteurs.",
-    "Faites courir le câble le long du mât et branchez-le sur <span class='tag'>GPS1</span>."
-  ],
-  warn:["Éloignez le câble GPS des fils de puissance 14 AWG : ils perturbent le compas (EMI)."]
-},
-/* ---------------------------- CAMÉRA ---------------------------- */
-{
-  phase:"Caméra", title:"Assembler l’ensemble caméra",
-  lede:"Le module caméra se loge dans sa coque, maintenu par le clap.",
-  parts:[
-    {qty:"x1", name:"Module RPi Camera 3 Wide", ref:""},
-    {qty:"x1", name:"Coque + clap + cylindre", ref:"imprimés"}
-  ],
-  instr:[
-    "Insérez le module dans la coque, <strong>objectif vers l’avant</strong>, et passez la nappe CSI par l’ouverture prévue.",
-    "Posez le clap par-dessus et vissez-le pour bloquer la caméra."
-  ]
-},
-{
-  phase:"Caméra", title:"Fixer le support et brancher la nappe",
-  lede:"L’ensemble caméra se monte à l’avant de la plaque, puis on relie la nappe à la Pi.",
-  parts:[{qty:"x2", name:"Vis M3×12 + Loctite", ref:"support caméra"}],
-  instr:[
-    "Vissez le support caméra à l’avant de la plaque (inserts posés plus tôt), puis clipsez/vissez l’ensemble caméra orienté vers l’avant.",
-    "Branchez l’autre extrémité de la nappe sur le connecteur caméra de la Pi : verrou ouvert, <strong>contacts vers le bas</strong>, refermez le verrou."
-  ],
-  tip:["Sur la Pi 5, le connecteur caméra est le plus proche du port USB-C. Ne le confondez pas avec le connecteur display."]
-},
-/* ---------------------------- TRAIN & BATTERIE ---------------------------- */
-{
-  phase:"Train & batterie", title:"Monter les trains d’atterrissage",
-  lede:"Les deux pieds se vissent sous le châssis, semelle amortie.",
-  parts:[
-    {qty:"x2", name:"Trains d’atterrissage", ref:"avec inserts"},
-    {qty:"x2", name:"Vis M3×12 + Loctite", ref:""}
-  ],
-  instr:[
-    "Collez la mousse sous la semelle de contact de chaque train.",
-    "Vissez chaque train (1 vis M3×12 + Loctite) dans son insert."
-  ]
-},
-{
-  phase:"Train & batterie", title:"Système de rétention batterie",
-  lede:"La batterie est tenue par 6 plots formant un couloir, plus des sangles velcro en compression.",
-  parts:[
-    {qty:"x6", name:"Plots de rétention", ref:""},
-    {qty:"x6", name:"Vis M3×12 + écrou nylstop", ref:""},
-    {qty:"2×", name:"Sangle velcro", ref:"15 × 200 mm"}
-  ],
-  instr:[
-    "Vissez les 6 plots sous la plaque (vis par le dessous, écrou nylstop sur le dessus), 3 de chaque côté, pour former un couloir. <strong>Pas de Loctite</strong> : la position se règle.",
-    "Passez les sangles velcro pour serrer la batterie."
-  ],
-  tip:["Centrez le centre de gravité, légèrement vers l’avant pour compenser le poids de la caméra. Batterie ≈ 150 × 65 × 40 mm."]
-},
-/* ---------------------------- TESTS ---------------------------- */
-{
-  phase:"Tests", title:"Test 1 — Continuité (hors tension)",
-  lede:"Avant toute mise sous tension, on traque le court-circuit au multimètre. Aucune hélice montée.",
-  parts:[{qty:"x1", name:"Multimètre (mode continuité)", ref:""}],
-  instr:[
-    "Entre <strong>BATT+ et BATT−</strong> : le multimètre <strong>ne doit PAS bipper</strong>. S’il bippe, court-circuit → corrigez avant de continuer.",
-    "Pads moteur contre BATT+ / BATT− : aucune continuité attendue.",
-    "Entre les 3 phases d’un même moteur : le bip est <strong>normal</strong> (bobines reliées)."
-  ]
-},
-{
-  phase:"Tests", title:"Test 2 — Premier allumage (Smoke Stopper)",
-  lede:"La première mise sous tension se fait toujours via le Smoke Stopper, jamais batterie directe.",
-  parts:[
-    {qty:"x1", name:"Smoke Stopper iFlight", ref:"XT60"},
-    {qty:"x1", name:"Batterie LiPo 4S", ref:"chargée"}
-  ],
-  instr:[
-    "Intercalez le Smoke Stopper entre la batterie et le drone, puis branchez la batterie.",
-    "<strong>LED verte</strong> = pas de court-circuit. LED rouge fixe ou échauffement → débranchez immédiatement.",
-    "Vérifiez le démarrage du Pixhawk et de la Pi, et la sortie <strong>5,0 V</strong> de l’UBEC, puis débranchez proprement."
-  ]
-},
-{
-  phase:"Tests", title:"Test 3 — Sens des moteurs",
-  lede:"On vérifie le sens de rotation de chaque moteur via QGroundControl, toujours sans hélices.",
-  instr:[
-    "Dans QGC, ouvrez <span class='tag'>Motors Test</span>, armez via le logiciel et faites tourner chaque moteur à 5–10 %.",
-    "Sens attendus : <strong>M1 av-D CW · M2 ar-G CW · M3 av-G CCW · M4 ar-D CCW</strong>.",
-    "Si un moteur tourne à l’envers : débranchez, échangez 2 des 3 phases sur les pads ESC ou au MR30, recommencez."
-  ],
-  warn:["Aucune hélice montée pendant ce test."]
-},
-/* ---------------------------- COQUE ---------------------------- */
-{
-  phase:"Coque", title:"Fixer la coque aérodynamique",
-  lede:"Une fois les tests validés, la coque vient habiller l’électronique.",
-  parts:[
-    {qty:"x1", name:"Coque aérodynamique", ref:"coquevf"},
-    {qty:"x4", name:"Vis M3×10 ou M3×12", ref:""}
-  ],
-  instr:[
-    "Posez la coque en laissant sortir les bras, le mât GPS et le câble batterie.",
-    "Vissez <strong>sans forcer</strong> (le PETG se fissure), et vérifiez que l’Active Cooler garde un flux d’air."
-  ]
-},
-/* ---------------------------- BATTERIE ---------------------------- */
-{
-  phase:"Batterie", title:"Charger et équilibrer la batterie",
-  lede:"La LiPo se charge en mode équilibrage sur le chargeur dédié, sous surveillance.",
-  parts:[
-    {qty:"x1", name:"Chargeur ISDT 608AC", ref:""},
-    {qty:"x1", name:"Batterie LiPo 4S 6000 mAh", ref:""}
-  ],
-  instr:[
-    "Branchez le XT60 et le câble d’équilibrage (JST-XH) sur le chargeur.",
-    "Mode <strong>LiPo Balance Charge</strong> : 4S / 6000 mAh / <strong>6 A</strong> (1C pour la première charge).",
-    "En fin de charge, vérifiez chaque cellule : <strong>4,20 V ± 0,05 V</strong>."
-  ],
-  warn:["Ne laissez <strong>jamais</strong> une LiPo en charge sans surveillance. Ne chargez jamais une batterie gonflée ou ayant subi un choc."]
-},
-/* ---------------------------- HÉLICES ---------------------------- */
-{
-  phase:"Hélices", title:"Identifier et monter les hélices",
-  lede:"Tout dernier geste avant le vol, une fois tous les tests passés. Chaque sens d’hélice correspond à un moteur précis.",
-  parts:[{qty:"2 sets", name:"Hélices Gemfan 9047 CW + CCW", ref:"Carbon Nylon"}],
-  instr:[
-    "Repérez les hélices : <strong>CW</strong> (marquage R) et <strong>CCW</strong> (marquage L).",
-    "Montez : <strong>M1 → CCW · M2 → CCW · M3 → CW · M4 → CW</strong> (l’hélice est inverse du sens moteur).",
-    "Posez l’hélice côté convexe vers le haut, serrez l’écrou auto-freinant à la main + un quart de tour.",
-    "Faites tourner à la main : libre, sans frotter, voile < 1 mm."
-  ],
-  warn:["Les hélices se montent <strong>en tout dernier</strong>, jamais pendant les tests au sol."]
-},
-/* ---------------------------- PREMIER VOL ---------------------------- */
-{
-  phase:"Premier vol", title:"Checklist finale avant décollage",
-  lede:"Le drone est assemblé. Cochez chaque point avant le tout premier vol.",
-  checklist:[
-    {name:"Vis moteurs serrées + Loctite", ref:"résistance à la main"},
-    {name:"Hélices serrées + sens vérifié", ref:"CW/CCW selon tableau"},
-    {name:"Connecteurs MR30 tous clipsés", ref:"tirez légèrement"},
-    {name:"Câble batterie XT60 accessible", ref:""},
-    {name:"GPS fix obtenu", ref:"LED bleue fixe · 2 min dehors"},
-    {name:"Smoke Stopper passé (LED verte)", ref:""},
-    {name:"Sens moteurs vérifiés (sans hélices)", ref:"QGC Motors Test"},
-    {name:"Batterie chargée et équilibrée", ref:"4,20 V / cellule"},
-    {name:"Zone de vol dégagée", ref:"10 m autour"},
-    {name:"Firmware PX4 + calibrations", ref:"IMU · boussole · ESC"},
-    {name:"Failsafe RTL configuré", ref:"perte signal RC"},
-    {name:"Hélices montées (dernier geste)", ref:""}
-  ],
-  tip:["Châssis assemblé et vérifié. Place à la configuration logicielle avant le premier vol."]
-},
-/* ---------------------------- CONFIGURATION & VOL ---------------------------- */
-{
-  phase:"Configuration", title:"Préparer la carte SD (Raspberry Pi Imager)",
-  lede:"On pré-configure l’OS de la Pi avant d’insérer la carte, avec Raspberry Pi Imager sur le PC.",
-  parts:[
-    {qty:"x1", name:"Raspberry Pi Imager", ref:"sur le PC"},
-    {qty:"x1", name:"Carte micro-SD", ref:"64 Go"}
-  ],
-  instr:[
-    "OS : <strong>Raspberry Pi OS Lite (64-bit)</strong>, puis ouvrez les réglages (OS Customization).",
-    "Général : hostname <span class='tag'>neutronit-drone</span>. Utilisateur : <span class='tag'>neutronit</span> + mot de passe.",
-    "Wi-Fi : SSID et mot de passe du <strong>partage de connexion de votre téléphone</strong>.",
-    "Services : activez <strong>SSH</strong> (par mot de passe). Écrivez la carte, puis insérez-la dans la Pi."
-  ],
-  warn:["Respectez le hostname et l’utilisateur exacts (<span class='tag'>neutronit-drone</span> / <span class='tag'>neutronit</span>) : toute la procédure réseau en dépend."]
-},
-{
-  phase:"Configuration", title:"Réseau : trouver les adresses IP",
-  lede:"PC sol et Raspberry Pi doivent partager le même sous-réseau (les 3 premiers blocs d’IP identiques). Ne devinez jamais une IP sur le terrain : relevez-la.",
-  instr:[
-    "Famille d’IP selon le téléphone : <strong>iPhone</strong> ≈ <span class='tag'>172.20.10.x</span> · <strong>Android</strong> souvent <span class='tag'>192.168.x.x</span>.",
-    "IP du PC sol : Windows → <span class='tag'>ipconfig</span> (ligne IPv4 Wi-Fi) · Mac/Linux → <span class='tag'>ip a</span>.",
-    "IP de la Pi : depuis le PC, <span class='tag'>ssh neutronit@neutronit-drone.local</span> puis <span class='tag'>hostname -I</span>."
-  ],
-  tip:["Sinon : appli Fing sur le téléphone, ou Paramètres Android → Point d’accès → Appareils connectés."]
-},
-{
-  phase:"Configuration", title:"Installer le logiciel sur la Pi",
-  lede:"En SSH sur la Pi : on libère le port série, puis on installe l’écosystème de vol.",
-  instr:[
-    "Connexion : <span class='tag'>ssh neutronit@neutronit-drone.local</span>.",
-    "Port série : <span class='tag'>sudo raspi-config</span> → Interface Options → Serial Port → shell <strong>Non</strong>, port matériel <strong>Oui</strong>, puis <span class='tag'>sudo reboot</span>.",
-    "Mises à jour et dépendances :<code class='cmd'>sudo apt update && sudo apt upgrade -y\nsudo apt install python3-pip python3-opencv gstreamer1.0-tools gstreamer1.0-plugins-good gstreamer1.0-plugins-bad -y</code>",
-    "Bibliothèques de vol :<code class='cmd'>pip3 install pymavlink MAVProxy --break-system-packages</code>"
-  ],
-  tip:["VS Code + extension Remote-SSH permet d’éditer les scripts directement sur la Pi (dossier /home/neutronit/)."]
-},
-{
-  phase:"Configuration", title:"Paramètres QGroundControl",
-  lede:"Reliez le Pixhawk en USB et réglez ces paramètres avant le vol.",
-  instr:[
-    "<span class='tag'>MAV_1_CONFIG</span> = TELEM2 · <span class='tag'>SER_TEL2_BAUD</span> = 57600 · <span class='tag'>MAV_1_MODE</span> = Normal.",
-    "<span class='tag'>MPC_THR_HOVER</span> ≈ 0.40 (à ajuster selon le poids réel, ~1,6 kg) · <span class='tag'>MPC_USE_HTE</span> = 1.",
-    "Vérifiez les calibrations <strong>IMU, boussole et ESC</strong>."
-  ],
-  tip:["MPC_USE_HTE = 1 active l’estimateur automatique de poussée stationnaire (ajuste le hover tout seul)."]
-},
-{
-  phase:"Configuration", title:"Flux télémétrie et vidéo",
-  lede:"Sur la Pi, on route la télémétrie MAVLink et la vidéo vers l’IP réelle du PC sol (relevée à l’étape réseau).",
-  instr:[
-    "Terminal 1 — télémétrie (QGC doit se synchroniser) :<code class='cmd'>mavproxy.py --master=/dev/ttyAMA0 --baudrate 57600 --out udp:&lt;IP_PC&gt;:14550 --out udp:127.0.0.1:14551</code>",
-    "Terminal 2 — vidéo H.264 vers le port 5600 :<code class='cmd'>rpicam-vid -t 0 --codec libav --libav-format h264 --width 640 --height 480 --framerate 30 -o - | gst-launch-1.0 fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 ! udpsink host=&lt;IP_PC&gt; port=5600</code>"
-  ],
-  tip:["Remplacez <span class='tag'>&lt;IP_PC&gt;</span> par l’IP réelle du PC (ex. iPhone : 172.20.10.3)."]
-},
-{
-  phase:"Premier vol", title:"Décollage : Position → Offboard",
-  lede:"Procédure terrain complète, du partage de connexion au passage en vol autonome.",
-  instr:[
-    "Partage de connexion <strong>ON</strong>. PC sol connecté : relevez son IP réelle, lancez QGroundControl.",
-    "Drone <strong>ON</strong>, attendez le <strong>GPS 3D Lock</strong> (LED verte Pixhawk fixe). Ouvrez le SSH vers la Pi.",
-    "Lancez la télémétrie (terminal 1), puis la vidéo (terminal 2), avec l’IP du PC.",
-    "Lancez le script de vol :<code class='cmd'>python3 neutronit_vol_imple.py</code>",
-    "Décollez en <span class='tag'>Position Mode</span> à 1,5 m, stabilisez, puis basculez <span class='tag'>Offboard</span> : l’algorithme prend le relais (rotation de sécurité + atterrissage autonome)."
-  ],
-  warn:["Premier vol en zone dégagée, failsafe Return-to-Launch configuré. Gardez la main sur l’interrupteur de reprise."],
-  tip:["Bonne construction et bon vol — Guillaume GUGUEN / Neutron IT."]
-}
+/* Champs bilingues : {fr:"...", en:"..."}. Arrays instr/warn/tip = [{fr,en},...]. */
+const F=(fr,en)=>({fr,en});
+const STEPS=[
+/* ===== PRÉPARATION ===== */
+{phase:F("Préparation · 1/2","Preparation · 1/2"),title:F("Composants — électronique","Components — electronics"),
+ lede:F("Rassemblez et cochez toute l'électronique avant de commencer.","Gather and tick off all the electronics before starting."),
+ checklist:[
+  {name:F("Moteurs SunnySky X2216 880KV","SunnySky X2216 880KV motors"),ref:"x4"},
+  {name:F("ESC 4-en-1 SpeedyBee 60A","SpeedyBee 60A 4-in-1 ESC"),ref:"x1"},
+  {name:F("Pixhawk 6C Mini + Power Module PM02","Pixhawk 6C Mini + PM02 Power Module"),ref:"x1"},
+  {name:F("Raspberry Pi 5 8 Go + carte micro-SD","Raspberry Pi 5 8 GB + micro-SD"),ref:"x1"},
+  {name:F("Ventilateur Active Cooler","Active Cooler fan"),ref:"x1"},
+  {name:F("GPS u-blox M10 + mât","u-blox M10 GPS + mast"),ref:"x1"},
+  {name:F("Récepteur ELRS Nano 2,4 GHz","ELRS Nano 2.4 GHz receiver"),ref:"x1"},
+  {name:F("Caméra CSI Module 3 Wide + nappe 300 mm","CSI Camera Module 3 Wide + 300 mm cable"),ref:"x1"},
+  {name:F("UBEC ZTW 10A (5V)","ZTW 10A UBEC (5V)"),ref:"x1"},
+  {name:F("Batterie LiPo 4S 6000 mAh","LiPo 4S 6000 mAh battery"),ref:"x1"},
+  {name:F("Radiocommande RadioMaster Pocket","RadioMaster Pocket radio"),ref:"x1"}]},
+{phase:F("Préparation · 2/2","Preparation · 2/2"),title:F("Composants — structure & visserie","Components — structure & fasteners"),
+ lede:F("Le mécanique et l'atelier. Toute la visserie est en M2 et M3.","Mechanical parts and workshop. All fasteners are M2 and M3."),
+ checklist:[
+  {name:F("Tubes carbone 16×14×500 mm","Carbon tubes 16×14×500 mm"),ref:"x4"},
+  {name:F("Connecteurs MR30 (jaunes)","MR30 connectors (yellow)"),ref:"x4"},
+  {name:F("Fils silicone 20 AWG rouge / noir / bleu","20 AWG silicone wire red / black / blue"),ref:""},
+  {name:F("Hélices Gemfan 9047 CW + CCW","Gemfan 9047 CW + CCW props"),ref:"x2"},
+  {name:F("XT60 + condensateur 1000 µF","XT60 + 1000 µF capacitor"),ref:""},
+  {name:F("Inserts thermiques M3 et M2","M3 and M2 heat-set inserts"),ref:""},
+  {name:F("Vis M3 (8/16/18/20/25) + écrous M3","M3 screws (8/16/18/20/25) + M3 nuts"),ref:""},
+  {name:F("Vis M2×10 + écrous M2 + boules silicone","M2×10 screws + M2 nuts + silicone balls"),ref:""},
+  {name:F("Ruban mousse PE + colliers + Loctite 243","PE foam tape + zip ties + Loctite 243"),ref:""},
+  {name:F("Fer à souder, étain, flux, clés Allen","Soldering iron, solder, flux, hex keys"),ref:""},
+  {name:F("Scie à métaux, étau, masque FFP2 + lunettes","Hacksaw, vise, FFP2 mask + goggles"),ref:""}],
+ warn:[F("Ne lancez pas le montage tant que les deux pages ne sont pas cochées.","Do not start assembly until both pages are fully ticked off.")]},
+/* ===== IMPRESSION ===== */
+{phase:F("Impression 3D","3D printing"),title:F("Imprimer les pièces (PETG)","Print the parts (PETG)"),
+ lede:F("Pièces structurelles en PETG noir. Priorité plaque + mâchoires.","Structural parts in black PETG. Plate + jaws first."),
+ parts:[
+  {qty:"x1",name:F("coque","shell"),ref:"coque.STL"},
+  {qty:"x1",name:F("plaque_etage1","main plate"),ref:""},
+  {qty:"x4",name:F("machoir_inférieur + supérieur","arm jaws lower + upper"),ref:""},
+  {qty:"x4",name:F("machoir_inf. + sup. moteur","motor jaws lower + upper"),ref:""},
+  {qty:"x4",name:F("plot","battery post"),ref:""},
+  {qty:"x2",name:F("train_atterrissage","landing gear"),ref:""},
+  {qty:"x1",name:F("support_caméra + support_pixhawk","camera + pixhawk mounts"),ref:""},
+  {qty:"x1",name:F("coque + clap + cylindre caméra","camera shell + clamp + cylinder"),ref:""},
+  {qty:"1 kg",name:F("Filament PETG noir, bien sec","Black PETG filament, well dried"),ref:""}],
+ instr:[
+  F("Réglages : buse <span class='tag'>240 °C</span>, plateau <span class='tag'>80 °C</span>, remplissage <strong>40 %</strong>, <strong>4 périmètres</strong>, couche 0,2 mm.","Settings: nozzle <span class='tag'>240 °C</span>, bed <span class='tag'>80 °C</span>, infill <strong>40%</strong>, <strong>4 perimeters</strong>, 0.2 mm layer."),
+  F("Orientez les <strong>mâchoires trous de vis verticaux</strong>.","Orient the <strong>jaws with screw holes vertical</strong>.")],
+ tip:[F("Priorité plaque + 8 mâchoires. Pendant l'impression, coupez les tubes.","Plate + 8 jaws first. Cut the tubes while it prints.")]},
+{phase:F("Impression 3D","3D printing"),title:F("Contrôler les pièces","Inspect the parts"),
+ lede:F("La qualité du fil et l'absence de défaut sont déterminantes.","Filament quality and defect-free parts are critical."),
+ instr:[
+  F("Retirez les supports à la pince.","Remove supports with pliers."),
+  F("Vérifiez chaque trou : propre, rond, uniforme.","Check each hole: clean, round, uniform.")],
+ warn:[
+  F("<strong>PETG humide</strong> = stringing et couches mal soudées = zones de vis fragiles. Fil de qualité, bien sec.","<strong>Wet PETG</strong> = stringing and weak layers = fragile screw zones. Use quality, dry filament."),
+  F("Rebutez toute pièce avec délaminage ou trou ovalisé sur une zone de vis.","Scrap any part with delamination or an oval hole on a screw area.")],
+ tip:[F("Trou ovalisé : repassez un foret Ø3 à la main.","Oval hole: re-pass a Ø3 drill bit by hand.")]},
+/* ===== TUBES ===== */
+{phase:F("Tubes carbone","Carbon tubes"),title:F("Sécurité : découpe du carbone","Safety: cutting carbon"),
+ lede:F("La poussière de fibre de carbone est dangereuse. On prépare le poste.","Carbon fibre dust is hazardous. Set up the workspace first."),
+ parts:[
+  {qty:"x1",name:F("Masque FFP2 + lunettes","FFP2 mask + goggles"),ref:""},
+  {qty:"x1",name:F("Étau / serre-joint","Vise / clamp"),ref:""},
+  {qty:"x1",name:F("Aspirateur à proximité","Vacuum nearby"),ref:""}],
+ instr:[
+  F("Travaillez en extérieur ou avec un aspirateur à côté.","Work outdoors or with a vacuum right next to you."),
+  F("Masque FFP2 + lunettes — à garder jusqu'au nettoyage complet.","FFP2 mask + goggles — keep on until fully cleaned up.")],
+ warn:[F("<strong>Poussière cancérigène.</strong> Ne soufflez jamais : aspirez.","<strong>Carcinogenic dust.</strong> Never blow it off: vacuum it.")]},
+{phase:F("Tubes carbone","Carbon tubes"),title:F("Couper les tubes à 170 mm","Cut the tubes to 170 mm"),
+ lede:F("Les 4 bras sont taillés à 170 mm, à la scie à métaux.","The 4 arms are cut to 170 mm with a hacksaw."),
+ parts:[
+  {qty:"x4",name:F("Tubes carbone 16×14 mm","Carbon tubes 16×14 mm"),ref:"170 mm"},
+  {qty:"x1",name:F("Scie à métaux","Hacksaw"),ref:""},
+  {qty:"x1",name:F("Papier de verre 400","400-grit sandpaper"),ref:""}],
+ instr:[
+  F("Marquez <span class='tag'>170 mm</span>, entourez de ruban de masquage.","Mark <span class='tag'>170 mm</span>, wrap masking tape around it."),
+  F("Serrez le tube dans l'<strong>étau</strong> et sciez bien droit, sans forcer.","Clamp the tube in the <strong>vise</strong> and saw straight, without forcing."),
+  F("Poncez les extrémités au papier 400.","Sand the ends with 400-grit."),
+  F("Contrôlez : <strong>170 mm ± 1 mm</strong>. Répétez ×4.","Check: <strong>170 mm ± 1 mm</strong>. Repeat ×4.")]},
+/* ===== INSERTS ===== */
+{phase:F("Inserts thermiques","Heat-set inserts"),title:F("Technique de pose des inserts","Insert fitting technique"),
+ lede:F("Les inserts laiton créent un filetage métal dans le PETG. Méthode pour toutes les poses.","Brass inserts create a metal thread in the PETG. Method for all fittings."),
+ parts:[
+  {qty:"~30",name:F("Inserts M3","M3 inserts"),ref:"OD 4,2"},
+  {qty:"~6",name:F("Inserts M2","M2 inserts"),ref:""},
+  {qty:"x1",name:F("Fer à souder à 200 °C","Soldering iron at 200 °C"),ref:""}],
+ fastener:[F("Insert M3","Insert M3"),F("Insert M2","Insert M2")],
+ instr:[
+  F("Fer à <span class='tag'>200 °C</span> exactement.","Iron at exactly <span class='tag'>200 °C</span>."),
+  F("Posez l'insert <strong>bien vertical</strong> sur le trou.","Place the insert <strong>fully vertical</strong> on the hole."),
+  F("Pression légère : il descend en 5–10 s.","Light pressure: it sinks in 5–10 s."),
+  F("Stoppez à l'<strong>affleurement</strong>, ne bougez plus 30 s.","Stop <strong>flush</strong>, don't move it for 30 s.")],
+ warn:[F("Affleurant, jamais en saillie. S'il part de travers : recommencez.","Flush, never proud. If it goes crooked: start over.")]},
+{phase:F("Inserts thermiques","Heat-set inserts"),title:F("Inserts M3 — plaque centrale","M3 inserts — main plate"),
+ lede:F("Repère rouge = emplacement d'un insert.","Red mark = an insert location."),
+ parts:[{qty:F("1 / repère","1 / mark"),name:F("Insert M3","Insert M3"),ref:"plaque_etage1"}],
+ fastener:[F("Insert M3","Insert M3")],
+ images:[{src:"images/plaque_inserts_M3.jpg",cap:F("Plaque — un insert M3 à chaque repère rouge.","Plate — one M3 insert at each red mark.")}],
+ instr:[F("Posez un insert M3 à chaque repère rouge.","Fit an M3 insert at each red mark.")]},
+{phase:F("Inserts thermiques","Heat-set inserts"),title:F("Inserts M2 — plaque centrale","M2 inserts — main plate"),
+ lede:F("Ces inserts recevront les vis M2 de la Raspberry Pi.","These inserts will take the Raspberry Pi M2 screws."),
+ parts:[{qty:F("1 / repère","1 / mark"),name:F("Insert M2","Insert M2"),ref:""}],
+ fastener:[F("Insert M2","Insert M2")],
+ images:[{src:"images/plaque_inserts_M2.jpg",cap:F("Plaque — inserts M2 aux repères rouges (Raspberry Pi).","Plate — M2 inserts at red marks (Raspberry Pi).")}],
+ instr:[F("Posez un insert M2 à chaque repère rouge.","Fit an M2 insert at each red mark.")]},
+{phase:F("Inserts thermiques","Heat-set inserts"),title:F("Inserts M3 — trains d'atterrissage","M3 inserts — landing gear"),
+ lede:F("Sur la platine de chaque pied.","On each foot's mounting plate."),
+ parts:[{qty:F("1 / repère","1 / mark"),name:F("Insert M3","Insert M3"),ref:"x2"}],
+ fastener:[F("Insert M3","Insert M3")],
+ images:[{src:"images/train_insert_M3.jpg",cap:F("Train — insert M3 au repère. À répéter sur les 2.","Landing gear — M3 insert at the mark. Repeat on both.")}],
+ instr:[F("Posez l'insert à chaque repère, puis <strong>répétez sur le 2e train</strong>.","Fit the insert at each mark, then <strong>repeat on the 2nd foot</strong>.")]},
+{phase:F("Inserts thermiques","Heat-set inserts"),title:F("Inserts M3 — mâchoires sup. moteur","M3 inserts — upper motor jaws"),
+ lede:F("Sur les 4 mâchoires supérieures moteur.","On the 4 upper motor jaws."),
+ parts:[{qty:F("1 / repère","1 / mark"),name:F("Insert M3","Insert M3"),ref:"x4"}],
+ fastener:[F("Insert M3","Insert M3")],
+ images:[{src:"images/machoire_sup_moteur_inserts.jpg",cap:F("Mâchoire sup. moteur — insert M3 à chaque repère. ×4.","Upper motor jaw — M3 insert at each mark. ×4.")}],
+ instr:[F("Posez un insert à chaque repère, <strong>×4 mâchoires</strong>.","Fit an insert at each mark, <strong>×4 jaws</strong>.")]},
+{phase:F("Inserts thermiques","Heat-set inserts"),title:F("Inserts M3 — coque","M3 inserts — shell"),
+ lede:F("Fixation périphérique + renfoncement central (mât GPS).","Perimeter fixing + central recess (GPS mast)."),
+ parts:[
+  {qty:F("1 / repère","1 / mark"),name:F("Insert M3 — fixation","Insert M3 — fixing"),ref:""},
+  {qty:"x4",name:F("Insert M3 — renfoncement central","Insert M3 — central recess"),ref:""}],
+ fastener:[F("Insert M3","Insert M3")],
+ images:[{src:"images/coque_inserts_M3.jpg",cap:F("Coque — inserts de fixation (pourtour) + 4 au renfoncement central.","Shell — fixing inserts (perimeter) + 4 in the central recess.")}],
+ instr:[
+  F("Inserts de fixation à chaque repère du pourtour.","Fixing inserts at each perimeter mark."),
+  F("<strong>4 inserts au renfoncement central</strong> (vis M3×8 du mât GPS).","<strong>4 inserts in the central recess</strong> (GPS mast M3×8 screws).")]},
+{phase:F("Inserts thermiques","Heat-set inserts"),title:F("Inserts M3 — support Pixhawk","M3 inserts — Pixhawk mount"),
+ lede:F("Sur les 4 coins du support Pixhawk.","On the 4 corners of the Pixhawk mount."),
+ parts:[{qty:"x4",name:F("Insert M3","Insert M3"),ref:""}],
+ fastener:[F("Insert M3","Insert M3")],
+ images:[{src:"images/support_pixhawk_inserts_M3.jpg",cap:F("Support Pixhawk — insert M3 à chaque repère.","Pixhawk mount — M3 insert at each mark.")}],
+ instr:[F("Posez un insert M3 à chaque repère.","Fit an M3 insert at each mark.")]},
+{phase:F("Inserts thermiques","Heat-set inserts"),title:F("Inserts M2 — coque caméra","M2 inserts — camera shell"),
+ lede:F("Sur les flancs : ils recevront les vis du clap.","On the sides: they take the clamp screws."),
+ parts:[{qty:F("1 / repère","1 / mark"),name:F("Insert M2","Insert M2"),ref:""}],
+ fastener:[F("Insert M2","Insert M2")],
+ images:[{src:"images/coque_camera_inserts_M2.jpg",cap:F("Coque caméra — inserts M2 sur les côtés.","Camera shell — M2 inserts on the sides.")}],
+ instr:[F("Posez un insert M2 à chaque repère, sur les flancs.","Fit an M2 insert at each mark, on the sides.")]},
+/* ===== BRAS ===== */
+{phase:F("Bras · câblage (×4)","Arm · wiring (×4)"),title:F("Couper et étamer les fils moteur","Cut and tin the motor wires"),
+ lede:F("Le bloc « Bras » se répète 4 fois. On commence par les 3 phases du moteur.","The \"Arm\" block repeats 4 times. Start with the motor's 3 phases."),
+ parts:[
+  {qty:"x1",name:F("Moteur SunnySky X2216","SunnySky X2216 motor"),ref:""},
+  {qty:"x1",name:F("Fer 380 °C, étain, flux","Iron 380 °C, solder, flux"),ref:""}],
+ instr:[
+  F("Coupez les 3 fils au milieu. Dénudez 5 mm.","Cut the 3 wires at the middle. Strip 5 mm."),
+  F("<strong>Étamer</strong> = flux + fer à <span class='tag'>380 °C</span> + étain jusqu'à absorption par le cuivre. Soudure brillante.","<strong>Tinning</strong> = flux + iron at <span class='tag'>380 °C</span> + solder until the copper absorbs it. Shiny joint.")],
+ tip:[F("Couleurs : bleu / noir / rouge, cohérentes sur les 4 bras.","Colours: blue / black / red, consistent across the 4 arms.")]},
+{phase:F("Bras · câblage (×4)","Arm · wiring (×4)"),title:F("Souder le MR30 — côté moteur","Solder the MR30 — motor side"),
+ lede:F("Les 3 phases se soudent sur un MR30, dans un ordre fixe.","The 3 phases solder onto an MR30, in a fixed order."),
+ parts:[{qty:"x1",name:F("Connecteur MR30","MR30 connector"),ref:F("côté moteur","motor side")}],
+ images:[{src:"images/mr30_cote_moteur.jpg",cap:F("MR30 côté moteur — bleu à gauche, noir au centre, rouge à droite.","MR30 motor side — blue left, black centre, red right.")}],
+ instr:[
+  F("Étamez les 3 cavités du MR30.","Tin the 3 MR30 cups."),
+  F("Posez chaque fil, chauffez : l'étain fond et fige le fil.","Place each wire, heat: the solder melts and locks the wire."),
+  F("Ordre : <strong>bleu à gauche, noir au centre, rouge à droite</strong>.","Order: <strong>blue left, black centre, red right</strong>.")]},
+{phase:F("Bras · câblage (×4)","Arm · wiring (×4)"),title:F("Rallonges 20 AWG + MR30 côté ESC","20 AWG leads + MR30 ESC side"),
+ lede:F("Des fils silicone traversent le bras jusqu'à l'ESC.","Silicone wires run through the arm to the ESC."),
+ parts:[
+  {qty:"x3",name:F("Fil silicone 20 AWG","20 AWG silicone wire"),ref:F("rouge/noir/bleu","red/black/blue")},
+  {qty:"x1",name:F("Connecteur MR30","MR30 connector"),ref:F("côté ESC","ESC side")}],
+ images:[{src:"images/mr30_cote_esc.jpg",cap:F("MR30 côté ESC + rallonges 20 AWG.","ESC-side MR30 + 20 AWG leads.")}],
+ instr:[
+  F("Coupez à la longueur du bras + <strong>2 cm de mou</strong>. Dénudez et étamez.","Cut to arm length + <strong>2 cm slack</strong>. Strip and tin."),
+  F("Étamez l'autre moitié du MR30 et soudez les 3 fils.","Tin the other half of the MR30 and solder the 3 wires."),
+  F("<strong>Répétez pour les 4 moteurs.</strong>","<strong>Repeat for the 4 motors.</strong>")]},
+{phase:F("Bras · assemblage (×4)","Arm · assembly (×4)"),title:F("Fixer le moteur sur la mâchoire","Fix the motor to the jaw"),
+ lede:F("Le moteur se visse sur la mâchoire inférieure moteur, par le dessus.","The motor screws onto the lower motor jaw, from the top."),
+ parts:[{qty:"x4",name:F("Vis M3×16","M3×16 screw"),ref:""},{qty:"x1",name:F("Loctite 243","Loctite 243"),ref:""}],
+ fastener:[F("Vis M3×16","Screw M3×16")],
+ images:[{src:"images/moteur_fixation_machoire.jpg",cap:F("Moteur vissé sur la mâchoire inf. moteur — 4 vis M3×16 par le dessus.","Motor screwed to the lower motor jaw — 4 × M3×16 from the top.")}],
+ instr:[
+  F("Posez le moteur sur la mâchoire inférieure moteur, cloche vers le haut.","Place the motor on the lower motor jaw, bell up."),
+  F("Vissez les <strong>4 vis M3×16 par le dessus</strong> + Loctite, en croix.","Drive the <strong>4 × M3×16 from the top</strong> + Loctite, crosswise."),
+  F("Le câble ne doit pas passer sous la base du moteur.","The cable must not run under the motor base.")],
+ warn:[F("Loctite obligatoire : les vibrations desserrent ces vis.","Loctite is mandatory: vibration loosens these screws.")]},
+{phase:F("Bras · assemblage (×4)","Arm · assembly (×4)"),title:F("Serrer le tube dans les mâchoires moteur","Clamp the tube in the motor jaws"),
+ lede:F("Le tube se pince entre les mâchoires moteur, en butée.","The tube is clamped between the motor jaws, bottomed out."),
+ parts:[
+  {qty:"x1",name:F("Mâchoire inf. + sup. moteur","Motor jaw lower + upper"),ref:""},
+  {qty:"x1",name:F("Tube carbone 170 mm","170 mm carbon tube"),ref:""},
+  {qty:"x4",name:F("Vis M3×18 + Loctite","M3×18 screw + Loctite"),ref:""}],
+ fastener:[F("Vis M3×18","Screw M3×18")],
+ images:[{src:"images/tube_machoires_moteur.jpg",cap:F("Tube en butée dans les mâchoires moteur. Vis M3×18.","Tube bottomed out in the motor jaws. M3×18 screws.")}],
+ instr:[
+  F("Engagez le tube, <strong>bout en butée</strong>.","Insert the tube, <strong>end bottomed out</strong>."),
+  F("Serrez les <strong>4 vis M3×18</strong> + Loctite, en croix.","Tighten the <strong>4 × M3×18</strong> + Loctite, crosswise."),
+  F("Le tube ne doit <strong>pas tourner</strong>.","The tube must <strong>not rotate</strong>.")]},
+{phase:F("Bras · assemblage (×4)","Arm · assembly (×4)"),title:F("Fixer le bras sur la plaque","Fix the arm to the plate"),
+ lede:F("Les mâchoires de bras se fixent sur les oreilles de la plaque.","The arm jaws fix onto the plate's ears."),
+ parts:[
+  {qty:"x1",name:F("Mâchoire inf. + sup. de bras","Arm jaw lower + upper"),ref:""},
+  {qty:"x4",name:F("Vis M3×25 + Loctite","M3×25 screw + Loctite"),ref:""}],
+ fastener:[F("Vis M3×25","Screw M3×25"),F("Insert M3","Insert M3")],
+ images:[{src:"images/bras_fixation_plaque.jpg",cap:F("Mâchoires de bras sur une oreille de la plaque. Vis M3×25.","Arm jaws on a plate ear. M3×25 screws.")}],
+ instr:[
+  F("Posez les mâchoires de bras au bout du tube, sur l'oreille.","Place the arm jaws at the tube end, on the ear."),
+  F("Vissez les <strong>4 vis M3×25</strong> dans les <strong>inserts M3 de la plaque</strong>.","Drive the <strong>4 × M3×25</strong> into the <strong>plate's M3 inserts</strong>.")]},
+{phase:F("Bras · assemblage (×4)","Arm · assembly (×4)"),title:F("Répéter ×4 et mettre à niveau","Repeat ×4 and level"),
+ lede:F("Refaites tout le bloc « Bras » pour les 3 autres, puis ajustez.","Redo the whole \"Arm\" block for the other 3, then adjust."),
+ parts:[{qty:"x1",name:F("Niveau à bulle","Spirit level"),ref:""}],
+ images:[{src:"images/bras_complet.png",cap:F("Résultat — bras complet (sans hélice).","Result — complete arm (no prop yet).")}],
+ instr:[
+  F("Reprenez câblage → moteur → tube → plaque pour chaque bras.","Redo wiring → motor → tube → plate for each arm."),
+  F("Aucun bras ne doit bouger ni tourner.","No arm should move or rotate."),
+  F("Posez un <strong>niveau</strong> sur les mâchoires moteur : ajustez jusqu'à l'horizontale.","Put a <strong>level</strong> on the motor jaws: adjust until horizontal.")]},
+/* ===== ESC ===== */
+{phase:F("ESC","ESC"),title:F("Étamer les pads de l'ESC","Tin the ESC pads"),
+ lede:F("On prépare les pads avant d'y souder phases et alimentation.","Prep the pads before soldering phases and power."),
+ parts:[{qty:"x1",name:F("ESC SpeedyBee 60A","SpeedyBee 60A ESC"),ref:F("hors tension","powered off")}],
+ images:[{src:"images/esc_pads_etamage.jpg",cap:F("ESC — 12 pads moteurs + 2 pads BAT± étamés.","ESC — 12 motor pads + 2 BAT± pads tinned.")}],
+ instr:[
+  F("Étamez les <strong>12 pads moteurs</strong> (3 ×4).","Tin the <strong>12 motor pads</strong> (3 ×4)."),
+  F("Étamez les <strong>2 pads BAT+ et BAT−</strong>.","Tin the <strong>2 BAT+ and BAT− pads</strong>."),
+  F("Fer bien chaud (380–400 °C) pour les gros pads.","Iron hot (380–400 °C) for the big pads.")]},
+{phase:F("ESC","ESC"),title:F("Souder les phases + sens de rotation","Solder phases + rotation direction"),
+ lede:F("ESC posé flèche vers l'arrière, pads +/− à l'avant.","ESC mounted arrow-to-rear, +/− pads at the front."),
+ parts:[{qty:"x4",name:F("Fils de bras (MR30)","Arm wires (MR30)"),ref:""}],
+ images:[{src:"images/esc_phases_moteur.jpg",cap:F("ESC flèche arrière — correspondance et soudure des phases.","ESC arrow-to-rear — mapping and phase soldering.")}],
+ instr:[
+  F("Correspondance QGC ↔ ESC :<table class='map'><tr><th>QGC</th><th>Position</th><th>Sens</th><th>ESC</th></tr><tr><td>M1</td><td>av-droit</td><td>horaire</td><td>M3</td></tr><tr><td>M3</td><td>av-gauche</td><td>anti-h.</td><td>M1</td></tr><tr><td>M2</td><td>ar-gauche</td><td>horaire</td><td>M2</td></tr><tr><td>M4</td><td>ar-droit</td><td>anti-h.</td><td>M4</td></tr></table>","QGC ↔ ESC mapping:<table class='map'><tr><th>QGC</th><th>Position</th><th>Spin</th><th>ESC</th></tr><tr><td>M1</td><td>front-right</td><td>CW</td><td>M3</td></tr><tr><td>M3</td><td>front-left</td><td>CCW</td><td>M1</td></tr><tr><td>M2</td><td>rear-left</td><td>CW</td><td>M2</td></tr><tr><td>M4</td><td>rear-right</td><td>CCW</td><td>M4</td></tr></table>"),
+  F("<strong>Anti-horaire</strong> : bleu au centre, noir à droite, rouge à gauche.","<strong>CCW</strong>: blue centre, black right, red left."),
+  F("<strong>Horaire</strong> : noir à droite, rouge au centre, bleu à l'extrémité.","<strong>CW</strong>: black right, red centre, blue at the end."),
+  F("Soudez les 3 fils de chaque bras. <strong>×4 bras.</strong>","Solder each arm's 3 wires. <strong>×4 arms.</strong>")],
+ tip:[F("Moteur à l'envers au test : échangez 2 des 3 phases.","Motor spins wrong at test: swap 2 of the 3 phases.")]},
+{phase:F("ESC","ESC"),title:F("Souder l'alimentation","Solder the power"),
+ lede:F("XT60, condensateur et sortie UBEC sur les pads BAT±.","XT60, capacitor and UBEC output on the BAT± pads."),
+ parts:[
+  {qty:"x1",name:F("XT60 mâle","Male XT60"),ref:""},
+  {qty:"x1",name:F("Condensateur 1000 µF","1000 µF capacitor"),ref:""},
+  {qty:"x2",name:F("Fils UBEC","UBEC wires"),ref:""}],
+ images:[{src:"images/esc_alimentation.jpg",cap:F("Pads BAT± — XT60, condensateur et fils UBEC soudés.","BAT± pads — XT60, capacitor and UBEC wires soldered.")}],
+ instr:[
+  F("<strong>Fil rouge XT60 sur BAT+</strong>, noir sur BAT−.","<strong>XT60 red on BAT+</strong>, black on BAT−."),
+  F("Condensateur : <strong>patte longue (+) sur BAT+</strong>, bande grise (−) sur BAT−.","Capacitor: <strong>long leg (+) on BAT+</strong>, grey-stripe (−) on BAT−."),
+  F("Fils UBEC : rouge sur BAT+, noir sur BAT−.","UBEC wires: red on BAT+, black on BAT−.")],
+ warn:[F("Aucun pont BAT+/BAT−. Vérifiez au multimètre : un pont = ESC détruit.","No BAT+/BAT− bridge. Check with a multimeter: a bridge = dead ESC.")]},
+/* ===== CALCULATEUR ===== */
+{phase:F("Calculateur","Companion computer"),title:F("Configurer la carte SD (avant montage)","Flash the SD card (before mounting)"),
+ lede:F("La carte n'est plus accessible une fois la Pi montée : on la prépare maintenant.","The card isn't reachable once the Pi is mounted: prep it now."),
+ parts:[{qty:"x1",name:F("Carte SD + Raspberry Pi Imager","SD card + Raspberry Pi Imager"),ref:F("sur le PC","on the PC")}],
+ images:[{src:"images/sd_imager.jpg",cap:F("Raspberry Pi Imager — réglages OS.","Raspberry Pi Imager — OS settings.")}],
+ instr:[
+  F("OS : <strong>Raspberry Pi OS Lite (64-bit)</strong>, Pi 5.","OS: <strong>Raspberry Pi OS Lite (64-bit)</strong>, Pi 5."),
+  F("Réglages : hostname <span class='tag'>neutronit</span>, user <span class='tag'>neutronit</span>, mdp <span class='tag'>neutronit2026</span>, Wi-Fi + pays <strong>FR</strong>, <strong>SSH activé</strong>.","Settings: hostname <span class='tag'>neutronit</span>, user <span class='tag'>neutronit</span>, pw <span class='tag'>neutronit2026</span>, Wi-Fi + country <strong>FR</strong>, <strong>SSH on</strong>.")],
+ tip:[F("Éteignez toujours la Pi avec <span class='tag'>sudo shutdown now</span>.","Always shut the Pi down with <span class='tag'>sudo shutdown now</span>.")]},
+{phase:F("Calculateur","Companion computer"),title:F("Monter le ventilateur","Fit the cooler"),
+ lede:F("Le ventilateur se clipse avant de fixer la Pi.","The fan clips on before the Pi is fixed."),
+ parts:[{qty:"x1",name:F("Active Cooler","Active Cooler"),ref:""}],
+ images:[{src:"images/raspberry_ventilateur.jpg",cap:F("Active Cooler clipsé, câble sur le connecteur FAN.","Active Cooler clipped on, cable in the FAN header.")}],
+ instr:[
+  F("Les ergots entrent dans les trous — un seul sens possible.","The pins fit the holes — only one way."),
+  F("Branchez le câble sur le connecteur <span class='tag'>FAN</span>.","Plug the cable into the <span class='tag'>FAN</span> header.")]},
+{phase:F("Calculateur","Companion computer"),title:F("Fixer la Raspberry Pi (anti-vibration)","Mount the Raspberry Pi (anti-vibration)"),
+ lede:F("La Pi est montée sur amortisseurs silicone.","The Pi is mounted on silicone dampers."),
+ parts:[
+  {qty:"x4",name:F("Vis M2×10","M2×10 screw"),ref:""},
+  {qty:"x4",name:F("Écrous M2","M2 nuts"),ref:""},
+  {qty:"x4",name:F("Boules silicone","Silicone balls"),ref:""}],
+ fastener:[F("Vis M2×10","Screw M2×10"),F("Écrou M2","Nut M2"),F("Insert M2","Insert M2")],
+ images:[{src:"images/raspberry_fixation.jpg",cap:F("Pi : vis → écrou → boule silicone → insert M2.","Pi: screw → nut → silicone ball → M2 insert.")}],
+ instr:[
+  F("Passez une vis M2×10 dans chaque trou de la Pi.","Pass an M2×10 through each Pi hole."),
+  F("Côté dessous : un <strong>écrou</strong> puis une <strong>boule silicone</strong> par vis.","Underside: a <strong>nut</strong> then a <strong>silicone ball</strong> per screw."),
+  F("Vissez dans les <strong>inserts M2</strong>. Serrage doux.","Drive into the <strong>M2 inserts</strong>. Gentle torque.")]},
+/* ===== STACK CENTRAL ===== */
+{phase:F("Stack central","Central stack"),title:F("Monter l'ESC sur la plaque","Mount the ESC on the plate"),
+ lede:F("4 vis par le dessous, surélevées par des écrous.","4 screws from below, raised on nuts."),
+ parts:[
+  {qty:"x4",name:F("Vis M3×20","M3×20 screw"),ref:F("par le dessous","from below")},
+  {qty:"x8",name:F("Écrous M3","M3 nuts"),ref:F("2 par vis","2 per screw")},
+  {qty:"x1",name:F("ESC (câblé)","ESC (wired)"),ref:""}],
+ fastener:[F("Vis M3×20","Screw M3×20"),F("Écrou M3","Nut M3")],
+ images:[{src:"images/esc_montage_central.jpg",cap:F("4 vis M3×20 par le dessous, 2 écrous par vis, ESC posé.","4 × M3×20 from below, 2 nuts each, ESC on top.")}],
+ instr:[
+  F("Une <strong>vis M3×20 par le dessous</strong> dans chaque trou central.","One <strong>M3×20 from below</strong> in each central hole."),
+  F("<strong>2 écrous M3 par vis</strong> (entretoise).","<strong>2 M3 nuts per screw</strong> (spacer)."),
+  F("Posez l'ESC, <strong>flèche vers l'arrière</strong>.","Place the ESC, <strong>arrow to rear</strong>.")]},
+{phase:F("Stack central","Central stack"),title:F("Monter le support + le Pixhawk","Mount the bracket + Pixhawk"),
+ lede:F("Le support coiffe l'ESC, puis le FCU se colle dessus.","The bracket caps the ESC, then the FCU sticks on top."),
+ parts:[
+  {qty:"x1",name:F("Support Pixhawk","Pixhawk mount"),ref:""},
+  {qty:"x1",name:F("Pixhawk 6C Mini","Pixhawk 6C Mini"),ref:""},
+  {qty:"—",name:F("Ruban mousse PE","PE foam tape"),ref:""}],
+ images:[{src:"images/pixhawk_fixation.jpg",cap:F("Support vissé sur l'ESC, Pixhawk collé, flèche avant.","Bracket on the ESC, Pixhawk glued on, arrow forward.")}],
+ instr:[
+  F("Vissez le support sur les 4 vis de l'ESC.","Screw the bracket onto the ESC's 4 screws."),
+  F("Mousse double face, puis Pixhawk, <strong>flèche FORWARD vers l'avant</strong>.","Foam tape, then Pixhawk, <strong>FORWARD arrow to the front</strong>."),
+  F("Niveau : ajustez jusqu'à l'horizontale.","Level it: adjust until horizontal.")],
+ warn:[F("Orientation FORWARD impérative.","FORWARD orientation is mandatory.")]},
+/* ===== ALIMENTATION ===== */
+{phase:F("Alimentation","Power"),title:F("Brancher le Power Module PM02","Connect the PM02 Power Module"),
+ lede:F("Le PM02 s'intercale entre batterie et ESC, et alimente le Pixhawk.","The PM02 sits between battery and ESC, and powers the Pixhawk."),
+ parts:[{qty:"x1",name:F("Power Module PM02","PM02 Power Module"),ref:""}],
+ images:[{src:"images/power_module_branchement.jpg",cap:F("PM02 : XT60 batterie↔ESC, câble 6 pins vers POWER.","PM02: XT60 battery↔ESC, 6-pin cable to POWER.")}],
+ instr:[
+  F("<strong>XT60</strong> du PM02 entre la batterie 4S et le XT60 de l'ESC.","PM02 <strong>XT60</strong> between the 4S battery and the ESC XT60."),
+  F("Câble <strong>6 pins</strong> → port <span class='tag'>POWER</span> du Pixhawk.","<strong>6-pin</strong> cable → Pixhawk <span class='tag'>POWER</span> port.")]},
+{phase:F("Alimentation","Power"),title:F("Alimenter la Pi (UBEC → broches 5V/GND)","Power the Pi (UBEC → 5V/GND pins)"),
+ lede:F("On branche directement les câbles d'origine de l'UBEC sur les broches de la Pi — plus besoin de câble USB-C.","Connect the UBEC's original wires straight to the Pi's pins — no USB-C cable needed."),
+ parts:[{qty:"x1",name:F("UBEC ZTW 10A (jumper 5V)","ZTW 10A UBEC (5V jumper)"),ref:""}],
+ images:[{src:"images/alim_pi_ubec.jpg",cap:F("Fils UBEC sur broche 5V (pin 4) et GND (pin 6) de la Pi.","UBEC wires on the Pi's 5V (pin 4) and GND (pin 6).")}],
+ instr:[
+  F("Vérifiez le jumper UBEC sur <strong>5 V</strong> ; il tire son 5V depuis l'ESC.","Check the UBEC jumper on <strong>5 V</strong>; it draws 5V from the ESC."),
+  F("Branchez le <strong>rouge sur la broche 5V (pin 4)</strong> et le <strong>noir sur GND (pin 6)</strong> de la Pi.","Connect <strong>red to 5V (pin 4)</strong> and <strong>black to GND (pin 6)</strong> on the Pi.")],
+ warn:[F("Mesurez 5,0 V avant de brancher. Polarité vérifiée 2×.","Measure 5.0 V before connecting. Double-check polarity.")]},
+{phase:F("Alimentation","Power"),title:F("Fixer UBEC + PM à l'avant","Fix UBEC + PM at the front"),
+ lede:F("Entre l'ESC et le support caméra.","Between the ESC and the camera mount."),
+ parts:[{qty:"—",name:F("Ruban mousse PE / colliers","PE foam tape / zip ties"),ref:""}],
+ images:[{src:"images/ubec_pm_avant.jpg",cap:F("UBEC + PM fixés à l'avant.","UBEC + PM fixed at the front.")}],
+ instr:[
+  F("Fixez l'UBEC et le PM à l'avant (mousse + colliers).","Fix the UBEC and PM at the front (foam + zip ties)."),
+  F("Laissez l'accès au XT60 du PM.","Keep the PM's XT60 reachable.")]},
+{phase:F("Alimentation","Power"),title:F("Fixer le support caméra","Fix the camera mount"),
+ lede:F("Le support (bracket) se visse à l'avant de la plaque.","The mount bracket screws to the front of the plate."),
+ parts:[{qty:"x2",name:F("Vis M3×6","M3×6 screw"),ref:""}],
+ fastener:[F("Vis M3×6","Screw M3×6")],
+ images:[{src:"images/support_camera_fixation.jpg",cap:F("Support caméra vissé à l'avant (2 vis M3×6).","Camera bracket screwed at the front (2 × M3×6).")}],
+ instr:[F("Vissez le support à l'avant de la plaque (<strong>2 vis M3×6</strong>).","Screw the bracket to the front of the plate (<strong>2 × M3×6</strong>).")]},
+/* ===== BRANCHEMENTS ===== */
+{phase:F("Branchements","Wiring"),title:F("Liaison UART Pi ↔ Pixhawk (TELEM 2)","UART link Pi ↔ Pixhawk (TELEM 2)"),
+ lede:F("La télémétrie MAVLink passe par une liaison série croisée.","MAVLink telemetry runs over a crossed serial link."),
+ parts:[{qty:"x1",name:F("Câble GH1.25 → Dupont","GH1.25 → Dupont cable"),ref:""}],
+ images:[{src:"images/uart_pi_pixhawk.jpg",cap:F("TELEM 2 ↔ broches GPIO de la Pi (GND/TX/RX croisés).","TELEM 2 ↔ Pi GPIO pins (GND/TX/RX crossed).")}],
+ instr:[
+  F("Câblage :<table class='map'><tr><th>TELEM 2</th><th>→ Pi (broche)</th></tr><tr><td>pin 6 GND</td><td>broche 6</td></tr><tr><td>pin 2 TX</td><td>broche 10 (RX)</td></tr><tr><td>pin 3 RX</td><td>broche 8 (TX)</td></tr></table>","Wiring:<table class='map'><tr><th>TELEM 2</th><th>→ Pi (pin)</th></tr><tr><td>pin 6 GND</td><td>pin 6</td></tr><tr><td>pin 2 TX</td><td>pin 10 (RX)</td></tr><tr><td>pin 3 RX</td><td>pin 8 (TX)</td></tr></table>"),
+  F("Rallonges : dénuder, étamer, connecter.","Extensions: strip, tin, connect.")],
+ warn:[F("Croisé : TX d'un côté vers RX de l'autre. Ne branchez pas le 5V de TELEM 2.","Crossed: TX one side to RX the other. Do not connect TELEM 2 5V.")]},
+{phase:F("Branchements","Wiring"),title:F("Brancher l'ESC au Pixhawk","Connect the ESC to the Pixhawk"),
+ lede:F("Pads ESC : <span class='tag'>- + 1 2 3 4 C T</span>. On sépare les fils sur MAIN OUT.","ESC pads: <span class='tag'>- + 1 2 3 4 C T</span>. Split the wires onto MAIN OUT."),
+ images:[{src:"images/esc_pixhawk_mainout.jpg",cap:F("Signaux 1–4 + GND sur MAIN OUT. Le + n'est PAS branché.","Signals 1–4 + GND on MAIN OUT. The + is NOT connected.")}],
+ instr:[
+  F("Étiquetez puis <strong>coupez le connecteur 8 pins</strong> pour séparer les fils.","Label then <strong>cut the 8-pin connector</strong> to separate the wires."),
+  F("Branchez <strong>1 2 3 4</strong> (signaux) sur la rangée S de MAIN OUT, et <strong>−</strong> (GND).","Connect <strong>1 2 3 4</strong> (signals) to the MAIN OUT S row, and <strong>−</strong> (GND)."),
+  F("<strong>Ne branchez PAS le +</strong> : le Pixhawk est déjà alimenté par le Power Module.","<strong>Do NOT connect the +</strong>: the Pixhawk is already powered by the Power Module.")],
+ tip:[F("C (courant) et T (télémétrie) : non utilisés ici, laissez-les libres.","C (current) and T (telemetry): unused here, leave them free.")]},
+{phase:F("Branchements","Wiring"),title:F("Brancher le GPS","Connect the GPS"),
+ lede:F("Le GPS M10 (compas intégré) sur son port dédié.","The M10 GPS (built-in compass) on its dedicated port."),
+ images:[{src:"images/gps_branchement.jpg",cap:F("GPS M10 en GH1.25 sur le port GPS 1.","M10 GPS via GH1.25 on the GPS 1 port.")}],
+ instr:[F("Branchez le GPS en <strong>GH1.25</strong> sur le port <span class='tag'>GPS 1</span>.","Plug the GPS via <strong>GH1.25</strong> into <span class='tag'>GPS 1</span>.")]},
+{phase:F("Branchements","Wiring"),title:F("Brancher le récepteur ELRS","Connect the ELRS receiver"),
+ lede:F("On câble le récepteur (la fixation se fera à la fermeture de la coque).","Wire the receiver (it's secured when the shell closes)."),
+ images:[{src:"images/elrs_branchement.jpg",cap:F("Récepteur ELRS branché en RC IN (SBUS).","ELRS receiver wired to RC IN (SBUS).")}],
+ instr:[
+  F("Branchez le récepteur : <span class='tag'>RC IN</span> en SBUS (signal + GND + 5V), ou <span class='tag'>TELEM 3</span> en CRSF.","Wire the receiver: <span class='tag'>RC IN</span> SBUS (signal + GND + 5V), or <span class='tag'>TELEM 3</span> CRSF."),
+  F("Soudez/branchez les fils R / T / V / G selon le port.","Solder/plug the R / T / V / G wires per the port.")],
+ tip:[F("La fixation du récepteur se fera dans la coque (étape « Fermer la coque »).","The receiver is secured inside the shell (\"Close the shell\" step).")]},
+/* ===== TEST CRITIQUE ===== */
+{phase:F("Test · critique","Test · critical"),title:F("Smoke Stopper — première mise sous tension","Smoke Stopper — first power-up"),
+ lede:F("Avant toute première connexion batterie, on chasse les courts-circuits. Non optionnel.","Before any first battery connection, hunt for shorts. Not optional."),
+ parts:[
+  {qty:"x1",name:F("Smoke Stopper (XT60)","Smoke Stopper (XT60)"),ref:""},
+  {qty:"x1",name:F("Multimètre","Multimeter"),ref:F("continuité","continuity")},
+  {qty:"x1",name:F("Batterie LiPo 4S","LiPo 4S battery"),ref:""}],
+ images:[{src:"images/smoke_stopper.jpg",cap:F("Smoke Stopper entre la batterie et le drone — LED de contrôle.","Smoke Stopper between battery and drone — indicator LED.")}],
+ instr:[
+  F("Multimètre (continuité) : <strong>aucun bip entre BAT+ et BAT−</strong>.","Multimeter (continuity): <strong>no beep between BAT+ and BAT−</strong>."),
+  F("Intercalez le <strong>Smoke Stopper</strong>, branchez la batterie.","Insert the <strong>Smoke Stopper</strong>, connect the battery."),
+  F("<strong>LED verte</strong> = OK. Vérifiez le démarrage Pixhawk + Pi, mesurez 5,0 V UBEC.","<strong>Green LED</strong> = OK. Check Pixhawk + Pi boot, measure 5.0 V UBEC."),
+  F("Si nominal après 30 s, débranchez et retirez le Smoke Stopper.","If nominal after 30 s, disconnect and remove the Smoke Stopper.")],
+ warn:[F("<strong>LED rouge ou échauffement = court-circuit → débranchez immédiatement.</strong> Jamais de 1re mise sous tension sans Smoke Stopper.","<strong>Red LED or heat = short → disconnect at once.</strong> Never a first power-up without a Smoke Stopper.")]},
+/* ===== CONFIG QGC ===== */
+{phase:F("Configuration · QGC","Setup · QGC"),title:F("Flasher PX4 + Airframe","Flash PX4 + Airframe"),
+ lede:F("La carte est livrée sous Betaflight : ce flash est indispensable pour MAVLink.","The board ships with Betaflight: this flash is essential for MAVLink."),
+ images:[{src:"images/qgc_firmware.jpg",cap:F("QGC — Firmware → PX4 Autopilot.","QGC — Firmware → PX4 Autopilot.")}],
+ instr:[
+  F("Pixhawk en USB → QGC → <strong>Firmware → PX4 Autopilot</strong>.","Pixhawk via USB → QGC → <strong>Firmware → PX4 Autopilot</strong>."),
+  F("Airframe → <span class='tag'>Generic Quadrotor X</span> → Apply and Restart.","Airframe → <span class='tag'>Generic Quadrotor X</span> → Apply and Restart.")]},
+{phase:F("Configuration · QGC","Setup · QGC"),title:F("Géométrie des moteurs (deadcat)","Motor geometry (deadcat)"),
+ lede:F("Bras avant et arrière de longueurs différentes : on renseigne les distances au centre.","Front and rear arms differ in length: enter the distances to centre."),
+ images:[{src:"images/qgc_geometry.jpg",cap:F("QGC — distances des moteurs au centre.","QGC — motor distances to centre.")}],
+ instr:[
+  F("Moteurs <strong>avant</strong> (M1, M3) : <span class='tag'>24,3 cm</span> du centre.","<strong>Front</strong> motors (M1, M3): <span class='tag'>24.3 cm</span> from centre."),
+  F("Moteurs <strong>arrière</strong> (M2, M4) : <span class='tag'>26,3 cm</span> du centre.","<strong>Rear</strong> motors (M2, M4): <span class='tag'>26.3 cm</span> from centre."),
+  F("Renseignez-les dans la géométrie personnalisée du châssis.","Enter them in the custom airframe geometry.")],
+ tip:[F("Une géométrie exacte améliore la stabilisation.","Accurate geometry improves stabilisation.")]},
+{phase:F("Configuration · QGC","Setup · QGC"),title:F("Binder le récepteur ELRS","Bind the ELRS receiver"),
+ lede:F("On lie le récepteur à la RadioMaster Pocket via une binding phrase.","Bind the receiver to the RadioMaster Pocket with a binding phrase."),
+ images:[{src:"images/elrs_bind.jpg",cap:F("Bind ELRS — 10.0.0.1 et menu radio.","ELRS bind — 10.0.0.1 and radio menu.")}],
+ instr:[
+  F("Récepteur en WiFi (appui long ~10 s). PC sur <span class='tag'>ExpressLRS RX</span>.","Receiver to WiFi (long press ~10 s). PC on <span class='tag'>ExpressLRS RX</span>."),
+  F("Ouvrez <span class='tag'>10.0.0.1</span>, entrez une <strong>Binding Phrase</strong>, Save &amp; Reboot.","Open <span class='tag'>10.0.0.1</span>, enter a <strong>Binding Phrase</strong>, Save &amp; Reboot."),
+  F("Radio → Model Setup → Internal RF → ELRS → <strong>même phrase</strong> (LED fixe = bindé).","Radio → Model Setup → Internal RF → ELRS → <strong>same phrase</strong> (solid LED = bound).")]},
+{phase:F("Configuration · QGC","Setup · QGC"),title:F("Calibrer la radio","Calibrate the radio"),
+ lede:F("Une fois le récepteur branché.","Once the receiver is wired in."),
+ images:[{src:"images/qgc_radio.jpg",cap:F("QGC — Radio → Calibrate.","QGC — Radio → Calibrate.")}],
+ instr:[F("QGC → <strong>Radio → Calibrate</strong> : bougez sticks et switches aux extrémités.","QGC → <strong>Radio → Calibrate</strong>: move sticks and switches to the extremes.")]},
+{phase:F("Configuration · QGC","Setup · QGC"),title:F("Calibrer les capteurs","Calibrate the sensors"),
+ lede:F("Quatre calibrations dans Sensors.","Four calibrations in Sensors."),
+ images:[{src:"images/qgc_sensors.jpg",cap:F("QGC — Gyro, Accel, Compas, Level.","QGC — Gyro, Accel, Compass, Level.")}],
+ instr:[
+  F("<strong>Gyroscope</strong> : immobile à plat.","<strong>Gyroscope</strong>: still and flat."),
+  F("<strong>Accéléromètre</strong> : 6 positions.","<strong>Accelerometer</strong>: 6 orientations."),
+  F("<strong>Compas</strong> : rotations, loin du métal.","<strong>Compass</strong>: rotations, away from metal."),
+  F("<strong>Level Horizon</strong> : drone à plat.","<strong>Level Horizon</strong>: drone flat.")]},
+{phase:F("Configuration · QGC","Setup · QGC"),title:F("Configurer la batterie","Configure the battery"),
+ lede:F("Réglages dans Power.","Settings in Power."),
+ images:[{src:"images/qgc_power.jpg",cap:F("QGC — Power : 4S, tensions, divider.","QGC — Power: 4S, voltages, divider.")}],
+ instr:[
+  F("<strong>4S</strong>, mini <span class='tag'>3,7 V</span>, pleine <span class='tag'>4,2 V</span>/cellule.","<strong>4S</strong>, min <span class='tag'>3.7 V</span>, full <span class='tag'>4.2 V</span>/cell."),
+  F("Voltage divider PM02 : <span class='tag'>≈ 18,182</span>.","PM02 voltage divider: <span class='tag'>≈ 18.182</span>.")]},
+{phase:F("Configuration · QGC","Setup · QGC"),title:F("Configurer les modes de vol","Configure flight modes"),
+ lede:F("On assigne les interrupteurs.","Assign the switches."),
+ images:[{src:"images/qgc_flight_modes.jpg",cap:F("QGC — Position / Offboard / RTL.","QGC — Position / Offboard / RTL.")}],
+ instr:[
+  F("Un switch <strong>Stabilized / Altitude / Position</strong>.","One switch <strong>Stabilized / Altitude / Position</strong>."),
+  F("Un switch <strong>Offboard</strong>.","One switch <strong>Offboard</strong>."),
+  F("Un switch séparé <strong>Return to Land</strong>.","A separate <strong>Return to Land</strong> switch.")]},
+{phase:F("Configuration · QGC","Setup · QGC"),title:F("Configurer et calibrer les ESC","Configure and calibrate the ESCs"),
+ lede:F("Sorties, calibration, puis sens (sans hélices).","Outputs, calibration, then direction (no props)."),
+ images:[{src:"images/qgc_actuators.jpg",cap:F("QGC — Actuators : MAIN 1–4 = Motor 1–4.","QGC — Actuators: MAIN 1–4 = Motor 1–4.")}],
+ instr:[
+  F("Actuators : <strong>MAIN 1–4 = Motor 1–4</strong>, PWM <span class='tag'>400 Hz</span> (1000/1000/2000).","Actuators: <strong>MAIN 1–4 = Motor 1–4</strong>, PWM <span class='tag'>400 Hz</span> (1000/1000/2000)."),
+  F("Calibrez : gaz à fond batterie branchée jusqu'aux bips, puis gaz à zéro.","Calibrate: full throttle with battery until beeps, then zero throttle."),
+  F("Vérifiez le sens <strong>sans hélices</strong> ; inversez 2 phases si besoin.","Check direction <strong>without props</strong>; swap 2 phases if needed.")],
+ warn:[F("Toujours sans hélices.","Always without props.")]},
+{phase:F("Configuration · QGC","Setup · QGC"),title:F("Paramètres critiques","Critical parameters"),
+ lede:F("Sans eux, l'armement ou l'Offboard sont refusés.","Without these, arming or Offboard are refused."),
+ images:[{src:"images/qgc_parameters.jpg",cap:F("QGC — Parameters.","QGC — Parameters.")}],
+ instr:[
+  F("<span class='tag'>CBRK_IO_SAFETY</span> = 22027 (pas de bouton safety).","<span class='tag'>CBRK_IO_SAFETY</span> = 22027 (no safety button)."),
+  F("<span class='tag'>COM_RCL_EXCEPT</span> = 4 (Offboard sans sticks).","<span class='tag'>COM_RCL_EXCEPT</span> = 4 (Offboard without sticks)."),
+  F("<span class='tag'>SER_TEL2_BAUD</span>=57600 · <span class='tag'>MAV_1_CONFIG</span>=TELEM2 · <span class='tag'>MAV_1_MODE</span>=Normal · <span class='tag'>MAV_1_RATE</span>=1200.","<span class='tag'>SER_TEL2_BAUD</span>=57600 · <span class='tag'>MAV_1_CONFIG</span>=TELEM2 · <span class='tag'>MAV_1_MODE</span>=Normal · <span class='tag'>MAV_1_RATE</span>=1200."),
+  F("<span class='tag'>MPC_THR_HOVER</span>≈0,65 · <span class='tag'>MPC_USE_HTE</span>=Enabled. Safety : GPS Loss Failsafe, RTL ≥ 15 m.","<span class='tag'>MPC_THR_HOVER</span>≈0.65 · <span class='tag'>MPC_USE_HTE</span>=Enabled. Safety: GPS Loss Failsafe, RTL ≥ 15 m.")],
+ warn:[F("Attendez un fix GPS ≥ 8–10 satellites avant de voler.","Wait for a GPS fix ≥ 8–10 satellites before flying.")]},
+/* ===== LOGICIEL PI ===== */
+{phase:F("Logiciel · Pi","Software · Pi"),title:F("Le calculateur de bord","The companion computer"),
+ lede:F("Le drone vole maintenant en manuel. Place au cerveau autonome : la Raspberry Pi exécute le script de vol et envoie la vidéo au PC sol. Les prochaines pages la mettent en route.","The drone now flies manually. Now the autonomous brain: the Raspberry Pi runs the flight script and streams video to the ground PC. The next pages bring it online."),
+ instr:[
+  F("On va : la trouver sur le réseau → s'y connecter en SSH → installer le logiciel → lancer.","We will: find it on the network → connect via SSH → install software → launch."),
+  F("Tout se fait depuis le PC sol, partage de connexion du téléphone activé.","All from the ground PC, with the phone hotspot on.")],
+ tip:[F("La carte SD a déjà été préparée à l'étape « Configurer la carte SD ».","The SD card was already prepared in the \"Flash the SD card\" step.")]},
+{phase:F("Logiciel · Pi","Software · Pi"),title:F("Trouver les adresses IP","Find the IP addresses"),
+ lede:F("Le .local ne marche pas ici. PC et Pi sur le même Wi-Fi (partage de connexion).","The .local doesn't work here. PC and Pi on the same Wi-Fi (hotspot)."),
+ instr:[
+  F("IP de la Pi : dans les réglages du <strong>partage de connexion</strong> (ex. <span class='tag'>172.20.10.2</span>).","Pi IP: in the <strong>hotspot</strong> settings (e.g. <span class='tag'>172.20.10.2</span>)."),
+  F("IP du PC : <span class='tag'>ipconfig</span> dans PowerShell, ligne IPv4 (ex. <span class='tag'>172.20.10.3</span>).","PC IP: <span class='tag'>ipconfig</span> in PowerShell, IPv4 line (e.g. <span class='tag'>172.20.10.3</span>).")],
+ tip:[F("PC et Pi partagent les 3 premiers blocs d'IP.","PC and Pi share the first 3 IP blocks.")]},
+{phase:F("Logiciel · Pi","Software · Pi"),title:F("Connexion SSH","SSH connection"),
+ lede:F("On se connecte à la Pi depuis le PC.","Connect to the Pi from the PC."),
+ instr:[
+  F("Connexion :<code class='cmd'>ssh neutronit@172.20.10.2</code>","Connect:<code class='cmd'>ssh neutronit@172.20.10.2</code>"),
+  F("Erreur après reflash :<code class='cmd'>ssh-keygen -R 172.20.10.2</code>puis relancez.","Error after a reflash:<code class='cmd'>ssh-keygen -R 172.20.10.2</code>then retry.")]},
+{phase:F("Logiciel · Pi","Software · Pi"),title:F("Installer le logiciel","Install the software"),
+ lede:F("Deux commandes installent tout.","Two commands install everything."),
+ instr:[
+  F("Système, OpenCV, caméra, GStreamer :<code class='cmd'>sudo apt update && sudo apt upgrade -y && sudo apt install python3-pip python3-opencv rpicam-apps gstreamer1.0-tools gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly -y --fix-missing</code>","System, OpenCV, camera, GStreamer:<code class='cmd'>sudo apt update && sudo apt upgrade -y && sudo apt install python3-pip python3-opencv rpicam-apps gstreamer1.0-tools gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly -y --fix-missing</code>"),
+  F("Python + PATH + groupe série :<code class='cmd'>pip3 install pymavlink MAVProxy numpy scipy PyYAML future --break-system-packages && echo 'export PATH=$PATH:/home/neutronit/.local/bin' >> ~/.bashrc && source ~/.bashrc && sudo usermod -a -G dialout neutronit</code>","Python + PATH + serial group:<code class='cmd'>pip3 install pymavlink MAVProxy numpy scipy PyYAML future --break-system-packages && echo 'export PATH=$PATH:/home/neutronit/.local/bin' >> ~/.bashrc && source ~/.bashrc && sudo usermod -a -G dialout neutronit</code>")]},
+{phase:F("Logiciel · Pi","Software · Pi"),title:F("Activer l'UART","Enable UART"),
+ lede:F("On libère le port série matériel.","Free up the hardware serial port."),
+ instr:[
+  F("<span class='tag'>sudo raspi-config</span> → Interface Options → Serial Port → login shell <strong>NON</strong>, hardware <strong>OUI</strong> → Reboot.","<span class='tag'>sudo raspi-config</span> → Interface Options → Serial Port → login shell <strong>NO</strong>, hardware <strong>YES</strong> → Reboot."),
+  F("Vérifier :<code class='cmd'>mavproxy.py --version && python3 -c \"import cv2; print('OpenCV OK')\" && ls /dev/ttyAMA0</code>","Check:<code class='cmd'>mavproxy.py --version && python3 -c \"import cv2; print('OpenCV OK')\" && ls /dev/ttyAMA0</code>")]},
+{phase:F("Logiciel · Pi","Software · Pi"),title:F("Éditer le code via VS Code (Remote SSH)","Edit the code via VS Code (Remote SSH)"),
+ lede:F("VS Code se connecte à la Pi : vous éditez les fichiers directement dessus, terminal compris.","VS Code connects to the Pi: you edit files on it directly, terminal included."),
+ instr:[
+  F("Installez l'extension <strong>Remote - SSH</strong> dans VS Code.","Install the <strong>Remote - SSH</strong> extension in VS Code."),
+  F("Cliquez l'icône verte <span class='tag'>&gt;&lt;</span> en bas à gauche → <strong>Connect to Host</strong> → <strong>Add New SSH Host</strong>.","Click the green <span class='tag'>&gt;&lt;</span> icon (bottom-left) → <strong>Connect to Host</strong> → <strong>Add New SSH Host</strong>."),
+  F("Saisissez <span class='tag'>ssh neutronit@172.20.10.2</span>, mot de passe <span class='tag'>neutronit2026</span>.","Enter <span class='tag'>ssh neutronit@172.20.10.2</span>, password <span class='tag'>neutronit2026</span>."),
+  F("<strong>Open Folder</strong> → <span class='tag'>/home/neutronit</span>. Le terminal intégré (Terminal → New Terminal) tourne déjà sur la Pi.","<strong>Open Folder</strong> → <span class='tag'>/home/neutronit</span>. The built-in terminal (Terminal → New Terminal) already runs on the Pi.")],
+ tip:[F("Plus besoin d'écran ni de clavier sur la Pi : tout passe par VS Code.","No screen or keyboard on the Pi: everything goes through VS Code.")]},
+{phase:F("Logiciel · Pi","Software · Pi"),title:F("Lancer le vol","Launch the flight"),
+ lede:F("Trois commandes (remplacez l'IP par celle du PC).","Three commands (replace the IP with the PC's)."),
+ instr:[
+  F("Télémétrie :<code class='cmd'>mavproxy.py --master=/dev/ttyAMA0 --baudrate 57600 --out udp:172.20.10.3:14550 --out udp:127.0.0.1:14551</code>","Telemetry:<code class='cmd'>mavproxy.py --master=/dev/ttyAMA0 --baudrate 57600 --out udp:172.20.10.3:14550 --out udp:127.0.0.1:14551</code>"),
+  F("Caméra :<code class='cmd'>rpicam-vid -t 0 --codec h264 --width 640 --height 480 --framerate 30 --inline -o udp://172.20.10.3:5600</code>","Camera:<code class='cmd'>rpicam-vid -t 0 --codec h264 --width 640 --height 480 --framerate 30 --inline -o udp://172.20.10.3:5600</code>"),
+  F("Vol autonome :<code class='cmd'>python3 neutronit_vol.py</code>","Autonomous flight:<code class='cmd'>python3 neutronit_vol.py</code>")]},
+/* ===== FERMETURE ===== */
+{phase:F("Fermeture finale","Final closing"),title:F("Assembler la caméra","Assemble the camera"),
+ lede:F("Maintenant que tout est testé, on installe la caméra. On fixe d'abord la nappe.","Now everything is tested, install the camera. Fix the cable first."),
+ parts:[
+  {qty:"x1",name:F("Caméra Module 3 Wide + nappe 300 mm","Camera Module 3 Wide + 300 mm cable"),ref:""},
+  {qty:"x2",name:F("Vis M2×6","M2×6 screw"),ref:""}],
+ fastener:[F("Vis M2×6","Screw M2×6")],
+ images:[{src:"images/camera_dans_coque.jpg",cap:F("Caméra + nappe dans la coque caméra.","Camera + cable in the camera shell.")}],
+ instr:[
+  F("Fixez la nappe 300 mm sur la caméra.","Attach the 300 mm cable to the camera."),
+  F("Placez la caméra dans la coque, vissez (<strong>2 vis M2×6</strong>).","Place the camera in the shell, screw it (<strong>2 × M2×6</strong>)."),
+  F("Faites passer la nappe par l'ouverture.","Route the cable through the opening.")]},
+{phase:F("Fermeture finale","Final closing"),title:F("Fermer avec le clap caméra","Close with the camera clamp"),
+ lede:F("Le clap bloque la caméra dans les inserts M2.","The clamp locks the camera into the M2 inserts."),
+ parts:[{qty:"x2",name:F("Vis M2×6","M2×6 screw"),ref:""}],
+ fastener:[F("Vis M2×6","Screw M2×6"),F("Insert M2","Insert M2")],
+ images:[{src:"images/clap_camera.jpg",cap:F("Clap vissé dans les inserts M2 de la coque.","Clamp screwed into the shell's M2 inserts.")}],
+ instr:[
+  F("Posez le clap, vissez 2 vis M2×6 dans les <strong>inserts M2 de la coque</strong>.","Place the clamp, drive 2 × M2×6 into the <strong>shell's M2 inserts</strong>."),
+  F("La nappe ressort par le trou entre coque et clap.","The cable exits through the gap between shell and clamp.")]},
+{phase:F("Fermeture finale","Final closing"),title:F("Monter la caméra + brancher la nappe","Mount the camera + plug the cable"),
+ lede:F("On monte l'ensemble sur le support et on branche la nappe sur la Pi.","Mount the assembly on the bracket and plug the cable into the Pi."),
+ parts:[{qty:"x1",name:F("Cylindre caméra","Camera cylinder"),ref:""}],
+ images:[{src:"images/camera_montage_support.jpg",cap:F("Ensemble caméra sur le support, nappe sur CAM 0 de la Pi.","Camera assembly on the bracket, cable on the Pi's CAM 0.")}],
+ instr:[
+  F("Fixez la coque sur le support via le <strong>cylindre</strong>, réglez l'orientation.","Fix the shell to the bracket via the <strong>cylinder</strong>, set the orientation."),
+  F("Branchez la nappe sur <span class='tag'>CAM 0</span> de la Pi, <strong>dents vers l'intérieur</strong>.","Plug the cable into the Pi's <span class='tag'>CAM 0</span>, <strong>contacts inward</strong>.")]},
+{phase:F("Fermeture finale","Final closing"),title:F("Monter le mât GPS","Fit the GPS mast"),
+ lede:F("Sur le renfoncement central de la coque.","On the shell's central recess."),
+ parts:[{qty:"x4",name:F("Vis M3×8","M3×8 screw"),ref:""}],
+ fastener:[F("Vis M3×8","Screw M3×8"),F("Insert M3","Insert M3")],
+ images:[{src:"images/mat_gps.jpg",cap:F("Mât GPS sur le renfoncement central (4 vis M3×8).","GPS mast on the central recess (4 × M3×8).")}],
+ instr:[F("Fixez le mât avec <strong>4 vis M3×8</strong> dans les inserts du renfoncement.","Fix the mast with <strong>4 × M3×8</strong> into the recess inserts.")]},
+{phase:F("Fermeture finale","Final closing"),title:F("Fermer la coque + fixer l'ELRS","Close the shell + secure the ELRS"),
+ lede:F("On referme tout, et on fixe le récepteur ELRS à l'intérieur, à l'arrière.","Close everything up, and secure the ELRS receiver inside, at the rear."),
+ parts:[
+  {qty:"x4",name:F("Vis M3 (par le dessous)","M3 screws (from below)"),ref:""},
+  {qty:"x1",name:F("Collier de serrage","Zip tie"),ref:"ELRS"}],
+ fastener:[F("Vis M3","Screw M3"),F("Insert M3","Insert M3")],
+ images:[{src:"images/coque_fixation.jpg",cap:F("Coque vissée par le dessous ; ELRS tenu par un collier dans les trous d'aération.","Shell screwed from below; ELRS held by a zip tie through the vents.")}],
+ instr:[
+  F("Posez la coque (bras / mât / câble batterie sortis).","Set the shell (arms / mast / battery cable out)."),
+  F("Vissez les <strong>vis M3 par le dessous</strong> dans les inserts. Sans forcer.","Drive the <strong>M3 screws from below</strong> into the inserts. Don't overtighten."),
+  F("Fixez le récepteur ELRS à l'arrière avec un <strong>collier passant dans les trous d'aération</strong>.","Secure the ELRS at the rear with a <strong>zip tie through the vent holes</strong>.")]},
+/* ===== PREMIER VOL ===== */
+{phase:F("Premier vol","First flight"),title:F("Installer la batterie","Install the battery"),
+ lede:F("Entre les plots, sanglée autour de la coque.","Between the posts, strapped around the shell."),
+ parts:[
+  {qty:"x1",name:F("Batterie LiPo 4S 6000 mAh","LiPo 4S 6000 mAh battery"),ref:""},
+  {qty:"x2",name:F("Sangles velcro","Velcro straps"),ref:""}],
+ images:[{src:"images/batterie_sangles.jpg",cap:F("Batterie entre les 4 plots, 2 sangles autour de la coque.","Battery between the 4 posts, 2 straps around the shell.")}],
+ instr:[
+  F("Positionnez la batterie <strong>entre les 4 plots</strong>.","Place the battery <strong>between the 4 posts</strong>."),
+  F("Sanglez-la avec les <strong>2 sangles</strong> autour de la coque.","Strap it with the <strong>2 straps</strong> around the shell."),
+  F("Centrez la batterie pour équilibrer le centre de masse.","Centre the battery to balance the centre of mass.")]},
+{phase:F("Premier vol","First flight"),title:F("Monter les hélices","Fit the propellers"),
+ lede:F("Dernier geste — jamais avant la vérification du sens dans QGC.","Last action — never before the QGC direction check."),
+ parts:[{qty:"x2",name:F("Hélices Gemfan 9047 CW + CCW","Gemfan 9047 CW + CCW props"),ref:""}],
+ images:[{src:"images/helices.jpg",cap:F("Identification CW/CCW et montage sur chaque moteur.","CW/CCW identification and fitting on each motor.")}],
+ instr:[
+  F("Sens au câblage : <strong>bleu au milieu = anti-horaire (CCW)</strong>, <strong>bleu à l'extrémité = horaire (CW)</strong>.","Direction from wiring: <strong>blue centre = CCW</strong>, <strong>blue at the end = CW</strong>."),
+  F("Même direction d'hélice que le moteur :<table class='map'><tr><th>Moteur</th><th>Sens</th><th>Hélice</th></tr><tr><td>M1 · M2</td><td>horaire</td><td>CW</td></tr><tr><td>M3 · M4</td><td>anti-h.</td><td>CCW</td></tr></table>","Prop direction matches the motor:<table class='map'><tr><th>Motor</th><th>Spin</th><th>Prop</th></tr><tr><td>M1 · M2</td><td>CW</td><td>CW</td></tr><tr><td>M3 · M4</td><td>CCW</td><td>CCW</td></tr></table>"),
+  F("Enfoncez l'hélice <strong>à fond sur l'axe</strong> (bonne hauteur), face sup. vers le haut.","Push the prop <strong>fully onto the shaft</strong> (right height), top face up."),
+  F("Écrou auto-freinant à la main + ¼ de tour. Elle doit tourner libre, sans voile.","Self-locking nut by hand + ¼ turn. It must spin free, no wobble.")],
+ warn:[F("Tout dernier geste. Jamais d'hélices pendant les tests.","The very last action. Never props during testing.")]},
+{phase:F("Premier vol","First flight"),title:F("Checklist finale","Final checklist"),
+ lede:F("Cochez chaque point avant le tout premier vol.","Tick off every point before the very first flight."),
+ checklist:[
+  {name:F("Vis moteurs serrées + Loctite","Motor screws tight + Loctite"),ref:""},
+  {name:F("Tubes immobiles, bras de niveau","Tubes locked, arms level"),ref:""},
+  {name:F("Aucun pont BAT+/BAT−","No BAT+/BAT− bridge"),ref:""},
+  {name:F("Smoke Stopper passé (LED verte)","Smoke Stopper passed (green LED)"),ref:""},
+  {name:F("Connecteurs MR30 clipsés","MR30 connectors seated"),ref:""},
+  {name:F("Pixhawk flèche avant + à plat","Pixhawk arrow forward + level"),ref:""},
+  {name:F("PX4 + Airframe + géométrie","PX4 + Airframe + geometry"),ref:""},
+  {name:F("Radio, capteurs, ESC calibrés","Radio, sensors, ESC calibrated"),ref:""},
+  {name:F("Sens moteurs vérifié (sans hélices)","Motor direction checked (no props)"),ref:""},
+  {name:F("Paramètres critiques réglés","Critical parameters set"),ref:""},
+  {name:F("Batterie chargée et sanglée","Battery charged and strapped"),ref:""},
+  {name:F("Fix GPS ≥ 8–10 satellites","GPS fix ≥ 8–10 satellites"),ref:""},
+  {name:F("Zone dégagée + Failsafe RTL","Clear area + RTL failsafe"),ref:""},
+  {name:F("Hélices montées (dernier geste)","Props fitted (last action)"),ref:""}]},
+{phase:F("Premier vol","First flight"),title:F("Décollage : Position → Offboard","Take-off: Position → Offboard"),
+ lede:F("Procédure terrain, du partage de connexion au vol autonome.","Field procedure, from hotspot to autonomous flight."),
+ instr:[
+  F("Partage de connexion ON. PC sur le Wi-Fi, IP relevée, QGC lancé.","Hotspot ON. PC on Wi-Fi, IP noted, QGC running."),
+  F("Drone ON, fix GPS (≥ 8–10 sat). SSH vers la Pi.","Drone ON, GPS fix (≥ 8–10 sat). SSH into the Pi."),
+  F("Lancez télémétrie, caméra, puis le script de vol.","Start telemetry, camera, then the flight script."),
+  F("Décollez en <span class='tag'>Position</span> à 1,5 m, stabilisez, basculez <span class='tag'>Offboard</span>.","Take off in <span class='tag'>Position</span> at 1.5 m, stabilise, switch to <span class='tag'>Offboard</span>.")],
+ warn:[F("Zone dégagée, main sur l'interrupteur de reprise (Position / RTL).","Clear area, hand on the recovery switch (Position / RTL).")]},
+/* ===== FIN ===== */
+{outro:true,phase:F("Terminé","Done"),
+ title:F("Drone assemblé. Bon vol !","Drone built. Happy flying!"),
+ lede:F("60 étapes plus tard, ton Neutron IT est prêt à voler. Vérifie une dernière fois la checklist, garde une zone bien dégagée, et amuse-toi.","60 steps later, your Neutron IT is ready to fly. Run the checklist one last time, keep the area clear, and enjoy."),
+ sig:"NEUTRON IT · Guillaume Guguen"}
 ];
 
-/* ----------------------------- moteur de rendu ----------------------------- */
-const stage=document.getElementById('stage');
-const dotsWrap=document.getElementById('dots');
-const bar=document.getElementById('bar');
-const cNum=document.getElementById('cNum');
-const cTot=document.getElementById('cTot');
-const prevB=document.getElementById('prev');
-const nextB=document.getElementById('next');
+/* ============================ UI ============================ */
+const UI={
+  fr:{sub:"Notice de montage",step:"Étape",prev:"Précédent",next:"Suivant",done:"Terminé",
+    parts:"Matériel nécessaire",screws:"Visserie",check:"Liste de vérification",howto:"Marche à suivre",
+    caution:"Précaution",tip:"Astuce",checked:"Coché",photo:"Photo à placer dans le dossier"},
+  en:{sub:"Assembly guide",step:"Step",prev:"Previous",next:"Next",done:"Done",
+    parts:"Required parts",screws:"Fasteners",check:"Checklist",howto:"How to",
+    caution:"Caution",tip:"Tip",checked:"Checked",photo:"Photo to add to the folder"}
+};
+let lang='fr';
+const L=x=> (x&&typeof x==='object'&&'fr'in x)? x[lang] : x;
+
+const stage=document.getElementById('stage'),dotsWrap=document.getElementById('dots'),bar=document.getElementById('bar');
+const cNum=document.getElementById('cNum'),cTot=document.getElementById('cTot');
+const prevB=document.getElementById('prev'),nextB=document.getElementById('next');
 let i=0;
 const pad=n=>String(n).padStart(2,'0');
-cTot.textContent=pad(STEPS.length);
-
-const ICON_PH=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>`;
+const PH=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>`;
+const SCREW=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M8.5 4h7l-1.5 3.2h-4z"/><path d="M10 7.2h4V18l-2 3-2-3z"/></svg>`;
+const INSERT=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="7" y="5" width="10" height="14" rx="1.2"/><path d="M9.4 5v14M12 5v14M14.6 5v14"/></svg>`;
+const CHECKMARK=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>`;
 
 function partsCard(s){
-  const rows=s.parts.map(p=>`
-    <div class="part">
-      <div class="qty">${p.qty}</div>
-      <div><div class="pn">${p.name}</div>${p.ref?`<div class="pref">${p.ref}</div>`:''}</div>
-    </div>`).join('');
-  return `<div class="card"><div class="card-h"><span class="dot"></span>Matériel nécessaire</div><div class="manifest">${rows}</div></div>`;
+  const rows=s.parts.map(p=>`<div class="part"><div class="qty">${L(p.qty)}</div><div><div class="pn">${L(p.name)}</div>${p.ref?`<div class="pref">${L(p.ref)}</div>`:''}</div></div>`).join('');
+  return `<div class="card"><div class="card-h"><span class="dot"></span>${UI[lang].parts}</div><div class="manifest">${rows}</div></div>`;
+}
+function fastCard(s){
+  const it=s.fastener.map(f=>{const t=L(f);const ic=/nsert/i.test(t)?INSERT:SCREW;return `<div class="fitem">${ic}<span>${t}</span></div>`;}).join('');
+  return `<div class="card"><div class="card-h"><span class="dot"></span>${UI[lang].screws}</div><div class="fastbody">${it}</div></div>`;
 }
 function checkCard(s){
-  const rows=s.checklist.map((c,k)=>`
-    <label class="check"><input type="checkbox" data-k="${k}">
-      <span class="ctext">${c.name}${c.ref?`<small>${c.ref}</small>`:''}</span></label>`).join('');
-  return `<div class="card"><div class="card-h"><span class="dot"></span>Liste de vérification</div>
-    <div class="manifest">${rows}</div>
-    <div class="checkfoot"><span>Coché</span><span><b id="ckN">0</b> / ${s.checklist.length}</span></div></div>`;
+  const rows=s.checklist.map((c,k)=>`<label class="check"><input type="checkbox" data-k="${k}"><span class="ctext">${L(c.name)}${c.ref?`<small>${L(c.ref)}</small>`:''}</span></label>`).join('');
+  return `<div class="card"><div class="card-h"><span class="dot"></span>${UI[lang].check}</div><div class="manifest">${rows}</div><div class="checkfoot"><span>${UI[lang].checked}</span><span><b id="ckN">0</b> / ${s.checklist.length}</span></div></div>`;
 }
 function figure(im){
-  return `<figure class="figure"><div class="frame">
-      <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
-      <img src="${im.src}" alt="${im.cap}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-      <div class="ph" style="display:none">${ICON_PH}<div>Photo à placer dans le dossier</div><code>${im.src}</code></div>
-    </div>${im.cap?`<figcaption class="cap"><b>FIG</b><span>${im.cap}</span></figcaption>`:''}</figure>`;
+  return `<figure class="figure"><div class="frame"><span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
+    <img src="${im.src}" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <div class="ph" style="display:none">${PH}<div>${UI[lang].photo}</div><code>${im.src}</code></div></div>
+    ${im.cap?`<figcaption class="cap"><b>FIG</b><span>${L(im.cap)}</span></figcaption>`:''}</figure>`;
 }
 function notes(arr,type){
   if(!arr||!arr.length) return '';
-  const ic=type==='warn'?'!':'i';
-  const lbl=type==='warn'?'Précaution':'Astuce';
-  return arr.map(t=>`<div class="note ${type}"><div class="ic">${ic}</div><div><b>${lbl}.</b> ${t}</div></div>`).join('');
+  const ic=type==='warn'?'!':'i', lbl=type==='warn'?UI[lang].caution:UI[lang].tip;
+  return arr.map(t=>`<div class="note ${type}"><div class="ic">${ic}</div><div><b>${lbl}.</b> ${L(t)}</div></div>`).join('');
 }
 function render(){
   const s=STEPS[i];
-  const left = s.checklist ? checkCard(s) : (s.parts?partsCard(s):'');
-  const imgs = (s.images||[]).map(figure).join('');
-  const instr = s.instr?`<div class="steps-h">Marche à suivre<span class="ln"></span></div>
-    <ol class="instr">${s.instr.map(t=>`<li><p>${t}</p></li>`).join('')}</ol>`:'';
-  const callouts=(s.warn||s.tip)?`<div class="notes-wrap">${notes(s.warn,'warn')}${notes(s.tip,'tip')}</div>`:'';
-  const main = (imgs||instr||callouts) ? `<div class="viewport">${imgs}${instr}${callouts}</div>` : '';
-  const cols = left ? `<div class="grid"><div>${left}</div>${main||'<div></div>'}</div>` : main;
-
-  stage.innerHTML=`
-    <div class="eyebrow">${s.phase}</div>
-    <h1>${s.title}</h1>
-    ${s.lede?`<p class="lede">${s.lede}</p>`:''}
-    ${cols}`;
-
-  if(s.checklist){
-    const boxes=stage.querySelectorAll('.check input');
-    const ckN=document.getElementById('ckN');
-    boxes.forEach(b=>b.addEventListener('change',()=>{ckN.textContent=[...boxes].filter(x=>x.checked).length;}));
+  if(s.outro){
+    stage.innerHTML=`<div class="outro"><div class="big">${CHECKMARK}</div><h1>${L(s.title)}</h1><p>${L(s.lede)}</p><div class="sig">${s.sig}</div></div>`;
+  }else{
+    let rail = s.checklist?checkCard(s):(s.parts?partsCard(s):'');
+    if(s.fastener) rail+=fastCard(s);
+    const left = rail?`<div class="rail">${rail}</div>`:'';
+    const imgs=(s.images||[]).map(figure).join('');
+    const instr=s.instr?`<div class="steps-h">${UI[lang].howto}<span class="ln"></span></div><ol class="instr">${s.instr.map(t=>`<li><p>${L(t)}</p></li>`).join('')}</ol>`:'';
+    const co=(s.warn||s.tip)?`<div class="notes-wrap">${notes(s.warn,'warn')}${notes(s.tip,'tip')}</div>`:'';
+    const main=(imgs||instr||co)?`<div class="viewport">${imgs}${instr}${co}</div>`:'';
+    const cols=left?`<div class="grid"><div>${left}</div>${main||'<div></div>'}</div>`:main;
+    stage.innerHTML=`<div class="eyebrow">${L(s.phase)}</div><h1>${L(s.title)}</h1>${s.lede?`<p class="lede">${L(s.lede)}</p>`:''}${cols}`;
+    if(s.checklist){const bx=stage.querySelectorAll('.check input'),ck=document.getElementById('ckN');
+      bx.forEach(b=>b.addEventListener('change',()=>{ck.textContent=[...bx].filter(x=>x.checked).length;}));}
   }
-
   cNum.textContent=pad(i+1);
   bar.style.width=((i+1)/STEPS.length*100)+'%';
   prevB.disabled=i===0;
-  nextB.innerHTML = i===STEPS.length-1 ? `<span class="navlabel">Terminé</span> ✓` : `<span class="navlabel">Suivant</span> ›`;
-  [...dotsWrap.children].forEach((d,k)=>{ d.className='dt'+(k===i?' on':(k<i?' done':'')); });
-  const active=dotsWrap.children[i];
-  if(active) active.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});
+  nextB.innerHTML=i===STEPS.length-1?`<span class="navlabel">${UI[lang].done}</span> ✓`:`<span class="navlabel">${UI[lang].next}</span> ›`;
+  [...dotsWrap.children].forEach((d,k)=>{d.className='dt'+(k===i?' on':(k<i?' done':''));});
+  const a=dotsWrap.children[i]; if(a) a.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});
   stage.focus({preventScroll:true});
   window.scrollTo({top:0,behavior:'smooth'});
 }
-STEPS.forEach((s,k)=>{
-  const b=document.createElement('button');
-  b.className='dt';b.title=`${pad(k+1)} — ${s.title}`;
-  b.addEventListener('click',()=>{i=k;render();});
-  dotsWrap.appendChild(b);
-});
+function buildDots(){
+  dotsWrap.innerHTML='';
+  STEPS.forEach((s,k)=>{const b=document.createElement('button');b.className='dt';b.title=`${pad(k+1)} — ${L(s.title)}`;b.addEventListener('click',()=>{i=k;render();});dotsWrap.appendChild(b);});
+}
+function applyLang(){
+  document.documentElement.lang=lang;
+  document.getElementById('subtitle').textContent=UI[lang].sub;
+  document.getElementById('cLbl').textContent=UI[lang].step;
+  document.getElementById('prevL').textContent=UI[lang].prev;
+  document.getElementById('nextL').textContent=UI[lang].next;
+  document.getElementById('lang').textContent=lang==='fr'?'EN':'FR';
+  cTot.textContent=pad(STEPS.length);
+  buildDots(); render();
+}
 prevB.addEventListener('click',()=>{if(i>0){i--;render();}});
 nextB.addEventListener('click',()=>{if(i<STEPS.length-1){i++;render();}});
-document.addEventListener('keydown',e=>{
-  if(e.target.matches('input')) return;
+document.addEventListener('keydown',e=>{if(e.target.matches('input'))return;
   if(e.key==='ArrowRight'&&i<STEPS.length-1){i++;render();}
-  if(e.key==='ArrowLeft'&&i>0){i--;render();}
-});
-document.getElementById('theme').addEventListener('click',()=>{
-  const dark=document.documentElement.getAttribute('data-theme')==='dark';
-  document.documentElement.setAttribute('data-theme',dark?'light':'dark');
-});
-render();
+  if(e.key==='ArrowLeft'&&i>0){i--;render();}});
+document.getElementById('lang').addEventListener('click',()=>{lang=lang==='fr'?'en':'fr';applyLang();});
+document.getElementById('theme').addEventListener('click',()=>{const d=document.documentElement.getAttribute('data-theme')==='dark';document.documentElement.setAttribute('data-theme',d?'light':'dark');});
+applyLang();
 </script>
 </body>
 </html>
