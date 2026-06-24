@@ -80,7 +80,7 @@
   .viewport{display:flex;flex-direction:column;gap:18px}
   .figure{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
   .frame{position:relative;background:repeating-conic-gradient(var(--panel-2) 0% 25%,var(--panel) 0% 50%) 50%/22px 22px;min-height:230px;display:grid;place-items:center}
-  .frame img{display:block;width:100%;height:auto;max-height:60vh;object-fit:contain}
+  .frame img, .frame video{display:block;width:100%;height:auto;max-height:60vh;object-fit:contain}
   .ph{padding:40px 24px;text-align:center;color:var(--ink-faint);width:100%}
   .ph svg{width:38px;height:38px;opacity:.5;margin-bottom:12px}
   .ph code{display:inline-block;margin-top:10px;font-family:"IBM Plex Mono";font-size:12.5px;background:var(--panel-2);border:1px dashed var(--line-strong);padding:5px 10px;border-radius:7px;color:var(--ink-soft)}
@@ -162,7 +162,7 @@ const STEPS=[
  instr:[
   F("<strong>Préparation & Vérification :</strong> Inventaire complet de l'électronique et de la visserie pour ne pas être bloqué plus tard.","<strong>Preparation & Verification:</strong> Complete inventory of electronics and fasteners to avoid getting stuck later."),
   F("<strong>Impression 3D & Inserts :</strong> Fabrication des pièces du châssis en PETG et intégration à chaud de tous les filetages métalliques (inserts).","<strong>3D Printing & Inserts:</strong> Manufacturing the PETG frame parts and heat-fitting all metal threads (inserts)."),
-  F("<strong>Structure & Bras :</strong> Montage du train d'atterrissage, découpe des tubes en carbone et assemblage mécanique des 4 bras moteurs.","<strong>Structure & Arms:</strong> Landing gear mounting, cutting carbon tubes and mechanical assembly of the 4 motor arms."),
+  F("<strong>Structure :</strong> Montage du train d'atterrissage, découpe des tubes en carbone et assemblage mécanique des 4 bras moteurs.","<strong>Structure:</strong> Landing gear mounting, cutting carbon tubes and mechanical assembly of the 4 motor arms."),
   F("<strong>Électronique de puissance (ESC) :</strong> Câblage et soudure du cœur électrique qui distribuera l'énergie aux moteurs et aux calculateurs.","<strong>Power Electronics (ESC):</strong> Wiring and soldering the electrical heart that will distribute energy to the motors and computers."),
   F("<strong>Calculateurs (Pi & Pixhawk) :</strong> Installation des deux cerveaux : le contrôleur de vol (Pixhawk) et l'ordinateur compagnon pour l'IA (Raspberry Pi).","<strong>Computers (Pi & Pixhawk):</strong> Installing the two brains: the flight controller (Pixhawk) and the AI companion computer (Raspberry Pi)."),
   F("<strong>Périphériques & Câblage :</strong> Intégration de la caméra, du GPS, du récepteur radio (ELRS) et connexion des faisceaux de données.","<strong>Peripherals & Wiring:</strong> Integration of the camera, GPS, radio receiver (ELRS) and connection of data harnesses."),
@@ -197,7 +197,11 @@ const STEPS=[
   {name:F("Vis M2×6 et M2×10 + écrous M2 + boules silicone","M2×6 and M2×10 screws + M2 nuts + silicone balls"),ref:""},
   {name:F("Ruban mousse PE + colliers + Loctite 243","PE foam tape + zip ties + Loctite 243"),ref:""},
   {name:F("Fer à souder, étain, flux, gaines thermo, clés Allen","Soldering iron, solder, flux, heat-shrink, hex keys"),ref:""},
-  {name:F("Scie à métaux, étau, niveau, masque FFP2 + lunettes","Hacksaw, vise, level, FFP2 mask + goggles"),ref:""}],
+  {name:F("Scie à métaux, étau, niveau, masque FFP2 + lunettes","Hacksaw, vise, level, FFP2 mask + goggles"),ref:""},
+  {name:F("Smoke Stopper (Testeur de court-circuit)","Smoke Stopper (Short-circuit tester)"),ref:"x1"},
+  {name:F("Multimètre (mode continuité et Volts DC)","Multimeter (continuity and DC Volts mode)"),ref:"x1"},
+  {name:F("Petites Vis M3×6","Small M3×6 screws"),ref:"pour support caméra"},
+  {name:F("Petites Vis M2×6","Small M2×6 screws"),ref:"pour coque caméra"}],
  warn:[F("Prenez le temps de bien valider cette liste. Le montage sera beaucoup plus fluide si toutes les pièces sont prêtes et à portée de main.","Take the time to validate this list thoroughly. Assembly will be much smoother if all parts are ready and within reach.")]},
 /* ===== IMPRESSION ===== */
 {phase:F("Impression 3D","3D printing"),title:F("Imprimer les pièces (PETG)","Print the parts (PETG)"),
@@ -212,6 +216,7 @@ const STEPS=[
   {qty:"x1",name:F("support_caméra + support_pixhawk","camera + pixhawk mounts"),ref:""},
   {qty:"x1",name:F("coque + clap + cylindre caméra","camera shell + clamp + cylinder"),ref:""},
   {qty:"1 kg",name:F("Filament PETG noir, bien sec","Black PETG filament, well dried"),ref:""}],
+ images:[{src:"imprimante_3D.jpg",cap:F("Impression des pièces structurelles en PETG.","Printing structural parts in PETG.")}],
  instr:[
   F("Dans votre logiciel de tranchage (slicer), appliquez ces paramètres : température de buse à <span class='tag'>240 °C</span>, plateau à <span class='tag'>80 °C</span>, remplissage interne de <strong>40 %</strong>, <strong>4 périmètres extérieurs</strong>, 5 couches pleines supérieures et inférieures, pour une hauteur de couche de 0,2 mm.","In your slicing software, apply these settings: nozzle temperature at <span class='tag'>240 °C</span>, bed at <span class='tag'>80 °C</span>, <strong>40%</strong> internal infill, <strong>4 outer perimeters</strong>, 5 solid top and bottom layers, for a 0.2 mm layer height."),
   F("L'orientation des pièces sur le plateau est essentielle : positionnez chaque mâchoire de sorte que les <strong>trous de vis soient orientés verticalement</strong>. Cela garantit une résistance optimale des couches lors du serrage.","Part orientation on the bed is essential: position each jaw so that the <strong>screw holes are oriented vertically</strong>. This ensures optimal layer strength during tightening.")],
@@ -289,12 +294,12 @@ const STEPS=[
  lede:F("La coque supérieure reçoit des inserts à sa base pour la fixation au châssis, et à son sommet pour accueillir le mât GPS.","The top shell receives inserts at its base for attachment to the frame, and at its summit to accommodate the GPS mast."),
  parts:[
   {qty:F("Pourtour","Perimeter"),name:F("Insert M3 — fixation coque","Insert M3 — shell fixing"),ref:""},
-  {qty:"x4",name:F("Insert M3 — renfoncement central","Insert M3 — central recess"),ref:"pour mât GPS / for GPS mast"}],
+  {qty:"x4",name:F("Insert M3 — bosse ronde centrale","Insert M3 — central round bump"),ref:"pour mât GPS / for GPS mast"}],
  fastener:[F("Insert M3","Insert M3")],
  images:[{src:"coque_inserts_M3.jpg",cap:F("Coque — inserts sur le pourtour inférieur et dans la zone GPS.","Shell — inserts on the lower perimeter and in the GPS area.")}],
  instr:[
   F("Insérez un M3 dans chaque emplacement cylindrique situé sur la bordure inférieure de la coque.","Insert an M3 into each cylindrical slot located on the shell's lower edge."),
-  F("Placez ensuite <strong>4 inserts M3</strong> dans les coins de la petite cavité carrée située sur le haut de la coque.","Then place <strong>4 M3 inserts</strong> in the corners of the small square cavity on top of the shell.")]},
+  F("Placez ensuite <strong>4 inserts M3</strong> dans la bosse ronde centrale située sur le haut de la coque. C'est ici que viendra se visser le mât GPS.","Then place <strong>4 M3 inserts</strong> in the central round bump located on top of the shell. This is where the GPS mast will be screwed.")]},
 {phase:F("Inserts thermiques","Heat-set inserts"),title:F("Inserts M3 — support Pixhawk","M3 inserts — Pixhawk mount"),
  lede:F("Préparez la petite plaque carrée qui servira de support au contrôleur de vol.","Prepare the small square plate that will serve as the mount for the flight controller."),
  parts:[{qty:"x4",name:F("Insert M3","Insert M3"),ref:"aux 4 coins du support / at 4 corners of mount"}],
@@ -316,7 +321,7 @@ const STEPS=[
  fastener:[F("Vis M3×8","Screw M3×8"),F("Insert M3","Insert M3")],
  images:[{src:"train_fixation_plaque.jpg",cap:F("Vis insérées par le dessus de la plaque pour ancrer les trains.","Screws inserted from the top of the plate to anchor the gear.")}],
  instr:[
-  F("Alignez la platine d'un des trains d'atterrissage sous la plaque principale, face aux trous de fixation prévus sur les bords.","Align the plate of one landing gear under the main plate, facing the mounting holes on the edges."),
+  F("Alignez la platine d'un des trains d'atterrissage sous la plaque principale, face aux trous de fixation prévus sur les bords. <strong>Les pieds doivent pointer vers l'extérieur.</strong>","Align the plate of one landing gear under the main plate, facing the mounting holes on the edges. <strong>The feet must point outwards.</strong>"),
   F("Passez une vis M3×8 (avec une goutte de Loctite) par le haut, à travers la plaque, pour visser dans l'insert du train. Serrez correctement.","Pass an M3×8 screw (with a drop of Loctite) from the top, through the plate, to screw into the gear's insert. Tighten properly."),
   F("Répétez cette étape pour le second train de l'autre côté du drone. Le châssis repose désormais sur ses pieds.","Repeat this step for the second gear on the other side of the drone. The frame now rests on its feet.")]},
 /* ===== BRAS ===== */
@@ -325,6 +330,7 @@ const STEPS=[
  parts:[
   {qty:"x1",name:F("Moteur SunnySky X2216","SunnySky X2216 motor"),ref:""},
   {qty:"x1",name:F("Fer à 380 °C, fil d'étain, flux","Iron at 380 °C, solder wire, flux"),ref:""}],
+ images:[{src:"fil_etame.jpg",cap:F("Exemple d'un fil correctement dénudé et étamé.","Example of a properly stripped and tinned wire.")}],
  instr:[
   F("Coupez les 3 fils du moteur à peu près à mi-longueur avec une pince coupante. Dénudez environ 5 mm de gaine à l'extrémité de chaque fil.","Cut the motor's 3 wires at about mid-length with side cutters. Strip about 5 mm of insulation at the end of each wire."),
   F("Appliquez un peu de flux sur le cuivre dénudé. Chauffez le fil avec le fer à <span class='tag'>380 °C</span> et appliquez l'étain jusqu'à ce que le fil soit uniformément recouvert d'une couche brillante (étamage).","Apply some flux to the bare copper. Heat the wire with the iron at <span class='tag'>380 °C</span> and apply solder until the wire is uniformly covered with a shiny layer (tinning).")],
@@ -332,7 +338,10 @@ const STEPS=[
 {phase:F("Bras · câblage (×4)","Arm · wiring (×4)"),title:F("Souder le MR30 — côté moteur","Solder the MR30 — motor side"),
  lede:F("Les fils du moteur se raccordent sur un petit connecteur jaune (MR30) qui facilitera l'assemblage et la maintenance.","The motor wires connect to a small yellow connector (MR30) that will facilitate assembly and maintenance."),
  parts:[{qty:"x1",name:F("Connecteur MR30 (partie mâle)","MR30 connector (male part)"),ref:""}],
- images:[{src:"mr30_cote_moteur.jpg",cap:F("Connecteur MR30 soudé côté moteur (exemple de code couleur).","MR30 connector soldered motor side (example colour code).")}],
+ images:[
+  {src:"mr30_proche.jpg",cap:F("Vue rapprochée des godets du MR30 à étamer.","Close-up view of the MR30 cups to tin.")},
+  {src:"mr30_cote_moteur.jpg",cap:F("Connecteur MR30 soudé côté moteur (exemple de code couleur).","MR30 connector soldered motor side (example colour code).")}
+ ],
  instr:[
   F("Maintenez le connecteur MR30 et étamez l'intérieur de ses 3 petits godets de connexion en y déposant un peu d'étain.","Hold the MR30 connector and tin the inside of its 3 small connection cups by adding a little solder."),
   F("Placez un fil dans un godet, chauffez avec le fer pour fusionner l'étain du fil et du connecteur. Maintenez en place quelques secondes le temps que la soudure se fige.","Place a wire in a cup, heat with the iron to fuse the solder of the wire and the connector. Hold in place for a few seconds while the joint solidifies."),
@@ -370,18 +379,23 @@ const STEPS=[
   F("Positionnez le moteur sur la mâchoire inférieure, axe tourné vers le haut. Alignez les trous du socle du moteur avec ceux de la pièce plastique.","Position the motor on the lower jaw, shaft pointing up. Align the motor base holes with the plastic part's holes."),
   F("Appliquez une petite goutte de <strong>Loctite</strong> sur les 4 vis M3×16. Insérez-les par le dessus, à travers la base du moteur, et vissez-les dans le plastique de manière croisée et progressive.","Apply a small drop of <strong>Loctite</strong> to the 4 M3×16 screws. Insert them from the top, through the motor base, and tighten them into the plastic progressively in a cross pattern."),
   F("Assurez-vous que les fils du moteur (reliés au connecteur MR30) se placent bien dans le dégagement prévu sans être écrasés par la base métallique.","Ensure the motor wires (connected to the MR30) route properly through the clearance without being crushed by the metal base.")],
- warn:[F("L'utilisation du frein-filet Loctite est indispensable pour éviter que les vis ne se desserrent avec les vibrations.","Using Loctite threadlocker is essential to prevent screws from loosening due to vibrations.")]},
+ warn:[
+  F("L'utilisation du frein-filet Loctite est indispensable pour éviter que les vis ne se desserrent avec les vibrations.","Using Loctite threadlocker is essential to prevent screws from loosening due to vibrations."),
+  F("Attention : vérifiez que les vis M3×16 ne rentrent en aucun cas en contact avec le bobinage en cuivre à l'intérieur du moteur (risque de court-circuit destructeur).","Caution: check that the M3×16 screws do not under any circumstances come into contact with the copper windings inside the motor (risk of destructive short-circuit).")]},
 {phase:F("Bras · assemblage (×4)","Arm · assembly (×4)"),title:F("Fixer le bras sur la plaque","Fix the arm to the plate"),
  lede:F("Le bras complet s'attache maintenant à l'une des extrémités de la plaque principale.","The complete arm now attaches to one of the main plate's extremities."),
  parts:[
   {qty:"x1",name:F("Mâchoire inf. + sup. de fixation bras","Arm fixing lower + upper jaw"),ref:""},
   {qty:"x4",name:F("Vis longues M3×25 + Loctite","Long M3×25 screws + Loctite"),ref:""}],
  fastener:[F("Vis M3×25","Screw M3×25"),F("Insert M3","Insert M3")],
- images:[{src:"bras_fixation_plaque.jpg",cap:F("Bras fixé sur la plaque centrale à l'aide de vis M3×25 traversantes.","Arm fixed to the central plate using through M3×25 screws.")}],
+ images:[
+  {src:"trous_inserts_plaque.jpg",cap:F("Gros plan sur les trous et inserts M3 de la plaque pour la fixation des bras.","Close-up on the plate's M3 holes and inserts for arm mounting.")},
+  {src:"bras_fixation_plaque.jpg",cap:F("Bras fixé sur la plaque centrale à l'aide de vis M3×25 traversantes.","Arm fixed to the central plate using through M3×25 screws.")}
+ ],
  instr:[
   F("Placez les mâchoires inférieure et supérieure à l'extrémité libre du tube carbone.","Place the lower and upper jaws at the free end of the carbon tube."),
   F("Posez le tout sur l'une des 'oreilles' de fixation de la plaque principale, en alignant les trous verticaux avec les inserts de la plaque.","Rest the whole assembly on one of the main plate's mounting 'ears', aligning the vertical holes with the plate's inserts."),
-  F("Insérez les vis M3×25 (avec Loctite) par le dessus. Serrez en croix pour fixer solidement l'ensemble à la plaque.","Insert the M3×25 screws (with Loctite) from the top. Tighten in a cross pattern to solidly fix the assembly to the plate.")]},
+  F("Insérez les vis M3×25 (avec Loctite) par le dessus. Elles vont traverser les deux mâchoires pour se visser directement dans les inserts M3 de la plaque. Serrez en croix pour fixer solidement l'ensemble.","Insert the M3×25 screws (with Loctite) from the top. They will cross both jaws to screw directly into the plate's M3 inserts. Tighten in a cross pattern to solidly fix the assembly.")]},
 {phase:F("Bras · assemblage (×4)","Arm · assembly (×4)"),title:F("Répéter ×4 et mettre à niveau","Repeat ×4 and level"),
  lede:F("Répétez ces opérations pour les 4 bras, puis assurez-vous de l'alignement horizontal des moteurs.","Repeat these operations for all 4 arms, then ensure horizontal alignment of the motors."),
  parts:[{qty:"x1",name:F("Petit niveau à bulle","Small spirit level"),ref:""}],
@@ -389,24 +403,27 @@ const STEPS=[
  instr:[
   F("Assemblez les trois autres bras en répétant la procédure exacte.","Assemble the other three arms by repeating the exact procedure."),
   F("Vérifiez la solidité globale : rien ne doit bouger.","Check overall solidity: nothing should move."),
-  F("Posez le châssis bien à plat sur une table. Placez le niveau à bulle sur le sommet plat d'un moteur. Ajustez l'inclinaison du bras en desserrant légèrement la fixation côté plaque, corrigez l'angle du tube, puis resserrez fermement. Répétez pour les 4 moteurs afin qu'ils soient tous parfaitement à l'horizontale.","Place the frame perfectly flat on a table. Place the spirit level on the flat top of a motor. Adjust the arm's tilt by slightly loosening the plate-side mount, correct the tube angle, then firmly retighten. Repeat for all 4 motors so they are all perfectly horizontal.")]},
+  F("Posez le châssis bien à plat sur une table. Placez le niveau à bulle sur le sommet plat d'un moteur. Ajustez l'inclinaison du bras en <strong>desserrant légèrement la fixation côté plaque</strong>, corrigez l'angle du tube en le tournant, puis resserrez fermement. Répétez pour les 4 moteurs afin qu'ils soient tous parfaitement à l'horizontale.","Place the frame perfectly flat on a table. Place the spirit level on the flat top of a motor. Adjust the arm's tilt by <strong>slightly loosening the plate-side mount</strong>, correct the tube angle by twisting it, then firmly retighten. Repeat for all 4 motors so they are all perfectly horizontal.")]},
 /* ===== ESC ===== */
 {phase:F("ESC","ESC"),title:F("Étamer les pads de l'ESC","Tin the ESC pads"),
  lede:F("L'ESC central distribue la puissance. Préparez ses points de contact en y appliquant de l'étain.","The central ESC distributes power. Prepare its contact points by applying solder."),
  parts:[{qty:"x1",name:F("ESC SpeedyBee 60A","SpeedyBee 60A ESC"),ref:""}],
- images:[{src:"esc_pads_etamage.jpg",cap:F("Vue des pads M1-M4 et des gros pads d'alimentation étamés.","View of the tinned M1-M4 pads and large power pads.")}],
+ images:[
+  {src:"esc_etame.jpg",cap:F("Carte ESC dont les pads ont été recouverts d'un dôme d'étain.","ESC board whose pads have been covered with a solder dome.")},
+  {src:"esc_pads_etamage.jpg",cap:F("Vue des pads M1-M4 et des gros pads d'alimentation.","View of the M1-M4 pads and large power pads.")}
+ ],
  instr:[
-  F("Repérez les 4 groupes de petits rectangles (pads moteurs M1 à M4) et les deux grands rectangles (alimentation BAT+ et BAT-).","Locate the 4 groups of small rectangles (motor pads M1 to M4) and the two large rectangles (power BAT+ and BAT-)."),
+  F("Repérez les 4 groupes de petits rectangles (pads moteurs M1 à M4) et les deux grands rectangles (alimentation BAT+ et BAT-). <strong>Chaque moteur nécessite 3 pads</strong>.","Locate the 4 groups of small rectangles (motor pads M1 to M4) and the two large rectangles (power BAT+ and BAT-). <strong>Each motor requires 3 pads</strong>."),
   F("Chauffez un pad avec le fer et appliquez de l'étain pour former un dôme lisse. Procédez ainsi sur les 12 pads moteurs.","Heat a pad with the iron and apply solder to form a smooth dome. Do this on all 12 motor pads."),
   F("Augmentez la température du fer pour les gros pads BAT+ et BAT- (qui dissipent plus de chaleur) et formez-y un beau dôme d'étain.","Increase iron temperature for the large BAT+ and BAT- pads (which dissipate more heat) and form a nice solder dome on them.")]},
 {phase:F("ESC","ESC"),title:F("Souder les phases + sens de rotation","Solder phases + rotation direction"),
- lede:F("Soudez les fils de chaque bras à l'ESC en respectant la correspondance géométrique et le sens de rotation.","Solder the wires from each arm to the ESC respecting the geometric mapping and rotation direction."),
+ lede:F("Soudez les fils de chaque bras à l'ESC en respectant la correspondance géométrique et le sens de rotation dictés par l'orientation de la carte.","Solder the wires from each arm to the ESC respecting the geometric mapping and rotation direction dictated by the board's orientation."),
  parts:[{qty:"x4",name:F("Fils venant des bras","Wires coming from the arms"),ref:""}],
  images:[{src:"esc_phases_moteur.jpg",cap:F("Fils soudés selon l'ordre défini sur les pads correspondants.","Wires soldered in defined order on corresponding pads.")}],
  instr:[
   F("Placez l'ESC au centre, <strong>flèche orientée vers l'arrière du drone</strong>.","Place the ESC in the centre, <strong>arrow pointing towards the rear of the drone</strong>."),
-  F("Comme les gros pads d'alimentation (+ et -) de l'ESC sont positionnés vers l'avant du drone, la correspondance est la suivante : le moteur <strong>Avant-Gauche se branche sur les pads M1</strong> de l'ESC. Le moteur <strong>Avant-Droit sur les pads M3</strong>. Le moteur <strong>Arrière-Gauche sur les pads M2</strong>. Le moteur <strong>Arrière-Droit sur les pads M4</strong>.","Since the large power pads (+ and -) of the ESC are positioned toward the front of the drone, the mapping is as follows: the <strong>Front-Left motor connects to ESC M1 pads</strong>. The <strong>Front-Right motor to ESC M3 pads</strong>. The <strong>Rear-Left motor to ESC M2 pads</strong>. The <strong>Rear-Right motor to ESC M4 pads</strong>."),
-  F("Les moteurs étant équipés de trois fils de couleurs distinctes (bleu, noir, rouge), la règle est la suivante : <strong>Pour une rotation anti-horaire (CCW)</strong>, placez le fil bleu au milieu, le noir à droite, et le rouge à gauche.","The motors being equipped with three distinct colored wires (blue, black, red), the rule is as follows: <strong>For a counter-clockwise (CCW) rotation</strong>, place the blue wire in the middle, black on the right, and red on the left."),
+  F("Comme les gros pads d'alimentation (+ et -) de l'ESC se retrouvent ainsi positionnés à l'avant, la correspondance géométrique est la suivante : le moteur <strong>Avant-Gauche se branche physiquement sur les pads M1</strong> de l'ESC. Le moteur <strong>Avant-Droit sur les pads M3</strong>. Le moteur <strong>Arrière-Gauche sur les pads M2</strong>. Le moteur <strong>Arrière-Droit sur les pads M4</strong>.","Since the large power pads (+ and -) of the ESC are thus positioned at the front, the geometric mapping is: the <strong>Front-Left motor physically connects to ESC M1 pads</strong>. The <strong>Front-Right motor to ESC M3 pads</strong>. The <strong>Rear-Left motor to ESC M2 pads</strong>. The <strong>Rear-Right motor to ESC M4 pads</strong>."),
+  F("Les moteurs étant équipés de trois fils de couleurs distinctes (bleu, noir, rouge), la règle de câblage est la suivante : <strong>Pour une rotation anti-horaire (CCW)</strong>, placez le fil bleu au milieu, le noir à droite, et le rouge à gauche.","The motors being equipped with three distinct colored wires (blue, black, red), the wiring rule is: <strong>For a counter-clockwise (CCW) rotation</strong>, place the blue wire in the middle, black on the right, and red on the left."),
   F("<strong>Pour une rotation horaire (CW)</strong>, placez le fil noir à droite, le rouge au milieu, et le bleu à gauche.","<strong>For a clockwise (CW) rotation</strong>, place the black wire on the right, red in the middle, and blue on the left."),
   F("Soudez soigneusement chaque fil. Répétez pour les 4 bras.","Carefully solder each wire. Repeat for all 4 arms.")],
  tip:[F("S'il y a une erreur de sens observée plus tard, il suffira d'inverser deux des trois fils du moteur concerné sur l'ESC.","If a direction error is observed later, you just need to swap two of the three wires of the concerned motor on the ESC.")]},
@@ -416,7 +433,10 @@ const STEPS=[
   {qty:"x1",name:F("Connecteur XT60 mâle (gros fils)","Male XT60 connector (thick wires)"),ref:""},
   {qty:"x1",name:F("Condensateur 1000 µF","1000 µF capacitor"),ref:""},
   {qty:"x2",name:F("Fils de l'UBEC","UBEC wires"),ref:""}],
- images:[{src:"esc_alimentation.jpg",cap:F("Détail des branchements sur BAT+ et BAT- (XT60, condensateur, UBEC).","Detail of connections on BAT+ and BAT- (XT60, capacitor, UBEC).")}],
+ images:[
+  {src:"ubec.jpg",cap:F("Régulateur de tension UBEC et ses fils.","UBEC voltage regulator and its wires.")},
+  {src:"esc_alimentation.jpg",cap:F("Détail des branchements sur BAT+ et BAT- (XT60, condensateur, UBEC).","Detail of connections on BAT+ and BAT- (XT60, capacitor, UBEC).")}
+ ],
  instr:[
   F("Soudez le fil rouge du XT60 sur le pad <strong>BAT+</strong>, et le fil noir sur <strong>BAT-</strong>.","Solder the XT60's red wire to the <strong>BAT+</strong> pad, and the black wire to <strong>BAT-</strong>."),
   F("Soudez la patte longue du condensateur sur <strong>BAT+</strong> et la patte courte (bande grise) sur <strong>BAT-</strong>. Veillez à respecter cette polarité.","Solder the capacitor's long leg to <strong>BAT+</strong> and the short leg (grey stripe) to <strong>BAT-</strong>. Ensure this polarity is respected."),
@@ -426,6 +446,7 @@ const STEPS=[
 {phase:F("Calculateur","Companion computer"),title:F("Préparer la carte SD — Raspberry Pi Imager","Prepare the SD card — Raspberry Pi Imager"),
  lede:F("L'ordinateur de bord (Raspberry Pi) a besoin de son système d'exploitation. Préparez la carte micro-SD maintenant.","The onboard computer (Raspberry Pi) needs its operating system. Prepare the micro-SD card now."),
  parts:[{qty:"x1",name:F("Carte micro-SD + lecteur pour PC","micro-SD card + reader for PC"),ref:""}],
+ images:[{src:"Rasberry_PI_Imager.jpg",cap:F("Menu de configuration de Raspberry Pi Imager.","Raspberry Pi Imager setup menu.")}],
  instr:[
   F("Sur votre ordinateur, téléchargez <strong>Raspberry Pi Imager</strong> et insérez la carte SD.","On your computer, download <strong>Raspberry Pi Imager</strong> and insert the SD card."),
   F("Choisissez l'appareil 'Raspberry Pi 5', puis l'OS <strong>Raspberry Pi OS Lite (64-bit)</strong> (sans bureau graphique) et sélectionnez votre carte SD.","Choose 'Raspberry Pi 5' device, then the <strong>Raspberry Pi OS Lite (64-bit)</strong> OS (without graphical desktop) and select your SD card."),
@@ -447,11 +468,14 @@ const STEPS=[
   {qty:"x4",name:F("Écrous M2","M2 nuts"),ref:""},
   {qty:"x4",name:F("Boules amortissement silicone","Silicone damping balls"),ref:""}],
  fastener:[F("Vis M2×10","Screw M2×10"),F("Écrou M2","Nut M2"),F("Insert M2","Insert M2")],
- images:[{src:"raspberry_fixation.jpg",cap:F("Montage anti-vibration : la carte repose sur la boule silicone et l'écrou.","Anti-vibration mount: the board rests on the silicone ball and nut.")}],
+ images:[
+  {src:"raspberry_pi_2.jpg",cap:F("Vue globale de la carte montée.","Global view of the mounted board.")},
+  {src:"raspberry_fixation.jpg",cap:F("Montage anti-vibration : la carte repose sur la boule silicone et l'écrou.","Anti-vibration mount: the board rests on the silicone ball and nut.")}
+ ],
  instr:[
   F("Passez une vis M2×10 dans chaque trou de fixation de la Raspberry Pi par le dessus.","Pass an M2×10 screw through each mounting hole of the Raspberry Pi from the top."),
   F("Sous la carte, glissez d'abord une boule de silicone sur la vis, puis vissez un écrou M2 pour maintenir l'ensemble contre le circuit imprimé.","Under the board, first slide a silicone ball onto the screw, then thread an M2 nut to hold the assembly against the circuit board."),
-  F("Positionnez la carte au-dessus des inserts M2 de la grande plaque arrière, et vissez doucement les têtes supérieures dans les inserts. La Raspberry Pi reposera ainsi en douceur sur les boules en silicone et sur les écrous.","Position the board above the M2 inserts of the large rear plate, and gently screw the top heads into the inserts. The Raspberry Pi will thus rest softly on the silicone balls and nuts.")]},
+  F("Positionnez la carte au-dessus des inserts M2 de la grande plaque arrière. Vissez doucement les têtes de vis (qui dépassent du dessus) dans les inserts. La Raspberry Pi reposera ainsi en douceur sur les boules en silicone et sur les écrous.","Position the board above the M2 inserts of the large rear plate. Gently screw the top screw heads into the inserts. The Raspberry Pi will thus rest softly on the silicone balls and nuts.")]},
 /* ===== INSTALLATION CAMERA (AVANCÉE) ===== */
 {phase:F("Installation Caméra","Camera Installation"),title:F("Assembler la caméra dans sa coque","Assemble the camera in its shell"),
  lede:F("Installez le module caméra dans son support imprimé avant de le fixer à l'avant du drone.","Install the camera module into its printed mount before attaching it to the front of the drone."),
@@ -465,7 +489,7 @@ const STEPS=[
  instr:[
   F("Soulevez le loquet de la caméra, insérez la nappe dorée (contacts vers le circuit imprimé) et refermez le loquet.","Lift the camera latch, insert the golden flex cable (contacts facing the circuit board) and close the latch."),
   F("Placez la caméra dans la coque imprimée, l'objectif ressortant par l'avant. Guidez la nappe vers l'arrière.","Place the camera inside the printed shell, lens protruding from the front. Guide the cable towards the back."),
-  F("Fixez la caméra avec deux petites vis M2×6 placées à l'avant, de part et d'autre de l'objectif.","Secure the camera with two small M2×6 screws placed at the front, on either side of the lens.")]},
+  F("Fixez la caméra avec deux petites vis M2×6 placées à l'avant, de part et d'autre de l'objectif. Elles se vissent directement dans le plastique du circuit imprimé de la caméra.","Secure the camera with two small M2×6 screws placed at the front, on either side of the lens. They screw directly into the plastic of the camera's circuit board.")]},
 {phase:F("Installation Caméra","Camera Installation"),title:F("Fermer avec le clap caméra","Close with the camera clamp"),
  lede:F("Une façade imprimée vient sécuriser l'objectif de la caméra.","A printed front face secures the camera lens."),
  parts:[
@@ -490,23 +514,29 @@ const STEPS=[
 {phase:F("Installation Caméra","Camera Installation"),title:F("Monter la caméra + brancher la nappe","Mount the camera + plug the cable"),
  lede:F("Montez la tête caméra sur le support et connectez la nappe à la Raspberry Pi.","Mount the camera head onto the support and connect the cable to the Raspberry Pi."),
  parts:[{qty:"x1",name:F("Cylindre de fixation","Mounting cylinder"),ref:""}],
- images:[{src:"camera_montage_support.jpg",cap:F("Tête fixée et nappe branchée sur le port CAM 0.","Head secured and cable plugged into the CAM 0 port.")}],
+ images:[
+  {src:"camera_montage_support.jpg",cap:F("Tête fixée au support par le cylindre.","Head secured to the mount by the cylinder.")},
+  {src:"nappe_raspberry.jpg",cap:F("Détail du branchement de la nappe sur le port CAM 0.","Detail of the flex cable plugged into the CAM 0 port.")}
+ ],
  instr:[
   F("Placez la coque caméra entre les branches du support. Insérez le cylindre pour lier les deux pièces. Réglez légèrement l'inclinaison vers le bas et poussez fermement pour fixer la position.","Place the camera shell between the mount branches. Insert the cylinder to link both parts. Set a slight downward tilt and push firmly to hold the position."),
   F("Connectez l'autre extrémité de la nappe au port <span class='tag'>CAM 0</span> de la Raspberry Pi, avec les contacts métalliques orientés vers les ports USB/HDMI de la carte.","Connect the other end of the cable to the <span class='tag'>CAM 0</span> port on the Raspberry Pi, with the metal contacts facing the USB/HDMI ports of the board.")]},
 /* ===== STACK CENTRAL ===== */
 {phase:F("Stack central","Central stack"),title:F("Monter l'ESC sur la plaque","Mount the ESC on the plate"),
- lede:F("L'ESC central se monte au centre du châssis. Il reposera sur des écrous servant de butée.","The central ESC is mounted in the centre of the frame. It will rest on nuts acting as stops."),
+ lede:F("L'ESC central se monte au centre du châssis. Il reposera sur des écrous vissés à fond.","The central ESC is mounted in the centre of the frame. It will rest on fully tightened nuts."),
  parts:[
   {qty:"x4",name:F("Vis M3×20","M3×20 screws"),ref:""},
   {qty:"x4",name:F("Écrous M3","M3 nuts"),ref:""},
   {qty:"x1",name:F("ESC câblé","Wired ESC"),ref:""}],
  fastener:[F("Vis M3×20","Screw M3×20"),F("Écrou M3","Nut M3")],
- images:[{src:"esc_montage_central.jpg",cap:F("ESC monté sur ses vis centrales, reposant sur les écrous vissés à fond.","ESC mounted on its central screws, resting on fully tightened nuts.")}],
+ images:[
+  {src:"esc_4_trous.jpg",cap:F("Vue des 4 trous de fixation de l'ESC.","View of the ESC's 4 mounting holes.")},
+  {src:"esc_montage_central.jpg",cap:F("ESC monté sur ses vis centrales, reposant sur les écrous vissés à fond.","ESC mounted on its central screws, resting on fully tightened nuts.")}
+ ],
  instr:[
   F("Passez les 4 vis M3×20 par le dessous des trous situés autour de la découpe centrale de la plaque.","Pass the 4 M3×20 screws from under the holes located around the central cutout of the plate."),
   F("Vissez un écrou sur chaque vis et serrez-le à fond contre la plaque pour bloquer la vis.","Thread a nut onto each screw and tighten it fully against the plate to lock the screw."),
-  F("Placez ensuite l'ESC sur ces vis (il viendra reposer au-dessus des écrous), en vérifiant que la <strong>flèche de l'ESC pointe bien vers l'arrière du drone</strong>.","Then place the ESC on these screws (it will rest on top of the nuts), verifying that the <strong>ESC arrow points to the rear of the drone</strong>.")],
+  F("Faites ensuite passer l'ESC dans ces vis (la carte va coulisser sur les vis et reposer sur les écrous), en vérifiant impérativement que la <strong>flèche de l'ESC pointe vers l'arrière du drone</strong>.","Then thread the ESC onto these screws (the board will slide down the screws and rest on the nuts), imperatively verifying that the <strong>ESC arrow points to the rear of the drone</strong>.")],
  tip:[F("Assurez-vous que les câbles des moteurs passent proprement sous l'ESC.","Ensure the motor cables pass cleanly under the ESC.")]},
 {phase:F("Stack central","Central stack"),title:F("Monter le support + le Pixhawk","Mount the bracket + Pixhawk"),
  lede:F("Le contrôleur de vol (Pixhawk) vient se positionner au sommet de la tour centrale, vissé directement sur les vis dépassant de l'ESC.","The flight controller (Pixhawk) is positioned atop the central tower, screwed directly onto the screws protruding from the ESC."),
@@ -514,9 +544,12 @@ const STEPS=[
   {qty:"x1",name:F("Support Pixhawk","Pixhawk mount"),ref:""},
   {qty:"x1",name:F("Pixhawk 6C Mini","Pixhawk 6C Mini"),ref:""},
   {qty:"—",name:F("Ruban mousse adhésive double face","Double-sided adhesive foam tape"),ref:""}],
- images:[{src:"pixhawk_fixation.jpg",cap:F("Pixhawk positionné avec sa flèche orientée vers l'avant.","Pixhawk positioned with its arrow pointing forward.")}],
+ images:[
+  {src:"support_pixhawk.jpg",cap:F("Support du Pixhawk.","Pixhawk mount.")},
+  {src:"pixhawk_fixation.jpg",cap:F("Pixhawk positionné avec sa flèche orientée vers l'avant.","Pixhawk positioned with its arrow pointing forward.")}
+ ],
  instr:[
-  F("Positionnez le support plastique du Pixhawk sur les vis dépassant de l'ESC, et vissez les vis directement dans les inserts M3 du support. Il n'est pas nécessaire d'ajouter d'écrous supplémentaires ici.","Position the plastic Pixhawk mount over the screws protruding from the ESC, and screw the screws directly into the M3 inserts of the mount. It is not necessary to add additional nuts here."),
+  F("Positionnez le support plastique du Pixhawk sur les vis dépassant de l'ESC, et vissez les vis directement dans les inserts M3 du support. Il n'est pas nécessaire d'ajouter d'écrous supplémentaires.","Position the plastic Pixhawk mount over the screws protruding from the ESC, and screw the screws directly into the M3 inserts of the mount. It is not necessary to add additional nuts."),
   F("Collez un morceau de mousse adhésive au centre du support.","Stick a piece of adhesive foam in the centre of the mount."),
   F("Fixez le Pixhawk sur la mousse en veillant <strong>impérativement à ce que sa flèche 'FORWARD' pointe vers l'avant du drone</strong> (vers la caméra).","Fix the Pixhawk onto the foam, <strong>imperatively ensuring its 'FORWARD' arrow points to the front of the drone</strong> (towards the camera)."),
   F("Vérifiez l'horizontalité du boîtier à l'aide d'un petit niveau.","Check the housing's horizontal level with a small spirit level.")],
@@ -525,14 +558,20 @@ const STEPS=[
 {phase:F("Alimentation","Power"),title:F("Brancher le Power Module PM02","Connect the PM02 Power Module"),
  lede:F("Le PM02 régule le courant de la batterie pour fournir une tension propre au Pixhawk.","The PM02 regulates battery current to provide clean voltage to the Pixhawk."),
  parts:[{qty:"x1",name:F("Power Module PM02","PM02 Power Module"),ref:""}],
- images:[{src:"power_module_branchement.jpg",cap:F("Câble 6 broches du PM02 branché sur le port POWER du Pixhawk.","PM02 6-pin cable plugged into the Pixhawk's POWER port.")}],
+ images:[
+  {src:"cable_power_module.jpg",cap:F("Câble et connecteur du Power Module.","Power Module cable and connector.")},
+  {src:"power_module_branchement.jpg",cap:F("Câble 6 broches du PM02 branché sur le port POWER du Pixhawk.","PM02 6-pin cable plugged into the Pixhawk's POWER port.")}
+ ],
  instr:[
   F("Branchez la petite prise blanche du câble 6 fils du PM02 sur le port <strong>POWER</strong> situé à l'avant du Pixhawk.","Plug the small white connector of the PM02's 6-wire cable into the <strong>POWER</strong> port at the front of the Pixhawk."),
   F("Branchez le gros connecteur <strong>XT60 OUT</strong> du PM02 sur le connecteur XT60 soudé précédemment à l'ESC. La prise restante (XT60 IN) servira pour la batterie.","Plug the PM02's large <strong>XT60 OUT</strong> connector into the XT60 connector previously soldered to the ESC. The remaining plug (XT60 IN) will be used for the battery.")]},
 {phase:F("Alimentation","Power"),title:F("Alimenter la Pi (UBEC → broches 5V/GND)","Power the Pi (UBEC → 5V/GND pins)"),
  lede:F("L'UBEC abaisse la tension de la batterie pour alimenter la Raspberry Pi en 5V.","The UBEC steps down the battery voltage to power the Raspberry Pi with 5V."),
  parts:[{qty:"x1",name:F("UBEC ZTW 10A","ZTW 10A UBEC"),ref:""}],
- images:[{src:"alim_pi_ubec.jpg",cap:F("Fils UBEC (rouge et noir) connectés aux broches dédiées de la Pi.","UBEC wires (red and black) connected to the dedicated Pi pins.")}],
+ images:[
+  {src:"ubec_seul.jpg",cap:F("Régulateur de tension UBEC.","UBEC voltage regulator.")},
+  {src:"alim_pi_ubec.jpg",cap:F("Fils UBEC (rouge et noir) connectés aux broches dédiées de la Pi.","UBEC wires (red and black) connected to the dedicated Pi pins.")}
+ ],
  instr:[
   F("Vérifiez que le petit cavalier (jumper) sur le boîtier UBEC est bien placé sur les broches <strong>5V</strong> (et non 12V).","Check that the small jumper on the UBEC casing is properly set on the <strong>5V</strong> pins (not 12V)."),
   F("Sur la rangée de broches de la Raspberry Pi, identifiez la broche 4 (pour le 5V) et la broche 6 (pour la masse / GND), en vous repérant par rapport aux ports extérieurs.","On the Raspberry Pi pin header, identify pin 4 (for 5V) and pin 6 (for ground / GND), using the external ports for orientation."),
@@ -555,23 +594,35 @@ const STEPS=[
   F("Raccordez 3 fils à la Raspberry Pi en suivant ce schéma croisé :<table class='map'><tr><th>Sortie TELEM 2 (Pixhawk)</th><th>Entrée broche Pi</th></tr><tr><td>Pin 6 (GND / Masse)</td><td>Broche 9 ou 14 (GND)</td></tr><tr><td>Pin 2 (TX / Transmission)</td><td>Broche 10 (RX / Réception)</td></tr><tr><td>Pin 3 (RX / Réception)</td><td>Broche 8 (TX / Transmission)</td></tr></table>","Connect 3 wires to the Raspberry Pi following this crossed diagram:<table class='map'><tr><th>TELEM 2 Output (Pixhawk)</th><th>Pi Pin Input</th></tr><tr><td>Pin 6 (GND / Ground)</td><td>Pin 9 or 14 (GND)</td></tr><tr><td>Pin 2 (TX / Transmission)</td><td>Pin 10 (RX / Reception)</td></tr><tr><td>Pin 3 (RX / Reception)</td><td>Pin 8 (TX / Transmission)</td></tr></table>")],
  warn:[F("Ne connectez pas le fil 5V provenant du Pixhawk à la Pi, celle-ci étant déjà alimentée par l'UBEC.","Do not connect the 5V wire coming from the Pixhawk to the Pi, as it is already powered by the UBEC.")]},
 {phase:F("Branchements","Wiring"),title:F("Brancher l'ESC au Pixhawk","Connect the ESC to the Pixhawk"),
- lede:F("Associez les signaux moteurs de l'ESC aux sorties du Pixhawk. Vous devrez réaliser une rallonge des fils pour ce branchement.","Assign the ESC motor signals to the Pixhawk outputs. You will need to make an extension of the wires for this connection."),
- parts:[{qty:"x1",name:F("Câble plat 8 fils fourni avec l'ESC","8-wire flat cable provided with the ESC"),ref:""}],
- images:[{src:"esc_pixhawk_mainout.jpg",cap:F("Fils de signal M1-M4 et Masse connectés aux sorties MAIN OUT.","M1-M4 signal wires and Ground connected to MAIN OUT outputs.")}],
+ lede:F("Associez les signaux moteurs de l'ESC aux sorties du Pixhawk. Vous devrez réaliser une rallonge soudée pour ce branchement.","Assign the ESC motor signals to the Pixhawk outputs. You will need to make a soldered extension for this connection."),
+ parts:[
+  {qty:"x1",name:F("Câble plat 8 broches (fourni avec ESC)","8-pin flat cable (provided with ESC)"),ref:""},
+  {qty:"x4",name:F("Rallonges avec connecteurs Dupont femelles","Extensions with female Dupont connectors"),ref:""},
+  {qty:"—",name:F("Gaines thermorétractables","Heat shrink tubing"),ref:""}],
+ images:[
+  {src:"connecteurs_esc_pixhawk.jpg",cap:F("Câblage rallongé avec connecteurs Dupont prêts pour le Pixhawk.","Extended wiring with Dupont connectors ready for the Pixhawk.")},
+  {src:"esc_pixhawk_mainout.jpg",cap:F("Fils de signal et Masse connectés aux sorties MAIN OUT.","Signal wires and Ground connected to MAIN OUT outputs.")}
+ ],
  instr:[
-  F("Prenez le câble plat à 8 fils fourni avec l'ESC. Séparez les fils et rallongez-les (avec fer à souder, étain et gaine thermo) pour qu'ils puissent atteindre confortablement le Pixhawk.","Take the 8-wire flat cable provided with the ESC. Separate the wires and extend them (with soldering iron, solder and heat shrink) so they can comfortably reach the Pixhawk."),
-  F("Insérez les connecteurs des fils rallongés M1, M2, M3 et M4 respectivement sur les broches du bas (marquées 'S') des colonnes <strong>MAIN OUT 1, 2, 3 et 4</strong> du Pixhawk.","Insert the connectors of the extended wires M1, M2, M3 and M4 respectively onto the bottom pins (marked 'S') of columns <strong>MAIN OUT 1, 2, 3 and 4</strong> of the Pixhawk."),
-  F("Placez le fil de masse (GND) sur l'une des broches du haut de ces mêmes colonnes (ligne marquée '-').","Place the ground wire (GND) on one of the top pins of these same columns (row marked '-')."),
-  F("Isolez les fils restants (alimentation VCC, télémétrie ESC) avec du ruban adhésif, ils ne sont pas utilisés.","Insulate the remaining wires (VCC power, ESC telemetry) with tape, they are not used.")]},
+  F("L'ESC est fourni avec un câble 8 broches qui ne se branche pas directement sur le Pixhawk. Branchez le connecteur blanc sur l'ESC, puis coupez le connecteur à l'autre extrémité pour libérer les fils.","The ESC comes with an 8-pin cable that does not plug directly into the Pixhawk. Plug the white connector into the ESC, then cut off the connector at the other end to free the wires."),
+  F("Dénudez et étamez les fils correspondants aux Moteurs 1 à 4 et à la Masse (GND). Prenez vos rallonges (terminées par des connecteurs noirs Dupont), dénudez, étamez, et soudez-les aux fils de l'ESC. Isolez chaque soudure avec une gaine thermorétractable.","Strip and tin the wires corresponding to Motors 1 to 4 and Ground (GND). Take your extensions (terminated with black Dupont connectors), strip, tin, and solder them to the ESC wires. Insulate each joint with heat shrink tubing."),
+  F("La correspondance du câblage vers les broches du bas (marquées 'S') du Pixhawk est vitale, car l'ESC est retourné :<table class='map'><tr><th>Moteur Physique (QGC)</th><th>Fil sortant de l'ESC</th><th>→ Branché sur Pixhawk</th></tr><tr><td>Avant-Gauche (Moteur 3)</td><td>Pad ESC M1</td><td>MAIN OUT 3</td></tr><tr><td>Avant-Droit (Moteur 1)</td><td>Pad ESC M3</td><td>MAIN OUT 1</td></tr><tr><td>Arrière-Gauche (Moteur 2)</td><td>Pad ESC M2</td><td>MAIN OUT 2</td></tr><tr><td>Arrière-Droit (Moteur 4)</td><td>Pad ESC M4</td><td>MAIN OUT 4</td></tr></table>","The wiring mapping to the bottom pins (marked 'S') of the Pixhawk is vital, as the ESC is backward:<table class='map'><tr><th>Physical Motor (QGC)</th><th>Wire exiting ESC</th><th>→ Plugged to Pixhawk</th></tr><tr><td>Front-Left (Motor 3)</td><td>ESC Pad M1</td><td>MAIN OUT 3</td></tr><tr><td>Front-Right (Motor 1)</td><td>ESC Pad M3</td><td>MAIN OUT 1</td></tr><tr><td>Rear-Left (Motor 2)</td><td>ESC Pad M2</td><td>MAIN OUT 2</td></tr><tr><td>Rear-Right (Motor 4)</td><td>ESC Pad M4</td><td>MAIN OUT 4</td></tr></table>"),
+  F("Placez le fil de masse (GND) rallongé sur l'une des broches du haut (ligne marquée '-') d'une des colonnes MAIN OUT. Isolez les fils non utilisés.","Place the extended ground wire (GND) on one of the top pins (row marked '-') of a MAIN OUT column. Insulate the unused wires.")]},
 {phase:F("Branchements","Wiring"),title:F("Brancher le GPS","Connect the GPS"),
  lede:F("Le module GPS permet d'obtenir la position exacte du drone.","The GPS module provides the drone's exact position."),
  parts:[{qty:"x1",name:F("Antenne GPS","GPS antenna"),ref:""}],
- images:[{src:"gps_branchement.jpg",cap:F("Câble du GPS branché sur le port correspondant du Pixhawk.","GPS cable plugged into the corresponding Pixhawk port.")}],
+ images:[
+  {src:"gps.jpg",cap:F("Vue du module GPS.","View of the GPS module.")},
+  {src:"gps_branchement.jpg",cap:F("Câble du GPS branché sur le port correspondant du Pixhawk.","GPS cable plugged into the corresponding Pixhawk port.")}
+ ],
  instr:[F("Branchez le connecteur du câble GPS sur le port <strong>GPS 1</strong> situé sur le Pixhawk.","Plug the GPS cable connector into the <strong>GPS 1</strong> port located on the Pixhawk.")]},
 {phase:F("Branchements","Wiring"),title:F("Brancher le récepteur ELRS","Connect the ELRS receiver"),
  lede:F("Ce petit module assure la liaison radio avec votre télécommande. Il nécessite une configuration logicielle pour communiquer correctement.","This small module ensures the radio link with your remote. It requires software configuration to communicate correctly."),
  parts:[{qty:"x1",name:F("Récepteur ELRS","ELRS receiver"),ref:""}],
- images:[{src:"elrs_branchement.jpg",cap:F("Récepteur ELRS câblé sur le port RC IN.","ELRS receiver wired to the RC IN port.")}],
+ images:[
+  {src:"recepteur_elrs.jpg",cap:F("Module de réception ELRS.","ELRS receiver module.")},
+  {src:"elrs_branchement.jpg",cap:F("Récepteur ELRS câblé sur le port RC IN.","ELRS receiver wired to the RC IN port.")}
+ ],
  instr:[
   F("Soudez 3 fils sur le récepteur (GND, 5V, TX).","Solder 3 wires to the receiver (GND, 5V, TX)."),
   F("Branchez ces fils sur le port <strong>RC IN</strong> du Pixhawk : Masse sur le '-', 5V sur le '+', et le fil de signal (TX) sur le 'S'.","Connect these wires to the Pixhawk's <strong>RC IN</strong> port: Ground on '-', 5V on '+', and the signal wire (TX) on 'S'."),
@@ -590,56 +641,78 @@ const STEPS=[
   F("Si une LED verte s'allume en continu, l'alimentation est saine. Laissez tourner quelques instants puis débranchez correctement la batterie.","If a steady green LED lights up, the power supply is safe. Let it run for a few moments then properly unplug the battery.")],
  warn:[F("Si la LED est rouge ou si le composant s'éteint, débranchez immédiatement la batterie pour examiner vos soudures (risque de court-circuit).","If the LED is red or the component turns off, unplug the battery immediately to examine your soldering (short-circuit risk).")]},
 /* ===== CONFIG QGC ===== */
+{phase:F("Configuration · QGC","Setup · QGC"),title:F("Prérequis logiciels","Software pre-requisites"),
+ lede:F("Avant de brancher le contrôleur de vol, préparez votre ordinateur.","Before plugging in the flight controller, prepare your computer."),
+ instr:[F("Lancez <strong>toujours</strong> le logiciel QGroundControl (QGC) sur votre ordinateur en premier, avant de brancher le câble USB au Pixhawk.","<strong>Always</strong> launch the QGroundControl (QGC) software on your computer first, before plugging the USB cable into the Pixhawk.")]},
 {phase:F("Configuration · QGC","Setup · QGC"),title:F("Flasher PX4 + Airframe","Flash PX4 + Airframe"),
  lede:F("Le logiciel QGroundControl permet d'installer le système de vol (PX4) sur le Pixhawk.","The QGroundControl software installs the flight system (PX4) onto the Pixhawk."),
+ images:[
+  {src:"firmware.jpg",cap:F("Sélection du Firmware PX4 Pro Stable.","Selecting the PX4 Pro Stable Firmware.")},
+  {src:"airframe.jpg",cap:F("Sélection de la cellule Generic Quadrotor X.","Selecting the Generic Quadrotor X airframe.")}
+ ],
  instr:[
-  F("Reliez le Pixhawk à votre ordinateur via un câble USB et lancez QGroundControl (QGC).","Connect the Pixhawk to your computer via a USB cable and launch QGroundControl (QGC)."),
-  F("Cliquez sur l'icône 'Q', allez dans <strong>Vehicle Setup</strong>, puis <strong>Firmware</strong>.","Click the 'Q' icon, go to <strong>Vehicle Setup</strong>, then <strong>Firmware</strong>."),
+  F("Reliez le Pixhawk à votre ordinateur via un câble USB. QGC détecte la carte.","Connect the Pixhawk to your computer via a USB cable. QGC detects the board."),
+  F("Cliquez sur l'icône 'Q' (haut gauche), allez dans <strong>Vehicle Setup</strong>, puis <strong>Firmware</strong>.","Click the 'Q' icon (top left), go to <strong>Vehicle Setup</strong>, then <strong>Firmware</strong>."),
   F("Débranchez puis rebranchez le câble USB comme demandé, et sélectionnez <strong>PX4 Pro Stable</strong>. Laissez l'installation se terminer.","Unplug then replug the USB cable as requested, and select <strong>PX4 Pro Stable</strong>. Let the installation finish."),
   F("Allez ensuite dans l'onglet <strong>Airframe</strong>, choisissez <strong>Generic Quadrotor X</strong> et cliquez sur <strong>Apply and Restart</strong>.","Then go to the <strong>Airframe</strong> tab, choose <strong>Generic Quadrotor X</strong> and click <strong>Apply and Restart</strong>.")]},
 {phase:F("Configuration · QGC","Setup · QGC"),title:F("Géométrie des moteurs (deadcat)","Motor geometry (deadcat)"),
- lede:F("Le châssis a une géométrie asymétrique qu'il faut préciser au logiciel pour stabiliser le vol.","The frame has an asymmetrical geometry that must be specified to the software to stabilize flight."),
+ lede:F("C'est dans l'onglet Actuators qu'il faut préciser la géométrie asymétrique du châssis pour stabiliser le vol et mapper les moteurs.","It is in the Actuators tab that you must specify the asymmetric frame geometry to stabilise flight and map the motors."),
+ images:[{src:"actuators.jpg",cap:F("Menu Actuators : configuration PWM et géométrie.","Actuators menu: PWM setup and geometry.")}],
  instr:[
-  F("Dans les paramètres géométriques (<strong>Airframe</strong> ou <strong>Vehicle Setup → Geometry</strong>), activez la configuration personnalisée.","In the geometric settings (<strong>Airframe</strong> or <strong>Vehicle Setup → Geometry</strong>), enable custom configuration."),
+  F("Allez dans le menu <strong>Vehicle Setup → Actuators</strong>. Assurez-vous que les sorties MAIN 1 à 4 correspondent bien aux Moteurs 1 à 4 dans la section 'Motor 1-4'. Réglez le 'PWM Main' Rate à <span class='tag'>400 Hz</span>.","Go to the <strong>Vehicle Setup → Actuators</strong> menu. Ensure MAIN outputs 1 to 4 correspond to Motors 1 to 4 in the 'Motor 1-4' section. Set the 'PWM Main' Rate to <span class='tag'>400 Hz</span>."),
+  F("Descendez dans la page jusqu'à la section <strong>Geometry</strong> et activez la géométrie personnalisée (Custom).","Scroll down the page to the <strong>Geometry</strong> section and enable custom geometry."),
   F("Mesurez la distance entre le centre du Pixhawk et l'axe des moteurs. Entrez la valeur pour les moteurs avant (M1, M3), environ <span class='tag'>0.243 m</span>.","Measure the distance from the Pixhawk centre to the motor axis. Enter the value for the front motors (M1, M3), approximately <span class='tag'>0.243 m</span>."),
   F("Entrez la distance pour les moteurs arrière (M2, M4), environ <span class='tag'>0.263 m</span>. Sauvegardez.","Enter the distance for the rear motors (M2, M4), approximately <span class='tag'>0.263 m</span>. Save.")]},
 {phase:F("Configuration · QGC","Setup · QGC"),title:F("Binder le récepteur ELRS","Bind the ELRS receiver"),
  lede:F("Associez la radiocommande au récepteur du drone à l'aide d'une phrase clé (Binding Phrase).","Pair the remote control to the drone receiver using a binding phrase."),
+ images:[{src:"bind_elrs.gif",cap:F("Procédure de Bind Wi-Fi sur l'ELRS.","Wi-Fi Bind procedure on the ELRS.")}],
  instr:[
-  F("Rebranchez le Pixhawk en USB pour activer le réseau Wi-Fi de l'ELRS. Connectez-vous à <span class='tag'>ExpressLRS RX</span> sur l'ordinateur.","Plug the Pixhawk back into USB to activate the ELRS Wi-Fi network. Connect to <span class='tag'>ExpressLRS RX</span> on the computer."),
+  F("Rebranchez le Pixhawk en USB pour activer le réseau Wi-Fi du récepteur ELRS. Connectez-vous à <span class='tag'>ExpressLRS RX</span> sur votre ordinateur.","Plug the Pixhawk back into USB to activate the ELRS receiver's Wi-Fi network. Connect to <span class='tag'>ExpressLRS RX</span> on your computer."),
   F("Ouvrez l'adresse <span class='tag'>10.0.0.1</span> et saisissez une phrase secrète dans le champ <strong>Binding Phrase</strong>. Cliquez sur Save & Reboot.","Open the address <span class='tag'>10.0.0.1</span> and enter a secret phrase in the <strong>Binding Phrase</strong> field. Click Save & Reboot."),
-  F("Allumez votre radiocommande RadioMaster Pocket, activez son Wi-Fi pour accéder à l'interface de réglage du module ELRS (Internal RF), et saisissez exactement la même 'Binding Phrase'. La LED du récepteur doit devenir verte et fixe.","Turn on your RadioMaster Pocket remote, activate its Wi-Fi to access the ELRS module (Internal RF) setup interface, and enter exactly the same 'Binding Phrase'. The receiver LED should turn solid green.")]},
+  F("Allumez votre radiocommande RadioMaster Pocket, <strong>activez son Wi-Fi</strong> pour accéder à l'interface de réglage du module ELRS (Internal RF). Saisissez exactement la même 'Binding Phrase' dans l'émetteur. La LED du récepteur sur le drone doit devenir verte et fixe.","Turn on your RadioMaster Pocket remote, <strong>activate its Wi-Fi</strong> to access the ELRS module (Internal RF) setup interface. Enter exactly the same 'Binding Phrase' in the transmitter. The receiver LED on the drone should turn solid green.")]},
 {phase:F("Configuration · QGC","Setup · QGC"),title:F("Calibrer la radio","Calibrate the radio"),
  lede:F("Définissez l'amplitude des commandes de votre radio dans le logiciel.","Define the amplitude of your radio controls in the software."),
+ images:[{src:"radio.jpg",cap:F("Menu de calibration de la radiocommande.","Radio calibration menu.")}],
  instr:[
   F("Dans QGC, allez dans <strong>Vehicle Setup → Radio</strong>.","In QGC, go to <strong>Vehicle Setup → Radio</strong>."),
   F("Cliquez sur <strong>Calibrate</strong> et suivez les instructions à l'écran : déplacez les manches dans toutes les directions jusqu'en butée, et actionnez chaque interrupteur.","Click on <strong>Calibrate</strong> and follow the on-screen instructions: move the sticks in all directions to their limits, and toggle each switch.")]},
 {phase:F("Configuration · QGC","Setup · QGC"),title:F("Calibrer les capteurs","Calibrate the sensors"),
  lede:F("Les capteurs de position et d'orientation doivent être calibrés.","Position and orientation sensors must be calibrated."),
+ images:[{src:"sensors.jpg",cap:F("Menu de calibration des capteurs inertiels et magnétiques.","Inertial and magnetic sensors calibration menu.")}],
  instr:[
   F("Allez dans <strong>Vehicle Setup → Sensors</strong>. Commencez par le <strong>Gyroscope</strong> : le drone doit rester immobile sur la table.","Go to <strong>Vehicle Setup → Sensors</strong>. Start with the <strong>Gyroscope</strong>: the drone must remain still on the table."),
   F("Lancez la calibration de l'<strong>Accéléromètre</strong> : placez le drone dans les 6 positions indiquées par les animations à l'écran et attendez la validation pour chaque posture.","Start the <strong>Accelerometer</strong> calibration: place the drone in the 6 positions indicated by the on-screen animations and wait for validation for each posture."),
   F("Pour le <strong>Compas</strong>, manipulez le drone dans toutes les directions (loin de sources métalliques) jusqu'à ce que la calibration se termine.","For the <strong>Compass</strong>, manipulate the drone in all directions (away from metal sources) until calibration completes."),
   F("Effectuez enfin le <strong>Level Horizon</strong> en posant le drone bien à plat.","Finally perform the <strong>Level Horizon</strong> by placing the drone perfectly flat.")]},
-{phase:F("Configuration · QGC","Setup · QGC"),title:F("Configurer la batterie","Configure the battery"),
- lede:F("Renseignez les caractéristiques de la batterie pour que le système surveille correctement son niveau.","Enter the battery characteristics so the system correctly monitors its level."),
+{phase:F("Configuration · QGC","Setup · QGC"),title:F("Configurer la batterie et calibrer l'ESC","Configure the battery and calibrate the ESC"),
+ lede:F("Renseignez les caractéristiques de la batterie et synchronisez l'ESC. <strong>À faire SANS HÉLICES.</strong>","Enter the battery characteristics and synchronise the ESC. <strong>To be done WITHOUT PROPELLERS.</strong>"),
+ images:[{src:"power.jpg",cap:F("Onglet Power : configuration de la batterie et bouton de calibration ESC.","Power tab: battery configuration and ESC calibration button.")}],
  instr:[
-  F("Allez dans <strong>Vehicle Setup → Power</strong>.","Go to <strong>Vehicle Setup → Power</strong>."),
-  F("Réglez 'Number of Cells' sur <strong>4</strong>. Indiquez la tension pleine ('Full voltage') à <span class='tag'>4.2 V</span> par cellule et la tension vide ('Empty') à <span class='tag'>3.7 V</span>.","Set 'Number of Cells' to <strong>4</strong>. Set full voltage to <span class='tag'>4.2 V</span> per cell and empty voltage to <span class='tag'>3.7 V</span>."),
-  F("Saisissez la valeur <span class='tag'>18.182</span> dans le champ 'Voltage Divider' du PM02 (ajustable plus tard).","Enter the value <span class='tag'>18.182</span> in the PM02 'Voltage Divider' field (adjustable later).")]},
+  F("Allez dans <strong>Vehicle Setup → Power</strong>. Réglez 'Number of Cells' sur <strong>4</strong>. Indiquez la tension pleine ('Full voltage') à <span class='tag'>4.2 V</span> par cellule et la tension vide ('Empty') à <span class='tag'>3.7 V</span>.","Go to <strong>Vehicle Setup → Power</strong>. Set 'Number of Cells' to <strong>4</strong>. Set full voltage to <span class='tag'>4.2 V</span> per cell and empty voltage to <span class='tag'>3.7 V</span>."),
+  F("Saisissez la valeur <span class='tag'>18.182</span> dans le champ 'Voltage Divider' du PM02.","Enter the value <span class='tag'>18.182</span> in the PM02 'Voltage Divider' field."),
+  F("Descendez en bas de cette même page 'Power' pour trouver le bouton <strong>ESC PWM Calibrate</strong>. Débranchez la batterie. Cliquez sur le bouton, branchez la batterie quand le logiciel le demande pour synchroniser la plage des gaz, et attendez la confirmation de l'ESC.","Scroll down this same 'Power' page to find the <strong>ESC PWM Calibrate</strong> button. Unplug the battery. Click the button, plug the battery when the software prompts to synchronise the throttle range, and wait for ESC confirmation.")]},
+{phase:F("Configuration · QGC","Setup · QGC"),title:F("Tester le sens des moteurs","Test the motor direction"),
+ lede:F("Vérifiez le sens de rotation de chaque moteur (Toujours sans hélices).","Verify the rotation direction of each motor (Always without propellers)."),
+ instr:[
+  F("Retournez dans <strong>Vehicle Setup → Actuators</strong>.","Return to <strong>Vehicle Setup → Actuators</strong>."),
+  F("Testez chaque moteur à bas régime (5-10%) depuis les curseurs de l'interface et observez leur sens de rotation réel.","Test each motor at low speed (5-10%) using the interface sliders and observe their actual rotation direction."),
+  F("Vérifiez : Moteur 1 (Avant-Droit) et Moteur 2 (Arrière-Gauche) doivent tourner dans le sens <strong>horaire (CW)</strong>. Moteur 3 (Avant-Gauche) et Moteur 4 (Arrière-Droit) doivent tourner dans le sens <strong>anti-horaire (CCW)</strong>.","Verify: Motor 1 (Front-Right) and Motor 2 (Rear-Left) must spin <strong>clockwise (CW)</strong>. Motor 3 (Front-Left) and Motor 4 (Rear-Right) must spin <strong>counter-clockwise (CCW)</strong>."),
+  F("Si un moteur tourne dans le mauvais sens, dessoudez et inversez deux de ses trois fils sur la carte de l'ESC.","If a motor spins the wrong way, desolder and swap two of its three wires on the ESC board.")]},
 {phase:F("Configuration · QGC","Setup · QGC"),title:F("Configurer les modes de vol","Configure flight modes"),
  lede:F("Assignez les interrupteurs de votre radio pour basculer entre les modes de vol.","Assign your radio switches to toggle between flight modes."),
+ images:[{src:"flight_modes.jpg",cap:F("Configuration des canaux pour les modes de vol.","Flight modes channel configuration.")}],
  instr:[
   F("Allez dans <strong>Vehicle Setup → Flight Modes</strong>.","Go to <strong>Vehicle Setup → Flight Modes</strong>."),
   F("Sur un interrupteur à 3 positions, assignez respectivement les modes <strong>Stabilized</strong>, <strong>Altitude</strong>, et <strong>Position</strong>.","On a 3-position switch, assign respectively the <strong>Stabilized</strong>, <strong>Altitude</strong>, and <strong>Position</strong> modes."),
   F("Sur un autre interrupteur, assignez le mode <strong>Offboard</strong> (pilotage autonome).","On another switch, assign the <strong>Offboard</strong> mode (autonomous piloting)."),
-  F("Il est recommandé d'assigner un interrupteur dédié à la fonction de sécurité <strong>Return to Land (RTL)</strong>.","It is recommended to assign a dedicated switch for the <strong>Return to Land (RTL)</strong> safety function.")]},
-{phase:F("Configuration · QGC","Setup · QGC"),title:F("Configurer et calibrer les ESC","Configure and calibrate the ESCs"),
- lede:F("Synchronisez la communication entre le Pixhawk et les ESC. <strong>Cette étape doit se faire SANS HÉLICES.</strong>","Synchronise communication between the Pixhawk and ESCs. <strong>This step must be done WITHOUT PROPELLERS.</strong>"),
+  F("Assignez un interrupteur dédié à la fonction d'urgence <strong>Return to Land (RTL)</strong>.","Assign a dedicated switch for the <strong>Return to Land (RTL)</strong> emergency function.")]},
+{phase:F("Configuration · QGC","Setup · QGC"),title:F("Activer la vidéo dans QGC","Enable video in QGC"),
+ lede:F("Configurez l'interface pour recevoir le flux vidéo de la Raspberry Pi.","Configure the interface to receive the video stream from the Raspberry Pi."),
+ images:[{src:"page_principal.jpg",cap:F("Paramètres généraux pour activer le flux vidéo UDP.","General settings to enable the UDP video stream.")}],
  instr:[
-  F("Allez dans <strong>Vehicle Setup → Actuators</strong>. Assurez-vous que les sorties MAIN 1 à 4 correspondent bien aux Moteurs 1 à 4. Réglez le 'PWM Rate' à <span class='tag'>400 Hz</span>.","Go to <strong>Vehicle Setup → Actuators</strong>. Ensure MAIN outputs 1 to 4 correspond to Motors 1 to 4. Set the 'PWM Rate' to <span class='tag'>400 Hz</span>."),
-  F("Pour calibrer, utilisez le bouton logiciel prévu. Suivez les instructions (brancher la batterie quand demandé) pour synchroniser la plage des gaz.","To calibrate, use the provided software button. Follow the instructions (plugging in the battery when asked) to synchronise the throttle range."),
-  F("Testez chaque moteur à bas régime (5-10%) depuis l'interface et observez leur sens de rotation. Si un moteur ne tourne pas dans le sens prévu (horaire ou anti-horaire), inversez deux de ses fils soudés à l'ESC.","Test each motor at low speed (5-10%) from the interface and observe their rotation direction. If a motor does not spin in the intended direction (clockwise or counter-clockwise), swap two of its wires soldered to the ESC.")]},
+  F("Cliquez sur le grand Q en haut à gauche, puis allez dans les paramètres <strong>Application Settings (General)</strong>.","Click the large Q top-left, then go to <strong>Application Settings (General)</strong>."),
+  F("Faites défiler jusqu'à la section <strong>Video</strong>.","Scroll down to the <strong>Video</strong> section."),
+  F("Dans 'Video Source', sélectionnez <strong>UDP h.264 Video Stream</strong>. Assurez-vous que le port UDP est réglé sur <strong>5600</strong>.","In 'Video Source', select <strong>UDP h.264 Video Stream</strong>. Ensure the UDP port is set to <strong>5600</strong>.")]},
 {phase:F("Configuration · QGC","Setup · QGC"),title:F("Régler les paramètres critiques","Set the critical parameters"),
  lede:F("Ajustez certains paramètres spécifiques dans la base de données PX4.","Adjust specific parameters in the PX4 database."),
  instr:[
@@ -690,8 +763,8 @@ const STEPS=[
  lede:F("Le GPS doit être placé en hauteur pour limiter les interférences.","The GPS must be placed high up to limit interference."),
  parts:[{qty:"x4",name:F("Vis M3×8","M3×8 screws"),ref:""}],
  fastener:[F("Vis M3×8","Screw M3×8"),F("Insert M3","Insert M3")],
- images:[{src:"mat_gps.jpg",cap:F("Mât cylindrique fixé sur le dessus de la coque avec le GPS.","Cylindrical mast secured on top of the shell with the GPS.")}],
- instr:[F("Vissez la base du mât noir sur la cavité au sommet de la coque en utilisant 4 vis M3×8. Placez le module GPS au sommet du mât, en veillant à l'orienter vers l'avant.","Screw the base of the black mast onto the cavity at the top of the shell using 4 M3×8 screws. Place the GPS module on top of the mast, ensuring it is oriented forward.")]},
+ images:[{src:"mat_gps.jpg",cap:F("Mât cylindrique fixé sur la bosse ronde avec le GPS.","Cylindrical mast secured on the round bump with the GPS.")}],
+ instr:[F("Vissez la base du mât noir sur la bosse ronde au sommet de la coque en utilisant 4 vis M3×8. Placez le module GPS au sommet du mât, en veillant à l'orienter vers l'avant.","Screw the base of the black mast onto the round bump at the top of the shell using 4 M3×8 screws. Place the GPS module on top of the mast, ensuring it is oriented forward.")]},
 {phase:F("Fermeture finale","Final closing"),title:F("Fermer la coque + fixer l'ELRS","Close the shell + secure the ELRS"),
  lede:F("Il est temps de refermer le châssis de manière sécurisée.","It's time to securely close the frame."),
  parts:[
@@ -711,7 +784,10 @@ const STEPS=[
  parts:[
   {qty:"x1",name:F("Batterie LiPo 4S 6000 mAh","LiPo 4S 6000 mAh battery"),ref:""},
   {qty:"x2",name:F("Sangles velcro","Velcro straps"),ref:""}],
- images:[{src:"batterie_sangles.jpg",cap:F("Batterie maintenue fermement sous le châssis par les sangles.","Battery held firmly under the frame by the straps.")}],
+ images:[
+  {src:"batterie_entre_plots.jpg",cap:F("Batterie correctement positionnée entre les plots de centrage.","Battery correctly positioned between the centering posts.")},
+  {src:"batterie_sangles.jpg",cap:F("Batterie maintenue fermement sous le châssis par les sangles.","Battery held firmly under the frame by the straps.")}
+ ],
  instr:[
   F("Positionnez la batterie sous la plaque inférieure, entre les 4 petits plots de centrage. Connectez la prise XT60.","Position the battery under the lower plate, between the 4 small centering posts. Connect the XT60 plug."),
   F("Enroulez les deux sangles velcro autour du corps du drone pour plaquer fermement la batterie. Serrez correctement pour éviter tout mouvement en vol.","Wrap the two velcro straps around the drone's body to firmly press the battery against it. Tighten properly to prevent any movement in flight."),
@@ -722,7 +798,7 @@ const STEPS=[
  images:[{src:"helices.jpg",cap:F("Identification du sens des hélices et montage final.","Identifying propeller direction and final fitting.")}],
  instr:[
   F("Repérez le sens de rotation de chaque moteur (M1 et M2 en Horaire / CW ; M3 et M4 en Anti-Horaire / CCW).","Identify the rotation direction of each motor (M1 and M2 Clockwise / CW; M3 and M4 Counter-Clockwise / CCW)."),
-  F("Prenez les hélices correspondantes. Le bord d'attaque arrondi doit être orienté dans le sens de rotation. Assurez-vous que les inscriptions sur les pales sont orientées vers le haut.","Take the corresponding propellers. The rounded leading edge must face the rotation direction. Ensure the writing on the blades faces upwards."),
+  F("Prenez les hélices correspondantes. <strong>Les hélices tournant en sens horaire (CW) possèdent la lettre 'R' marquée sur la pale</strong>. Le bord d'attaque arrondi doit être orienté dans le sens de rotation. Assurez-vous que les inscriptions sur les pales sont orientées vers le haut.","Take the corresponding propellers. <strong>Props spinning clockwise (CW) have the letter 'R' marked on the blade</strong>. The rounded leading edge must face the rotation direction. Ensure the writing on the blades faces upwards."),
   F("Placez chaque hélice sur son axe moteur. Vissez l'écrou auto-bloquant à l'aide d'une clé. Serrez suffisamment pour éviter tout jeu, mais sans écraser le plastique.","Place each propeller on its motor shaft. Screw the lock-nut using a wrench. Tighten sufficiently to avoid play, but without crushing the plastic.")],
  warn:[F("Ne montez jamais les hélices en intérieur pendant la phase de configuration. Effectuez cette opération uniquement à l'extérieur, juste avant de voler.","Never mount the propellers indoors during the configuration phase. Perform this operation only outdoors, right before flying.")]},
 {phase:F("Premier vol","First flight"),title:F("Checklist finale avant décollage","Final pre-flight checklist"),
@@ -738,6 +814,7 @@ const STEPS=[
   {name:F("Paramètres de sécurité configurés (Failsafe RTL)","Safety parameters configured (Failsafe RTL)"),ref:""},
   {name:F("Batterie chargée à 100% et bien fixée","Battery 100% charged and securely fastened"),ref:""},
   {name:F("Fix GPS stable obtenu (8-10 satellites minimum)","Stable GPS fix acquired (8-10 satellites minimum)"),ref:""},
+  {name:F("Flux vidéo opérationnel dans QGC","Video stream operational in QGC"),ref:""},
   {name:F("Hélices serrées dans le bon sens de rotation","Propellers tightened in the correct rotation direction"),ref:""}]},
 {phase:F("Premier vol","First flight"),title:F("Décollage : Position → Offboard","Take-off: Position → Offboard"),
  lede:F("Voici la procédure de décollage et d'activation du vol autonome.","Here is the take-off and autonomous flight activation procedure."),
@@ -812,9 +889,14 @@ function checkCard(s) {
   return `<div class="card"><div class="card-h"><span class="dot"></span>${UI[lang].check}</div><div class="manifest">${rows}</div><div class="checkfoot"><span>${UI[lang].checked}</span><span><b id="ckN">0</b> / ${s.checklist.length}</span></div></div>`;
 }
 function figure(im) {
+  const isVideo = im.src.endsWith('.mp4') || im.src.endsWith('.webm');
+  const mediaHtml = isVideo 
+    ? `<video src="${im.src}" autoplay loop muted playsinline></video>`
+    : `<img src="${im.src}" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+       <div class="ph" style="display:none"><div>[Image / Vidéo manquante]</div><code>${im.src}</code></div>`;
+       
   return `<figure class="figure"><div class="frame"><span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
-    <img src="${im.src}" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-    <div class="ph" style="display:none"><div>[Image manquante / missing]</div><code>${im.src}</code></div></div>
+    ${mediaHtml}</div>
     ${im.cap ? `<figcaption class="cap"><b>FIG</b><span>${L(im.cap)}</span></figcaption>` : ''}</figure>`;
 }
 function notes(arr, type) {
@@ -879,7 +961,6 @@ function applyLang() {
   langTxt.innerHTML = lang === 'fr' ? '<span style="color:var(--accent)">FR</span> / EN' : 'FR / <span style="color:var(--accent)">EN</span>';
   cTot.textContent = pad(STEPS.length);
   buildDots();
-  // On passe "true" pour préserver l'état (les cases cochées) lors d'un simple changement de langue
   render(true);
 }
 
